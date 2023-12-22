@@ -11,26 +11,26 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* B.S. in Sociology, UC Berkeley, 2018
+* M.S. in Demography, UC Berkeley, 2022
+* Ph.D in Demography, UC Berkeley, 2025 (expected)
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* Fall 2022-Present: Data Diversity Fellow
+  * UC Berkeley Graduate Division
+  * Duties included: WORKING
+  * Supervisor: Sara Quigley
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* Fall 2022-present: Technology Lead
+  * Carribean Aging and Dementia Study
+  * Duties included: WORKING
+  * Supervisor: Professor William Dow
   
 Skills
 ======
-* Skill 1
-* Skill 2
+* Original Research Design
+* Survey Data Collection and Management
   * Sub-skill 2.1
   * Sub-skill 2.2
   * Sub-skill 2.3
