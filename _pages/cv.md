@@ -19,8 +19,11 @@ Work experience
 ======
 * Fall 2022-Present: Data Diversity Fellow
   * UC Berkeley Graduate Division
-  * Duties included: WORKING
-  * Supervisor: Sara Quigley
+  * Duties included: 
+  Collaborated closely with CDC personnel, utilizing Epi Info software to successfully program seven distinct survey skip patterns.
+  Developed Stata do-files specifically designed to identify data inconsistencies, such as missing cases and incorrectly entered data, enhancing the reliability of the research findings.
+  Assisted in establishing procedures and protocols for data collection, exportation, and transmission, ensuring consistency and accuracy throughout the research process.
+  * Supervisor: Sara Quigley / Denzil Streete
 
 * Fall 2022-present: Technology Lead
   * Carribean Aging and Dementia Study
