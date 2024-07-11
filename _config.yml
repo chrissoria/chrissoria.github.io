@@ -102,14 +102,14 @@ author:
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
+  linkedin         : "https://www.linkedin.com/in/christopher-soria-9340931a/"
   orcid            : "https://orcid.org/my-orcid?orcid=0009-0007-3558-5896"
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
-  tumblr           :
-  x                : "CSoriaResearch"
+  tumblr           : "https://www.tumblr.com/blog/christophersoria"
+  twitter          : "CSoriaResearch"
   vine             :
   weibo            :
   xing             :
@@ -228,15 +228,6 @@ defaults:
       author_profile: true
       share: true
       comments: true
-  # _portfolio
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
   # _talks
   - scope:
       path: ""
