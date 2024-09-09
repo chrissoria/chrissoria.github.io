@@ -12,7 +12,12 @@ In the world of data analysis, ensuring the accuracy and consistency of datasets
 
 In this blog post, we explore an innovative approach to improving match quality between datasets using Large Language Models (LLMs) and the Jaro-Winkler similarity algorithm. By leveraging the power of LLMs, we can "force" both datasets to align more closely in their naming conventions, enhancing the probability of finding accurate matches. The Jaro-Winkler score then helps us identify the highest probability matches, ensuring that our data integration efforts are both efficient and reliable.
 
-Follow along below or download the python script here: 
+Follow along below or download the python script here: https://github.com/chrissoria/chrissoria.github.io/blob/main/files/clean_schools.ipynb
+
+### Setting Up the Environment
+
+Before diving into the data processing, it's essential to set up the environment with the necessary libraries and configurations. Here's a breakdown of the initial steps:
+
 
 ```python
 from openai import OpenAI
@@ -26,6 +31,7 @@ import time
 from dotenv import load_dotenv, find_dotenv
 ```
 
+To keep sensitive information like API keys secure, we use environment variables. The dotenv library helps us load these variables from a local .env file:
 
 ```python
 load_dotenv()
@@ -37,7 +43,7 @@ load_dotenv()
     True
 
 
-
+This command initializes the environment variables, making them accessible within the script. It ensures that API keys and other sensitive data are not hard-coded into the script. The script also specifies different models (gpt-3.5-turbo-16k, gpt-3.5-turbo, gpt-4o) for potential use, each offering different capabilities and token limits.
 
 ```python
 _ = load_dotenv(find_dotenv()) # read local .env file
@@ -48,6 +54,7 @@ GPT_3 = "gpt-3.5-turbo"
 GPT_4 = "gpt-4o"
 ```
 
+To ensure that the script operates in the correct context, we set the working directory to the location of our datasets:
 
 ```python
 os.chdir('/Users/chrissoria/Documents/Research/determinants-grad-adm')
