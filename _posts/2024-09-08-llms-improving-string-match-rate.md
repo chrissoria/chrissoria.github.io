@@ -14,7 +14,9 @@ In this blog post, we explore an innovative approach to improving match quality 
 
 Follow along below or download the python script here: https://github.com/chrissoria/chrissoria.github.io/blob/main/files/clean_schools.ipynb
 
-### Setting Up the Environment
+(this post was written by GPT4)
+
+### Getting set up
 
 Before diving into the data processing, it's essential to set up the environment with the necessary libraries and configurations. Here's a breakdown of the initial steps:
 
@@ -65,6 +67,15 @@ print(current_directory)
     /Users/chrissoria/Documents/Research/determinants-grad-adm
 
 
+### Cleaning School Names
+
+To begin, we define a function to clean the school names by standardizing their format. This involves converting text to lowercase, removing unwanted characters, and trimming whitespace. This function does the following:
+- **Lowercasing**: Converts all text to lowercase to ensure case-insensitive comparisons.
+- **Removing Punctuation**: Eliminates commas and hyphens to reduce variability in naming.
+- **Trimming Whitespace**: Strips leading and trailing spaces and replaces multiple spaces with a single space.
+- **Removing Articles**: Removes the word "the" from the start of names to focus on the core name.
+
+Here's the function:
 
 ```python
 def clean_school_names(df, column_name):
@@ -76,6 +87,13 @@ def clean_school_names(df, column_name):
     return df
 ```
 
+Next, we load the Berkeley schools dataset, select the relevant column, and apply our cleaning function.
+
+- **Loading Data**: Reads the Excel file containing school names.
+- **Selecting Columns**: Focuses on the column with undergraduate degree school names.
+- **Renaming Columns**: Renames the column for consistency in further processing.
+
+After cleaning, we ensure that each school name is unique:
 
 ```python
 berkeley_schools = pd.read_excel('data/berkeley_schools.xlsx')
@@ -138,7 +156,7 @@ berkeley_schools.head()
 </div>
 
 
-
+Similarly, we load and prepare the IPEDS schools dataset:
 
 ```python
 berkeley_schools = clean_school_names(berkeley_schools, 'school')
@@ -202,7 +220,11 @@ berkeley_schools.head()
 </div>
 
 
+## Preparing and Matching the IPEDS Schools Dataset
 
+Continuing with our data preparation, we now focus on the IPEDS schools dataset. This dataset contains a comprehensive list of institutions, which we will clean and prepare for matching with the Berkeley schools dataset.
+
+First, we load the dataset and select the relevant column containing school names:
 
 ```python
 iped_schools = pd.read_csv('data/IPEDS_schools.csv')
@@ -268,7 +290,7 @@ iped_schools.head()
 </table>
 </div>
 
-
+We apply the same cleaning function to standardize the school names in the IPEDS dataset:
 
 
 ```python
@@ -343,14 +365,14 @@ iped_schools.head()
 
 
 
-There are 5222 schools in the berkeley list and 6543 in the IPEDS data. The highest possible max match is 5222. Therefore, in all future match rates we will set the denominator to 5222.
+With both datasets cleaned and prepared, we can now attempt to match them based on the school names. There are 5,222 unique schools in the Berkeley list and 6,543 in the IPEDS data. Our goal is to maximize the match rate, with the highest possible match being 5,222.
 
 
 ```python
 highest_possible_match = len(berkeley_schools)
 ```
 
-Let's try and match this data based on the school column and see what match rate we can obtain.
+We perform a left join to match the datasets based on the school column:
 
 
 ```python
@@ -420,10 +442,11 @@ merged_1.head()
 print(f"The match rate with standardizing strings in both columns and nothing more is {merged_1['match'].sum() / highest_possible_match * 100:.2f}%")
 ```
 
-    The match rate with standardizing strings in both columns and nothing more is 23.83%
+After standardizing the school names in both datasets, we achieved a match rate of 23.83%. While this is a good start, we can further improve the match rate by employing fuzzy matching techniques. Fuzzy matching helps us account for minor differences in spelling and avoid false matches between schools with similar names.
 
+### Applying the Jaro-Winkler Algorithm
 
-Next, let's try a fuzzy match based on a sufficiently high enough Jaro-Winkler score that that'll help us get around some of the small differences in way the school is spelled and also avoid false matches of schools with very similar names.
+To enhance our matching process, we utilize the Jaro-Winkler similarity algorithm. This algorithm is particularly effective for comparing strings and identifying matches based on a similarity score. Here's how we implement it:
 
 
 ```python
@@ -512,7 +535,11 @@ berkeley_schools.head()
 </div>
 
 
+Function Definition: The find_best_match function iterates through possible matches and calculates the Jaro-Winkler score for each.
+Threshold Setting: We set a high threshold (0.975) to ensure that only highly similar matches are considered valid.
+Applying the Function: We apply the function to each school name in the Berkeley dataset to find the best match in the IPEDS dataset.
 
+The results of the fuzzy matching process are promising. Here's a sample of the output:
 
 ```python
 filtered_matches = berkeley_schools[berkeley_schools['Match Score'] >= 0.975]
@@ -521,7 +548,8 @@ merged_2 = filtered_matches.merge(iped_schools, left_on='Best Match', right_on='
 merged_2.head()
 ```
 
-
+Perfect Matches: Some schools, like "University of Kentucky" and "University of Southern California," achieve a perfect match score of 1.0.
+Partial Matches: For schools with lower scores, such as "Technion-Israel Inst of Tech," the algorithm did not find a sufficiently similar match.
 
 
 <div>
@@ -596,7 +624,6 @@ merged_2.head()
 
 
 
-
 ```python
 print(f"The match rate with standardizing strings and a jaro-winkler threshold of .975 is {merged_2['match'].sum() / highest_possible_match * 100:.2f}%")
 ```
@@ -604,7 +631,11 @@ print(f"The match rate with standardizing strings and a jaro-winkler threshold o
     The match rate with standardizing strings and a jaro-winkler threshold of .975 is 26.93%
 
 
-One problem here is that some of the schools in the berkeley list are international, or not a school at all. Let's start by asking GPT to identify which are real schools and which are domestic.
+## Enhancing Data Matching with AI Assistance
+
+While our initial fuzzy matching using the Jaro-Winkler algorithm improved the match rate to 26.93%, we encountered a challenge: some entries in the Berkeley list are either international schools or not schools at all. To address this, we leverage the power of GPT to identify and filter valid domestic schools.
+
+We use GPT to determine which entries in the Berkeley dataset are valid schools and whether they are located in the United States. This step helps us focus our matching efforts on relevant entries, potentially improving the match rate.
 
 
 ```python
@@ -657,14 +688,19 @@ def identify_valid_schools(school_list,
     
     return standardized_schools
 ```
+Functionality: This function queries GPT to identify the country of each school or mark it as invalid if it's not a recognized institution.
+JSON Response: The response is formatted as JSON, making it easy to parse and use in further analysis.
 
+We apply the identify_valid_schools function to the Berkeley dataset and create a new column to indicate whether each school is domestic:
 
 ```python
 berkeley_schools['country'] = identify_valid_schools(berkeley_schools['school'],
                                                           GPT_4)
 
 ```
+To improve the accuracy of our data matching, we added a domestic indicator to the Berkeley schools dataset. This step helps us focus on schools located in the United States, which are more relevant for our matching purposes.
 
+We created a new column, `domestic`, to indicate whether each school is located in the United States. This column is populated based on the `country` information obtained from GPT:
 
 ```python
 berkeley_schools['domestic'] = berkeley_schools['country'].apply(lambda x: 1 if 'United States' in x else 0)
@@ -672,7 +708,8 @@ berkeley_schools.to_csv('data/berkeley_schools_features.csv')
 berkeley_schools
 ```
 
-
+Domestic Indicator: The domestic column is set to 1 for schools in the United States and 0 for others.
+Data Export: The updated dataset is saved for future reference and analysis.
 
 
 <div>
@@ -795,7 +832,8 @@ berkeley_schools
 </div>
 
 
-
+## Filtering and Merging for Improved Matches
+With the domestic indicator in place, we filter the dataset to focus on high-confidence matches and merge it with the IPEDS dataset:
 
 ```python
 filtered_matches_domestic = berkeley_schools[berkeley_schools['Match Score'] >= 0.975]
@@ -879,7 +917,12 @@ merged_2.head()
 
 
 
-Now, let's run these columns through an LLM to standardize the strings further and see what match rate we can get afterwards
+Filtering Matches: We focus on matches with a Jaro-Winkler score of 0.975 or higher to ensure high confidence.
+Merging Datasets: The filtered matches are merged with the IPEDS dataset to verify and enhance the match rate.
+
+## Further Standardizing School Names with LLM
+
+To achieve even greater accuracy, we use a Large Language Model (LLM) to standardize the spelling of school names. This step helps eliminate minor discrepancies that could affect the match rate:
 
 
 ```python
@@ -929,7 +972,15 @@ def extract_standard(school_list,
     
     return standardized_schools
 ```
+LLM Standardization: The function queries GPT to provide the standard spelling for each school name, formatted in JSON.
+Error Handling: The function includes error handling to manage any issues during the API call.
 
+
+## Leveraging GPT-3 for Enhanced Standardization
+
+To further refine our data matching process, we utilize GPT-3 to standardize the spelling of school names across both datasets. This step aims to reduce discrepancies caused by variations in naming conventions and improve the overall match rate. We use GPT3 because of the lower cost and relative simplicity of this task.
+
+We apply the `extract_standard` function to both the Berkeley and IPEDS datasets using GPT-3. This function queries GPT-3 to provide a consistent and standardized spelling for each school name:
 
 ```python
 berkeley_schools['gpt3_standardized'] = extract_standard(berkeley_schools['school'],
@@ -943,7 +994,9 @@ berkeley_schools.head()
 iped_schools['gpt3_standardized'] = extract_standard(iped_schools['school'],
                                                           GPT_3)
 ```
+With standardized names in place, we perform another round of matching using the Jaro-Winkler algorithm, this time on the GPT-3 standardized columns.
 
+The table below shows a sample of the results after applying GPT-3 standardization and matching:
 
 ```python
 matches_gpt = berkeley_schools['gpt3_standardized'].apply(lambda x: find_best_match(x, iped_schools['gpt3_standardized']))
@@ -1046,7 +1099,11 @@ berkeley_schools.head()
 </div>
 
 
+## Evaluating the True Match Rate
 
+After leveraging GPT-3 for standardization and applying the Jaro-Winkler algorithm, we achieved a match rate of 31.32%. However, this calculation used the total number of schools in the Berkeley dataset as the denominator, which includes international entries. To obtain a more accurate match rate, we need to focus on domestic schools only.
+
+We previously asked GPT to identify whether each school in the Berkeley dataset is located in the United States. Now, we use this information to refine our denominator and calculate the true match rate:
 
 ```python
 filtered_matches_gpt = berkeley_schools[berkeley_schools['Match Score GPT'] >= 0.975]
@@ -1055,7 +1112,8 @@ merged_3 = filtered_matches_gpt.merge(iped_schools, left_on='Best Match GPT', ri
 merged_3.head()
 ```
 
-
+Domestic Focus: By using only domestic schools as the denominator, we ensure that our match rate reflects the relevant subset of data.
+Accurate Denominator: GPT identified 2,409 domestic schools, which serves as the new denominator for calculating the match rate.
 
 
 <div>
@@ -1165,7 +1223,8 @@ merged_3.head()
 </div>
 
 
-
+## Final Match Rate Calculation
+With the refined denominator, we can now calculate the true match rate for domestic schools:
 
 ```python
 print(f"The match rate with standardizing strings and a jaro-winkler threshold of .975 is {merged_3['match'].sum() / highest_possible_match * 100:.2f}%")
@@ -1173,7 +1232,7 @@ print(f"The match rate with standardizing strings and a jaro-winkler threshold o
 
     The match rate with standardizing strings and a jaro-winkler threshold of .975 is 31.32%
 
-
+True Match Rate: This calculation provides a more accurate representation of our data matching success, focusing on schools located in the United States.
 
 ```python
 berkeley_schools.to_csv('data/berkeley_schools_features.csv', index = False)
