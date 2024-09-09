@@ -223,7 +223,7 @@ berkeley_schools.head()
 </div>
 
 
-## Preparing and Matching the IPEDS Schools Dataset
+### Preparing and Matching the IPEDS Schools Dataset
 
 Continuing with our data preparation, we now focus on the IPEDS schools dataset. This dataset contains a comprehensive list of institutions, which we will clean and prepare for matching with the Berkeley schools dataset.
 
@@ -634,7 +634,7 @@ print(f"The match rate with standardizing strings and a jaro-winkler threshold o
     The match rate with standardizing strings and a jaro-winkler threshold of .975 is 26.93%
 
 
-## Enhancing Data Matching with AI Assistance
+### Enhancing Data Matching with AI Assistance
 
 While our initial fuzzy matching using the Jaro-Winkler algorithm improved the match rate to 26.93%, we encountered a challenge: some entries in the Berkeley list are either international schools or not schools at all. To address this, we leverage the power of GPT to identify and filter valid domestic schools.
 
@@ -835,7 +835,7 @@ Data Export: The updated dataset is saved for future reference and analysis.
 </div>
 
 
-## Filtering and Merging for Improved Matches
+### Filtering and Merging for Improved Matches
 With the domestic indicator in place, we filter the dataset to focus on high-confidence matches and merge it with the IPEDS dataset:
 
 ```python
@@ -923,7 +923,7 @@ merged_2.head()
 - **Filtering Matches**: We focus on matches with a Jaro-Winkler score of 0.975 or higher to ensure high confidence.
 - **Merging Datasets**: The filtered matches are merged with the IPEDS dataset to verify and enhance the match rate.
 
-## Further Standardizing School Names with LLM
+### Further Standardizing School Names with LLM
 
 To achieve even greater accuracy, we use a Large Language Model (LLM) to standardize the spelling of school names. This step helps eliminate minor discrepancies that could affect the match rate:
 
@@ -979,7 +979,7 @@ LLM Standardization: The function queries GPT to provide the standard spelling f
 Error Handling: The function includes error handling to manage any issues during the API call.
 
 
-## Leveraging GPT-3 for Enhanced Standardization
+### Leveraging GPT-3 for Enhanced Standardization
 
 To further refine our data matching process, we utilize GPT-3 to standardize the spelling of school names across both datasets. This step aims to reduce discrepancies caused by variations in naming conventions and improve the overall match rate. We use GPT3 because of the lower cost and relative simplicity of this task.
 
@@ -1102,7 +1102,7 @@ berkeley_schools.head()
 </div>
 
 
-## Evaluating the True Match Rate
+### Evaluating the True Match Rate
 
 After leveraging GPT-3 for standardization and applying the Jaro-Winkler algorithm, we achieved a match rate of 31.32%. However, this calculation used the total number of schools in the Berkeley dataset as the denominator, which includes international entries. To obtain a more accurate match rate, we need to focus on domestic schools only.
 
@@ -1226,7 +1226,7 @@ merged_3.head()
 </div>
 
 
-## Final Match Rate Calculation
+### Final Match Rate Calculation
 With the refined denominator, we can now calculate the true match rate for domestic schools:
 
 ```python
