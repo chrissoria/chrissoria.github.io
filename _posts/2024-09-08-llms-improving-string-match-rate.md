@@ -1,13 +1,18 @@
-title: 'First Post in Honor of My Little Man, Charlie'
+---
+title: 'How to Improve Match Quality on String Data Using Large Language Models'
 date: 2024-09-08
-permalink: /posts/2024/09/blog-post-1/
+permalink: /posts/2024/09/llm-string-match1/
 tags:
   - LLM
   - string data
   - data cleaning
 ---
 
+In the world of data analysis, ensuring the accuracy and consistency of datasets is crucial, especially when dealing with entities like school names that may be spelled differently across various sources. This discrepancy can pose significant challenges when trying to match records from different datasets. Traditional methods of data cleaning may fall short in addressing these inconsistencies effectively.
 
+In this blog post, we explore an innovative approach to improving match quality between datasets using Large Language Models (LLMs) and the Jaro-Winkler similarity algorithm. By leveraging the power of LLMs, we can "force" both datasets to align more closely in their naming conventions, enhancing the probability of finding accurate matches. The Jaro-Winkler score then helps us identify the highest probability matches, ensuring that our data integration efforts are both efficient and reliable.
+
+Follow along below or download the python script here: 
 
 ```python
 from openai import OpenAI
