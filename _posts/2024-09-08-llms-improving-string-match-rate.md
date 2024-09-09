@@ -14,7 +14,10 @@ In this blog post, we explore an innovative approach to improving match quality 
 
 Follow along below or download the python script here: https://github.com/chrissoria/chrissoria.github.io/blob/main/files/clean_schools.ipynb
 
-(this post was written by GPT4)
+## Overall Summary of the Post
+
+- **I take two datasets and push the match rate from 23.83% to 67.16% using generative AI.**
+- **this post was written by GPT4**
 
 ### Getting set up
 
@@ -535,9 +538,9 @@ berkeley_schools.head()
 </div>
 
 
-Function Definition: The find_best_match function iterates through possible matches and calculates the Jaro-Winkler score for each.
-Threshold Setting: We set a high threshold (0.975) to ensure that only highly similar matches are considered valid.
-Applying the Function: We apply the function to each school name in the Berkeley dataset to find the best match in the IPEDS dataset.
+- **Function Definition**: The find_best_match function iterates through possible matches and calculates the Jaro-Winkler score for each.
+- **Threshold Setting**: We set a high threshold (0.975) to ensure that only highly similar matches are considered valid.
+- **Applying the Function**: We apply the function to each school name in the Berkeley dataset to find the best match in the IPEDS dataset.
 
 The results of the fuzzy matching process are promising. Here's a sample of the output:
 
@@ -548,8 +551,8 @@ merged_2 = filtered_matches.merge(iped_schools, left_on='Best Match', right_on='
 merged_2.head()
 ```
 
-Perfect Matches: Some schools, like "University of Kentucky" and "University of Southern California," achieve a perfect match score of 1.0.
-Partial Matches: For schools with lower scores, such as "Technion-Israel Inst of Tech," the algorithm did not find a sufficiently similar match.
+**Perfect Matches**: Some schools, like "University of Kentucky" and "University of Southern California," achieve a perfect match score of 1.0.
+**Partial Matches**: For schools with lower scores, such as "Technion-Israel Inst of Tech," the algorithm did not find a sufficiently similar match.
 
 
 <div>
@@ -688,8 +691,8 @@ def identify_valid_schools(school_list,
     
     return standardized_schools
 ```
-Functionality: This function queries GPT to identify the country of each school or mark it as invalid if it's not a recognized institution.
-JSON Response: The response is formatted as JSON, making it easy to parse and use in further analysis.
+- **Functionality**: This function queries GPT to identify the country of each school or mark it as invalid if it's not a recognized institution.
+- **JSON Response**: The response is formatted as JSON, making it easy to parse and use in further analysis.
 
 We apply the identify_valid_schools function to the Berkeley dataset and create a new column to indicate whether each school is domestic:
 
@@ -917,8 +920,8 @@ merged_2.head()
 
 
 
-Filtering Matches: We focus on matches with a Jaro-Winkler score of 0.975 or higher to ensure high confidence.
-Merging Datasets: The filtered matches are merged with the IPEDS dataset to verify and enhance the match rate.
+- **Filtering Matches**: We focus on matches with a Jaro-Winkler score of 0.975 or higher to ensure high confidence.
+- **Merging Datasets**: The filtered matches are merged with the IPEDS dataset to verify and enhance the match rate.
 
 ## Further Standardizing School Names with LLM
 
@@ -1112,8 +1115,8 @@ merged_3 = filtered_matches_gpt.merge(iped_schools, left_on='Best Match GPT', ri
 merged_3.head()
 ```
 
-Domestic Focus: By using only domestic schools as the denominator, we ensure that our match rate reflects the relevant subset of data.
-Accurate Denominator: GPT identified 2,409 domestic schools, which serves as the new denominator for calculating the match rate.
+- **Domestic Focus**: By using only domestic schools as the denominator, we ensure that our match rate reflects the relevant subset of data.
+- **Accurate Denominator**: GPT identified 2,409 domestic schools, which serves as the new denominator for calculating the match rate.
 
 
 <div>
@@ -1232,7 +1235,7 @@ print(f"The match rate with standardizing strings and a jaro-winkler threshold o
 
     The match rate with standardizing strings and a jaro-winkler threshold of .975 is 31.32%
 
-True Match Rate: This calculation provides a more accurate representation of our data matching success, focusing on schools located in the United States.
+- **True Match Rate**: This calculation provides a more accurate representation of our data matching success, focusing on schools located in the United States.
 
 ```python
 berkeley_schools.to_csv('data/berkeley_schools_features.csv', index = False)
@@ -1250,7 +1253,7 @@ print(f"GPT identified {true_highest_possible_match} domestic schools. This shou
     GPT identified 2409 domestic schools. This should be our denominator.
 
 
-
+Below we find that we are now able to get a 67.16% thanks to GPT and jaro-winkler matching
 ```python
 print(f"The match rate with standardizing strings of domestic schools and a jaro-winkler threshold of .975 is {merged_3['match'].sum() / true_highest_possible_match * 100:.2f}%")
 ```
@@ -1271,8 +1274,7 @@ non_matches = non_matches[non_matches['Match Score GPT'] < 0.975]
 non_matches.to_csv('data/berkeley_ipeds_non_matches.csv', index=False)
 ```
 
-Below, I'm producing a final matched dataset to send to Matthew for inspection
-
+Below, I'm producing a final matched dataset for manual inspection
 
 ```python
 berkeley_baselines = pd.read_excel('data/berkeley_schools.xlsx')
