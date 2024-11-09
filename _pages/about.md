@@ -21,13 +21,19 @@ Internal US Migration
 ------
 I'm currently assisting professor Claude Fischer on a project using data from the UC Berkeley Social Networks Study (UCNets) on a project aimed at gaining a better understanding of the causal predictors of internal US mobility.
 
-Partisanship and Health
+Partisanship, Health, and Mortality
 ------
-Our goal is to gain a better understanding on how political party affiliation impacts health behaviors, and how these differences contribute to the spread of disease. A collaboration with Audrey Dorlien, Ayesha Mahmud, and Dennis Feehan.
+Our goal is to gain a better understanding on how political party affiliation impacts health behaviors, and how these differences contribute to the spread of disease. 
+A collaboration with Audrey Dorlien, Ayesha Mahmud, and Dennis Feehan.
+We ask: How do estimates of prevalence and mortality change when we acknowledge that partisans , Democrats and Republicans, behave differently during a pandemic? 
+How would the overall pandemic magnitude and timing change?
 
 Inequalities in the Education System
 ------
-A project aimed at understanding the biases in graduate school admissions that may be contributing to inequality. A collaboration with Matthew Stenberg, Sara Quigley, Catherine Madsen, and Lisa Bedolla.
+A project aimed at understanding the biases in graduate school admissions that may be contributing to inequality. 
+A massive undertaking, we use application data to 100+ graduate programs to uncover how public school applicants fare in relation to private school applicants.
+To gain further understanding, we analyze the decision making committee's background to assess whether public school students have a better chance when the committee also comes from a public school background. 
+A collaboration with Matthew Stenberg, Sara Quigley, Catherine Madsen, and Lisa Bedolla.
 
 Utlizing Large Language Models for Assisting the Research Process
 ------
