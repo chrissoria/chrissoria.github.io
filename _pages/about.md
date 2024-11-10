@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 
-I'm a Demographer and Sociologist pursuing my PhD at the University of California, Berkeley, serving as a data manager for The Caribbean-American Dementia and Aging Study (CADAS) under Professor William Dow, and collaborating with Professor Claude Fischer on a project analyzing mobility within and between regions using data from the UC Berkeley Social Networks Study (UCNets). I'm also currently working alongside professors Dennis Feehan, Ayesha Mahmud, and Audrey Dorélien on a project aiming to understand how partisanship and social context impacted health behaviors during the pandemic using data from the Berkeley Interpersonal Contact Study (BICS). 
+I'm a Demographer and Sociologist pursuing my PhD at the University of California, Berkeley, serving as a data manager for <a href="https://populationsciences.berkeley.edu/cadas/investigators/">The Caribbean-American Dementia and Aging Study (CADAS)</a> under Professor William Dow, and collaborating with Professor Claude Fischer on a project analyzing mobility within and between regions using data from the UC Berkeley Social Networks Study (UCNets). I'm also currently working alongside professors Dennis Feehan, Ayesha Mahmud, and Audrey Dorélien on a project aiming to understand how partisanship and social context impacted health behaviors during the pandemic using data from the Berkeley Interpersonal Contact Study (BICS). 
 
 My research is rooted in understanding the roots of inequality of various outcomes in health, mortality, and education in the US setting. Additionally, I'm currently exploring the ways  Large Language Models (LLMs) can augment the survey data collection and analysis process. 
 
