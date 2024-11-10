@@ -13,7 +13,7 @@ Education
 ======
 * B.S. in Sociology, UC Berkeley, 2018
 * M.S. in Demography, UC Berkeley, 2022
-* Ph.D in Demography, UC Berkeley, 2025 (expected)
+* Ph.D in Demography, UC Berkeley, 2026 (expected)
 
 Work experience
 ======
@@ -30,14 +30,22 @@ Work experience
   * Duties included: WORKING
   * Supervisor: Professor William Dow
   
-Skills
+Research Focus
 ======
-* Original Research Design
-* Survey Data Collection and Management
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Aging, Mortality and Dementia
+* Social Networks and Health
+* Inequality in Health and Mortality
+
+Fellowships, Awards, and Recognition
+=======
+* 2017-18: Sociology Honor's 
+* 2018: Danesha McCoy Award for Outstanding Research
+* 2021-23: Chancelor's Fellowship
+* 2022: <a href="https://dlab.berkeley.edu/people/christopher-soria">Data Science for Social Justice Fellow</a>
+* 2022-23: <a href="https://grad.berkeley.edu/graduate-diversity/contact-ogd/diversity-and-community-fellows/">Data Science for Diversity Fellow</a>
+* 2024-25: <a href="https://gradapp.berkeley.edu/portal/fellowships?cmd=mentoredres">Nominated by my Department and Awarded the Mentored Research Award</a>
+* 2024-25: <a href="https://ggsc.berkeley.edu/who_we_are/our_people/fellows/current_fellows">Libby Fee Research Fellow</a>
+* 2024-25: <a href="https://wonderfest.org/science-envoy/">Wonderfest Science Envoy</a>
 
 Publications
 ======
@@ -53,4 +61,4 @@ Talks
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Getting in Grad School Mentor (2022-2023)
