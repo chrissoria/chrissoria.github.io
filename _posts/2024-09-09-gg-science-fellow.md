@@ -1,6 +1,6 @@
 ---
 title: 'I'm a Libby Fee Research Fellow for the Greater Good Science Center!'
-date: 2024-11-08
+date: 2024-09-09
 permalink: /posts/2024/20/gg-science-fellow/
 tags:
   - Greater Good
