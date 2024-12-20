@@ -15,7 +15,9 @@ There is a lot to unpack here, so let's start with the basic conceptualization o
 
 In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
 
-First, $\lambda$ is the force of infection. It combines the chance of getting infected when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
+First, $\lambda$ is the force of infection. It combines the chance of getting infected, when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. We will represent the chance of getting infected with a $\tau$, for transmission probability. To determine how many people are to be met, and how many of them are infected, we also need to define the size of the population, which we will represent with $/N$. The size of the population will repeatedly be adjusted as people drop out (or die) due to the disease, but the initial size of the population will be represented as $/N0$. 
+
+The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
 
 $\lambda = \tau \sum_c_{1i} \left(\frac{IU_i}{N_i}$
 
