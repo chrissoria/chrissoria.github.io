@@ -1,11 +1,11 @@
 ---
-title: 'Understanding the Three-Group SIR Used in Our Upcoming Paper'
-date: 2024-12-20
-permalink: /posts/2024/20/three-group-sir-partisan-groups/
+title: "Understanding the Three-Group SIR Used in Our Upcoming Paper"
+date: "2024-12-20"
+permalink: "/posts/2024/20/three-group-sir-partisan-groups/"
 tags:
-  - Partisanship
-  - Disease Transmission
-  - Research
+- Partisanship
+- Disease Transmission
+- Research
 ---
 
 In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utlizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
@@ -27,10 +27,12 @@ $$\lambda = \tau c \frac{I}{N}$$
 Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
 <p style="text-align: center;">
-$$Average duration of infectiousness = \frac{1} {\rho}$$
+$$\text{Average duration of infectiousness} = \frac{1} {\rho}$$
 </p>
 
 In our study, we use $/rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
+
+To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$/tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $/rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. A higher $/rho$ leads to faster recovery which in turns lowers the force of infection. 
 
 Second, there's $\mu_i$ - probability of dying following infection. That is, of those who become infected, $N*/lambda$, some will 
 
