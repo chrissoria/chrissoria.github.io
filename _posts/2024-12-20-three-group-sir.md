@@ -17,9 +17,9 @@ In the above diagram, there are so far three parameters that facilitate the tran
 
 First, $\lambda$ is the force of infection. It combines the chance of getting infected when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
 
-$$
-\lambda_a = \tau \sum_c_{1i} \left(\frac{IU_i}{N_i} + \kappa \frac{IP_i}{N_i}\right)
-$$
+$
+\lambda = \tau \sum_c_{1i} \left(\frac{IU_i}{N_i}
+$
 
 
 Second, there's $\mu_i$ - probability of dying following infection for group.
