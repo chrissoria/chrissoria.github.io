@@ -19,7 +19,9 @@ First, $\lambda$ is the force of infection. It combines the chance of getting in
 
 The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
 
-$\lambda = \tau c \frac{I}{N}$
+<p style="text-align: center;">
+$$\lambda = \tau c \frac{I}{N}$$
+</p>
 
 
 Second, there's $\mu_i$ - probability of dying following infection for group.
