@@ -10,16 +10,14 @@ tags:
 
 In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utlizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
 
-There is a lot to unpack here, so let's start with the basic conceptualization of how the model will work. 
+There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
 ![Door Knocking](/images/simple_sir.png)
 
 In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
 
 First, $\lambda$ is the force of infection. It combines the chance of getting infected when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
 
-$
-\lambda = \tau \sum_c_{1i} \left(\frac{IU_i}{N_i}
-$
+$\lambda = \tau \sum_c_{1i} \left(\frac{IU_i}{N_i}$
 
 
 Second, there's $\mu_i$ - probability of dying following infection for group.
