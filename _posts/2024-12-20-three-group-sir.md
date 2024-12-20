@@ -11,9 +11,8 @@ tags:
 In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utlizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
 
 There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
-<p style="text-align: center;">
-![Basic SIR](/images/simple_sir.png)
-</p>
+
+<p align="center"> <img src="/images/simple_sir.png" alt="Basic SIR"> </p>
 
 In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
 
@@ -28,7 +27,7 @@ $$\lambda = \tau c \frac{I}{N}$$
 Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
 <p style="text-align: center;">
-$${Average duration of infectiousness} = \frac{1} {\rho}$$
+$$Average duration of infectiousness = \frac{1} {\rho}$$
 </p>
 
 In our study, we use $/rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
