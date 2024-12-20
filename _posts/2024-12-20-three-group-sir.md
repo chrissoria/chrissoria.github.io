@@ -11,20 +11,29 @@ tags:
 In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utlizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
 
 There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
-![Door Knocking](/images/simple_sir.png)
+<p style="text-align: center;">
+![Basic SIR](/images/simple_sir.png)
+</p>
 
 In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
 
 First, $\lambda$ is the force of infection. It combines the chance of getting infected, when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. We will represent the chance of getting infected with a $\tau$, for transmission probability. To determine how many people are to be met, and how many of them are infected, we also need to define the size of the population, which we will represent with $N$. The size of the population will repeatedly be adjusted as people drop out (or die) due to the disease, but the initial size of the population will be represented as $N0$. 
 
-The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups, is:
+The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups or mask wearing, is:
 
 <p style="text-align: center;">
 $$\lambda = \tau c \frac{I}{N}$$
 </p>
 
+Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
-Second, there's $\mu_i$ - probability of dying following infection for group.
+<p style="text-align: center;">
+$${Average duration of infectiousness} = \frac{1} {\rho}$$
+</p>
+
+In our study, we use $/rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
+
+Second, there's $\mu_i$ - probability of dying following infection. That is, of those who become infected, $N*/lambda$, some will 
 
 Lastly, there's $\gamma$ - rate of waning immunity.
 
