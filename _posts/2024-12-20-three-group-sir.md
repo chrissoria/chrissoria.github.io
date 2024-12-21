@@ -26,7 +26,7 @@ $$\lambda = \tau c \frac{I}{N}$$
 
 In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$.
 
-Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
+Now, there is some percentage of people that have ended up as "infected." Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
 <p style="text-align: center;">
 $$\text{Average duration of infectiousness} = \frac{1} {\rho}$$
@@ -36,7 +36,14 @@ In our study, we use $\rho$ = .1, which translates to average duration of infect
 
 To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster recovery which in turns lowers $\lambda$ by reducing the number of infected individuals. 
 
-Second, there's $\mu_i$ - probability of dying following infection. That is, of those who become infected, $N*/lambda$, some will 
+Next, we need to define what happens with people after they've become infected. In this case, they can either move into the recovered state or they can die. The transitions are governed by two rates:
+
+\begin{itemize}
+    \item $\rho$ - the recovery rate (inverse of the average infectious period)
+    \item $\mu$ - the probability of dying following infection
+\end{itemize}
+
+The rate at which infected individuals move to the deceased state is calculated as $\rho \mu I$. Those who do not die transition to the recovered class $R$ at a rate of $\rho(1-\mu)I$. Once in the recovered class, individuals may lose their immunity and return to the susceptible class at a rate $\gamma$, which represents waning immunity.
 
 Lastly, there's $\gamma$ - rate of waning immunity.
 
