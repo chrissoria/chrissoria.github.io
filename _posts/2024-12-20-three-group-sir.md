@@ -24,15 +24,17 @@ The more infected people and the more contacts, the higher $\lambda$ becomes, in
 $$\lambda = \tau c \frac{I}{N}$$
 </p>
 
+In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$.
+
 Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
 <p style="text-align: center;">
 $$\text{Average duration of infectiousness} = \frac{1} {\rho}$$
 </p>
 
-In our study, we use $/rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
+In our study, we use $\rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
 
-To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$/tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $/rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. A higher $/rho$ leads to faster recovery which in turns lowers the force of infection. 
+To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster recovery which in turns lowers $\lambda$ by reducing the number of infected individuals. 
 
 Second, there's $\mu_i$ - probability of dying following infection. That is, of those who become infected, $N*/lambda$, some will 
 
