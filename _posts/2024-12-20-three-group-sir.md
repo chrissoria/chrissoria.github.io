@@ -38,54 +38,20 @@ To summarize, in order for a transition from $S$ to $I$ to occur, we need a pers
 
 Next, we need to define what happens with people after they've become infected. In this case, they can either move into the recovered state or they can die. The transitions are governed by two rates:
 
-\begin{itemize}
-    \item $\rho$ - the recovery rate (inverse of the average infectious period)
-    \item $\mu$ - the probability of dying following infection
-\end{itemize}
+$\rho$ - the recovery rate (inverse of the average infectious period)
+$\mu$ - the probability of dying following infection
 
 The rate at which infected individuals move to the deceased state is calculated as $\rho \mu I$. Those who do not die transition to the recovered class $R$ at a rate of $\rho(1-\mu)I$. Once in the recovered class, individuals may lose their immunity and return to the susceptible class at a rate $\gamma$, which represents waning immunity.
 
-Lastly, there's $\gamma$ - rate of waning immunity.
 
-Let's start with defining the function:
 
-```{r}
-sir_three_group_pu <- function(## parameters related to popn
-                               N0 = 10000000, # population size
-                               frac_a = 0.33, # fraction of population in group A
-                               frac_b = 0.33, # fraction of population in group B
-                               ## parameters related to contacts
-                               cmax = NA, # initial/max average number of contacts per day (specify only if its the same for both groups, otherwise NA)
-                               cmax_a = 8, cmax_b = 8, cmax_c=8, # initial/max average number of contacts per day by group 
-                               cmin = NA, # min average contact
-                               cmin_a = 3, cmin_b = 3, cmin_c=3,
-                               beta_a=1, # homophily parameter for group a (beta_a = 1 means unbiased mixing; bigger values mean homophily) 
-                               beta_b=1, # homophily parameter for group b (beta_b = 1 means unbiased mixing; bigger values mean homophily) 
-                               #h_a=.5, # proportion of group A's total contact with members of their own group 
-                               #h_b=.5, # proportion of group A's total contact with members of their own group 
-                               ##
-                               zeta = NA, # responsiveness of contact to deaths
-                               zeta_a = 0.01, zeta_b = 0, zeta_c = 0.005,
-                               trans_p = 0.05, # probability of transmission given contact (or susceptibility to infection given contact)
-                               rho=1/10,# 1 / infectious period  or recovery rate
-                               mu = NA,# probability of dying following infection
-                               mu_a = 0.01, mu_b = 0.01, mu_c = .01, # can let it differ between groups to crudely account for difference in age composition between groups
-                               kappa=0.9, # scaling factor for probability of transmission given contact resulting from protective behavior; kappa=1 means no protection, kappa = 0 means perfect protection
-                               phi = NA, # waning of protective behavior
-                               phi_a = 0, phi_b=0, phi_c=0,
-                               I0_a=1, I0_b=1, I0_c=1, #intial infected in each group
-                               time = 500, # time steps for simulation
-                               pi = NA, # background rate of adopting protective behavior
-                               pi_a = 0.05, pi_b = 0.05, pi_c = 0.05,
-                               ell = 1, # time window for considering deaths that influence adoption of protective behavior
-                               vacc = NA, # vaccination rate (goes from S to R)
-                               # in Roubenoff et al. we assume about 2 million daily doses are distributed which is ~ 0.6 % of the population per day
-                               vacc_a = 0.006, vacc_b = 0.006, vacc_c = 0.006,
-                               vstart = 365, # start of vaccination
-                               gamma = 1/182.5, # wanning immunity
-                               
-                               get_params=FALSE)
-```
+
+
+
+
+
+
+
 
 The sir_three_group_pu function models the spread of an infectious disease across three distinct population groups, likely representing different political affiliations (Republicans, Democrats, and Independents). This sophisticated model incorporates a wide range of parameters to simulate various aspects of disease transmission and population behavior during a pandemic.
 
