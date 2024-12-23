@@ -40,17 +40,27 @@ Next, we need to define what happens with people after they've become infected. 
 
 $\rho$ - the recovery rate (inverse of the average infectious period) and $\mu$ - the probability of dying following infection.
 
-The rate at which infected individuals move to the deceased state is calculated as $\rho$ times $\mu$ times $I$. In other words, the percentage of infected people who leave the infected state and then die. 
+The rate at which infected individuals move to the deceased state is calculated as $\rho$ times $\mu$ times $I$. In other words, the percentage of infected people who leave the infected state and then die is calculated as: 
 
 <p style="text-align: center;">
-$$\text{Number of deaths} = I/rho/mu$$
+$$\text{Number of deaths} = I\rho\mu$$
 </p>
 
-Those who do not die transition to the recovered class $R$ at a rate of $\rho$ times $(1-\mu)$ times $I$. This represents the proportion of infected individuals who leave the infected state and recover.
+Those who do not die transition to the recovered class $R$ at a rate of $\rho$ times $(1-\mu)$ times $I$. This represents the proportion of infected individuals who leave the infected state and recover is calculated as:
 
-Once in the recovered class, individuals may lose their immunity and return to the susceptible class at a rate $\gamma$, which represents waning immunity.
+<p style="text-align: center;">
+$$R = I\rho(1-\mu)$$
+</p>
 
-Now, the overall loop is complete. 
+Once in the recovered class, just like we observe in COVID-19, individuals lose their immunity and return to the susceptible class at a rate $\gamma$.This represents waning immunity and is calculated as:
+
+<p style="text-align: center;">
+$$\text{Rate of Waning Immunity} = R\gamma$$
+</p>
+
+Now, the overall loop is complete. But, keep in mind that these formulas only represent a single time-step transition. In reality, we are generating these calculations across a set of time units. In our case, we use days and set the default number of days at 250 so we can zoom in on the initial outbreak.
+
+This SIR model implementation uses the deSolve package to numerically solve the system of differential equations over time. The model simulates the progression of the epidemic for each day, updating the state variables (S, I, R) based on the calculated rates of change. This allows us to observe how the epidemic evolves over the specified time period, capturing the dynamics of disease spread, recovery, and the effects of various interventions like vaccination and behavioral changes.
 
 
 
