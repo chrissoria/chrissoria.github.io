@@ -34,14 +34,23 @@ $$\text{Average duration of infectiousness} = \frac{1} {\rho}$$
 
 In our study, we use $\rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
 
-To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster recovery which in turns lowers $\lambda$ by reducing the number of infected individuals. 
+To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster rate at which individuals leave the infected state which in turns lowers $\lambda$ by reducing the number of infected individuals $I$. 
 
 Next, we need to define what happens with people after they've become infected. In this case, they can either move into the recovered state or they can die. The transitions are governed by two rates:
 
-$\rho$ - the recovery rate (inverse of the average infectious period)
-$\mu$ - the probability of dying following infection
+$\rho$ - the recovery rate (inverse of the average infectious period) and $\mu$ - the probability of dying following infection.
 
-The rate at which infected individuals move to the deceased state is calculated as $\rho \mu I$. Those who do not die transition to the recovered class $R$ at a rate of $\rho(1-\mu)I$. Once in the recovered class, individuals may lose their immunity and return to the susceptible class at a rate $\gamma$, which represents waning immunity.
+The rate at which infected individuals move to the deceased state is calculated as $\rho$ times $\mu$ times $I$. In other words, the percentage of infected people who leave the infected state and then die. 
+
+<p style="text-align: center;">
+$$\text{Number of deaths} = I/rho/mu$$
+</p>
+
+Those who do not die transition to the recovered class $R$ at a rate of $\rho$ times $(1-\mu)$ times $I$. This represents the proportion of infected individuals who leave the infected state and recover.
+
+Once in the recovered class, individuals may lose their immunity and return to the susceptible class at a rate $\gamma$, which represents waning immunity.
+
+Now, the overall loop is complete. 
 
 
 
