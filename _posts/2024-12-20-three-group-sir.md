@@ -12,6 +12,8 @@ In our upcoming paper, "Measuring and Modeling the Impact of Partisan Difference
 
 There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
 
+## The Model in its most basic form
+
 <p align="center"> <img src="/images/simple_sir.png" alt="Basic SIR"> </p>
 
 In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
@@ -26,7 +28,7 @@ $$\lambda = \tau c \frac{I}{N}$$
 
 In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$. 
 
-The number of new infections at any one time, those people who leave the susceptible class, is therefore calculated as:
+The number of new infections at in the early phases of the simulation, those people who leave the susceptible class, is therefore calculated as:
 
 <p style="text-align: center;">
 $$\text{number of infections} = \frac{dS}{dt} = -S\lambda$$
