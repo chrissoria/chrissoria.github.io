@@ -24,7 +24,13 @@ The more infected people and the more contacts, the higher $\lambda$ becomes, in
 $$\lambda = \tau c \frac{I}{N}$$
 </p>
 
-In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$.
+In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$. 
+
+The number of new infections at any one time, those people who leave the susceptible class, is therefore calculated as:
+
+<p style="text-align: center;">
+$$\text{number of infections} = \frac{dS}{dt} = -S\lambda$$
+</p>
 
 Now, there is some percentage of people that have ended up as "infected." Of the infected individuals, we must define how long they will remain in this state. We represent the recovery rate as $\rho$, which is the inverse of the average duration of infectiousness. Specifically:
 
@@ -43,7 +49,7 @@ $\rho$ - the recovery rate (inverse of the average infectious period) and $\mu$ 
 The rate at which infected individuals move to the deceased state is calculated as $\rho$ times $\mu$ times $I$. In other words, the percentage of infected people who leave the infected state and then die is calculated as: 
 
 <p style="text-align: center;">
-$$\text{Number of deaths} = I\rho\mu$$
+$$\text{number of deaths} = \frac{dD}{dt} =  I\rho\mu$$
 </p>
 
 Those who do not die transition to the recovered class $R$ at a rate of $\rho$ times $(1-\mu)$ times $I$. This represents the proportion of infected individuals who leave the infected state and recover is calculated as:
