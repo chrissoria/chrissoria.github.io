@@ -12,11 +12,11 @@ In our upcoming paper, "Measuring and Modeling the Impact of Partisan Difference
 
 There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
 
-## The Model in its most basic form
+## A Simplified Model
 
 <p align="center"> <img src="/images/simple_sir.png" alt="Basic SIR"> </p>
 
-In the above diagram, there are so far three parameters that facilitate the transition between the three states. 
+In the above diagram, there are so five transitions possible. 
 
 First, $\lambda$ is the force of infection. It combines the chance of getting infected, when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. We will represent the chance of getting infected with a $\tau$, for transmission probability. To determine how many people are to be met, and how many of them are infected, we also need to define the size of the population, which we will represent with $N$. The size of the population will repeatedly be adjusted as people drop out (or die) due to the disease, but the initial size of the population will be represented as $N0$. 
 
@@ -70,9 +70,9 @@ Now, the overall loop is complete. But, keep in mind that these formulas only re
 
 This SIR model implementation uses the deSolve package to numerically solve the system of differential equations over time. The model simulates the progression of the epidemic for each day, updating the state variables (S, I, R) based on the calculated rates of change. This allows us to observe how the epidemic evolves over the specified time period, capturing the dynamics of disease spread, recovery, and the effects of various interventions like vaccination and behavioral changes.
 
+## Incorporating Protection (Mask-Usage)
 
-
-
+The Berkeley Interpersonal Contacts Study (BICS) showed that Republicans and Democrats report wearing masks at different rates. Since mask-wearing affects disease spread, our model needs to account for these partisan differences. We've expanded our basic SIR model to include two new categories: protected ($P$) and unprotected ($U$). This means each state in our model is now split into two. For example, we now have Susceptible Protected ($SP$) and Susceptible Unprotected ($SU$) instead of just Susceptible ($S$).
 
 
 
