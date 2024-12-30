@@ -25,7 +25,7 @@ The more infected people and the more contacts, the higher $\lambda$ becomes, in
 <p style="text-align: center;">
 $$
 \lambda = \tau c \frac{I}{N}
-$$ {#eq-force-of-infection}
+$$
 </p>
 
 In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$. 
@@ -85,22 +85,22 @@ $\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$
 Since $\kappa$ only scales transmission probabilities for the protected, we multiply only against $\frac{I_P}{N}$ so that:
 
 <p style="text-align: center;">
-$$\lambda = \tau c (\\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
+$$\lambda = \tau c (\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 </p>
 
 The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
 
 <p style="text-align: center;">
-$$\I_P = \frac{dSP}{dt} = -SP*\lambda*\kappa$$
+$$I_P = \frac{dSP}{dt} = -SP*\lambda*\kappa$$
 </p>
 
 And those who "choose" not to wear protection effectively remains the same:
 
 <p style="text-align: center;">
-$$\I_U = \frac{dSU}{dt} = -SU*\lambda$$
+$$I_U = \frac{dSU}{dt} = -SU*\lambda$$
 </p>
 
-In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation @eq-force-of-infection for the force of infection formula). 
+In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). 
 
 The sir_three_group_pu function models the spread of an infectious disease across three distinct population groups, likely representing different political affiliations (Republicans, Democrats, and Independents). This sophisticated model incorporates a wide range of parameters to simulate various aspects of disease transmission and population behavior during a pandemic.
 
