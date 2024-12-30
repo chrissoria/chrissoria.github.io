@@ -86,9 +86,17 @@ Since $\kappa$ only scales transmission probabilities for the protected, we mult
 $$\lambda = \tau c (\\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 </p>
 
-The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. 
+The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
 
+<p style="text-align: center;">
+$$\I_P = \frac{dSP}{dt} = -SP*\lambda*\kappa$$
+</p>
 
+And those who "choose" not to wear protection effectively remains the same:
+
+<p style="text-align: center;">
+$$\I_U = \frac{dSU}{dt} = -SU*\lambda$$
+</p>
 
 
 
