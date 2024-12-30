@@ -23,7 +23,9 @@ First, $\lambda$ is the force of infection. It combines the chance of getting in
 The more infected people and the more contacts, the higher $\lambda$ becomes, increasing the spread of the disease. The formula for calculating $\lambda$ in this simple example, where we don't take into account partisan groups or mask wearing, is:
 
 <p style="text-align: center;">
-$$\lambda = \tau c \frac{I}{N}$$
+$$
+\lambda = \tau c \frac{I}{N}
+$$ {#eq-force-of-infection}
 </p>
 
 In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$. 
@@ -98,7 +100,7 @@ And those who "choose" not to wear protection effectively remains the same:
 $$\I_U = \frac{dSU}{dt} = -SU*\lambda$$
 </p>
 
-
+In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation @eq-force-of-infection for the force of infection formula). 
 
 The sir_three_group_pu function models the spread of an infectious disease across three distinct population groups, likely representing different political affiliations (Republicans, Democrats, and Independents). This sophisticated model incorporates a wide range of parameters to simulate various aspects of disease transmission and population behavior during a pandemic.
 
