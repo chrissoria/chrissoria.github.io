@@ -74,7 +74,11 @@ This SIR model implementation uses the deSolve package to numerically solve the 
 
 The Berkeley Interpersonal Contacts Study (BICS) showed that Republicans and Democrats report wearing masks at different rates. Since mask-wearing affects disease spread, our model needs to account for these partisan differences. We've expanded our basic SIR model to include two new categories: protected ($P$) and unprotected ($U$). This means each state in our model is now split into two. For example, we now have Susceptible Protected ($SP$) and Susceptible Unprotected ($SU$) instead of just Susceptible ($S$).
 
+Essentially, the protected class is impacted by s scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$ so that:
 
+<p style="text-align: center;">
+$$\lambda = (\tau c \frac{I}{N})*$\kappa$$
+</p>
 
 
 
