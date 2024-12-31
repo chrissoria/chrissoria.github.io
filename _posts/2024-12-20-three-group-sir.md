@@ -116,13 +116,13 @@ $$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_U + \gamma R_
 In other words, the protected susceptible population ($S_P$) increases as unprotected individuals adopt protective behaviors (at rate $\pi$) and decreases as protected individuals stop using protection (at rate $\phi$). Conversely, the unprotected susceptible population ($S_U$) changes in the opposite direction. Also, at any one point, there are people leaving the recovered classes ($R_U$ and $R_P$) and rejoining their respective susceptible classes. $\pi$ and $\phi$ are also constantly interacting with the other compartments $I$ and $R$, but for the sake of brevity and conciseness I will leave those out of this blog and refer you to the project's <a href="https://github.com/chrissoria/BICS_Political_Polarization/blob/main/code/disease_model/sir_behavior_three_party_simple.R">GitHub Repo</a>.
 
 
-Almost done, but there's one last component we need to consider: vaccination.
+Almost done, but there's one last component we need to consider: **vaccination**.
 
 To incorporate vaccination into our model, we move vaccinated individuals directly from the susceptible to the recovered class. This approach assumes that vaccines provide immunity similar to natural infection, with the same waning rate ($\gamma$). The model introduces two key vaccination parameters:
 
-vacc: The daily vaccination rate (e.g., vacc = 0.006 means 0.6% of the population is vaccinated daily)
+**vacc**: The daily vaccination rate (e.g., vacc = 0.006 means 0.6% of the population is vaccinated daily)
 
-vstart: The time step when vaccination becomes available
+**vstart**: The time step when vaccination becomes available
 
 This simplified approach allows us to model the impact of vaccination on disease spread without adding extra compartments, though it doesn't account for potential differences in immunity between vaccinated and naturally recovered individuals. After we add vaccination, the equations for calculating the susceptible become:  
 
@@ -144,10 +144,15 @@ $$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_U) - (\pi \cdot R_U) + (\phi 
 $$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_P) - (\pi \cdot R_U) + (\phi \cdot RPa) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
 </p>
 
-Challenge question: Why is $(\pi \cdot R_U)$ in our calculation $\frac{dR_P}{dt}$? Why is $(\phi \cdot RPa)$ in our calculation $\frac{dR_U}{dt}$?
-
-
 In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\gamma$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\rho$. 
+
+**Challenge questions**: 
+
+1. Why is $(\pi \cdot R_U)$ in our calculation $\frac{dR_P}{dt}$? Why is $(\phi \cdot RPa)$ in our calculation $\frac{dR_U}{dt}$?
+
+2. How would you draw the $vacc$ parameter onto the flow chart at the beginning of this section? What's an alternative way to incorporate vaccination? 
+
+3. What is one limitation of the $\kappa$ parameter? What are its assumptions?
 
 ## Incorporating Groups (Partisans)
 
