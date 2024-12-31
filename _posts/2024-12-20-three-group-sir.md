@@ -74,6 +74,8 @@ This SIR model implementation uses the deSolve package to numerically solve the 
 
 ## Incorporating Protection (Mask-Usage)
 
+<p align="center"> <img src="/images/simple_sir_with_protection.png" alt="Basic SIR with Protection"> </p>
+
 The Berkeley Interpersonal Contacts Study (BICS) showed that Republicans and Democrats report wearing masks at different rates. Since mask-wearing affects disease spread, our model needs to account for these partisan differences. We've expanded our basic SIR model to include two new categories: protected ($P$) and unprotected ($U$). This means each state in our model is now split into two. For example, we now have Susceptible Protected ($S_P$) and Susceptible Unprotected ($S_U$), which when added together equal ($S$).
 
 Essentially, the protected class is impacted by s scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$. To show this mathematically, we first split the infected class into two groups: $\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$.
@@ -88,13 +90,13 @@ $$\lambda = \tau c (\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
 
 <p style="text-align: center;">
-$$I_P = \frac{dSP}{dt} = -S_P*\lambda*\kappa$$
+$$I_P = \frac{dSP}{dt} = -S_P \cdot \lambda \cdot \kappa$$
 </p>
 
 And those who "choose" not to wear protection effectively remains the same:
 
 <p style="text-align: center;">
-$$I_U = \frac{dSU}{dt} = -S_U*\lambda$$
+$$I_U = \frac{dSU}{dt} = -S_U \cdot \lambda$$
 </p>
 
 Next, we need a parameter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
@@ -117,8 +119,11 @@ In other words, the protected susceptible population ($S_P$) increases as unprot
 Almost done, but there's one last component we need to consider: vaccination.
 
 To incorporate vaccination into our model, we move vaccinated individuals directly from the susceptible to the recovered class. This approach assumes that vaccines provide immunity similar to natural infection, with the same waning rate ($\gamma$). The model introduces two key vaccination parameters:
+
 vacc: The daily vaccination rate (e.g., vacc = 0.006 means 0.6% of the population is vaccinated daily)
+
 vstart: The time step when vaccination becomes available
+
 This simplified approach allows us to model the impact of vaccination on disease spread without adding extra compartments, though it doesn't account for potential differences in immunity between vaccinated and naturally recovered individuals. After we add vaccination, the equations for calculating the susceptible become:  
 
 <p style="text-align: center;">
