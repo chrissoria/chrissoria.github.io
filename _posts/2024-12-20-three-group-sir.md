@@ -76,11 +76,8 @@ This SIR model implementation uses the deSolve package to numerically solve the 
 
 The Berkeley Interpersonal Contacts Study (BICS) showed that Republicans and Democrats report wearing masks at different rates. Since mask-wearing affects disease spread, our model needs to account for these partisan differences. We've expanded our basic SIR model to include two new categories: protected ($P$) and unprotected ($U$). This means each state in our model is now split into two. For example, we now have Susceptible Protected ($S_P$) and Susceptible Unprotected ($S_U$), which when added together equal ($S$).
 
-Essentially, the protected class is impacted by s scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$. To show this mathematically, we first split the infected class into two groups:
+Essentially, the protected class is impacted by s scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$. To show this mathematically, we first split the infected class into two groups: $\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$.
 
-<p style="text-align: center;">
-$\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$
-</p>
 
 Since $\kappa$ only scales transmission probabilities for the protected, we multiply only against $\frac{I_P}{N}$ so that:
 
@@ -102,11 +99,25 @@ $$I_U = \frac{dSU}{dt} = -S_U*\lambda$$
 
 Next, we need a paramter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
 
-First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$:
+First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$. But, as we saw during the COVID-19 pandemic, people don't wear masks forever. We must also incorporate a rate of waning adoption, i.e. a transition of individuals from the protected class back to the unprotected, $\phi$. 
 
 <p style="text-align: center;">
-$$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdotS_U$$
+$$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdot S_U + \phi\cdot S_U + \gamma * R_U$$
 </p>
+
+On the other hand (notice $\kappa$): 
+
+<p style="text-align: center;">
+$$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phiS_U + \gamma * R_P$$
+</p>
+
+In other words, the protected susceptible population ($S_P$) increases as unprotected individuals adopt protective behaviors (at rate $\pi$) and decreases as protected individuals stop using protection (at rate $\phi$). Conversely, the unprotected susceptible population ($S_U$) changes in the opposite direction. Also, at any one point, there are people leaving the recovered classes ($R_U$ and $R_P$) and rejoining their respective susceptible classes. $/pi$ and $/phi$ are also constantly interacting with the other compartments $I$ and $R$, but for the sake of brevity and conciseness I will leave those out of this blog and refer you to the project's < ahref="https://github.com/chrissoria/BICS_Political_Polarization/blob/main/code/disease_model/sir_behavior_three_party_simple.R">GitHub Repo</a>.
+. 
+
+However, there's one last component we need to consider: vaccination.
+
+To account for vaccination, we 
+
 
 In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). 
 
