@@ -97,7 +97,7 @@ And those who "choose" not to wear protection effectively remains the same:
 $$I_U = \frac{dSU}{dt} = -S_U*\lambda$$
 </p>
 
-Next, we need a paramter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
+Next, we need a parameter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
 
 First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$. But, as we saw during the COVID-19 pandemic, people don't wear masks forever. We must also incorporate a rate of waning adoption, i.e. a transition of individuals from the protected class back to the unprotected, $\phi$. 
 
@@ -125,8 +125,6 @@ This simplified approach allows us to model the impact of vaccination on disease
 $$\frac{dS_U}{dt} = -(S_U\cdot\lambda) - (\pi\cdot S_U) + (\phi\cdot S_U) + (\gamma \cdot R_U) - (vacc \cdot SUa)$$
 </p>
 
-And for the protected: 
-
 <p style="text-align: center;">
 $$\frac{dS_P}{dt} = -(S_P\lambda\cdot\kappa) + (\pi\cdot S_U) - (\phi \cdot S_U) + (\gamma \cdot R_P) - (vacc_a \cdot SPa)$$
 </p>
@@ -141,10 +139,11 @@ $$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_U) - (\pi \cdot R_U) + (\phi 
 $$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_P) - (\pi \cdot R_U) + (\phi \cdot RPa) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
 </p>
 
-Challenge question: Why is $\pi \cdot R_U$ in our calculation $\frac{dR_P}{dt}$? Why is $\phi \cdot RPa$ in our calculation $\frac{dR_U}{dt}$?
+Challenge question: Why is $(\pi \cdot R_U)$ in our calculation $\frac{dR_P}{dt}$? Why is $(\phi \cdot RPa)$ in our calculation $\frac{dR_U}{dt}$?
 
 
-In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). 
+In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\gamma$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\rho$. 
+
+## Incorporating Groups (Partisans)
 
 
-Key parameters include population demographics (N0, frac_a, frac_b), contact rates (cmax, cmin), and group-specific behaviors. The model accounts for homophily (beta_a, beta_b), which represents the tendency of individuals to interact more with their own group. Disease-specific parameters such as transmission probability (trans_p), recovery rate (rho), and mortality rate (mu) are included. The function also models behavioral changes in response to the pandemic, including the adoption of protective measures (pi), their effectiveness (kappa), and how people respond to deaths (zeta). Vaccination is incorporated through parameters like vacc_a, vacc_b, vacc_c, and vstart. The model even accounts for waning immunity (gamma) and allows for different initial infection rates in each group (I0_a, I0_b, I0_c). This comprehensive set of parameters enables researchers to explore how various factors influence the course of an epidemic across different segments of society.
