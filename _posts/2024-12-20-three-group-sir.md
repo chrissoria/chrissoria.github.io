@@ -91,17 +91,24 @@ $$\lambda = \tau c (\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
 
 <p style="text-align: center;">
-$$I_P = \frac{dSP}{dt} = -SP*\lambda*\kappa$$
+$$I_P = \frac{dSP}{dt} = -S_P*\lambda*\kappa$$
 </p>
 
 And those who "choose" not to wear protection effectively remains the same:
 
 <p style="text-align: center;">
-$$I_U = \frac{dSU}{dt} = -SU*\lambda$$
+$$I_U = \frac{dSU}{dt} = -S_U*\lambda$$
+</p>
+
+Next, we need a paramter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
+
+First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$:
+
+<p style="text-align: center;">
+$$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdotS_U$$
 </p>
 
 In summary, to account for differences in "protective" behavior, or rather behavior that mitigates the spread of disease, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). 
 
-The sir_three_group_pu function models the spread of an infectious disease across three distinct population groups, likely representing different political affiliations (Republicans, Democrats, and Independents). This sophisticated model incorporates a wide range of parameters to simulate various aspects of disease transmission and population behavior during a pandemic.
 
 Key parameters include population demographics (N0, frac_a, frac_b), contact rates (cmax, cmin), and group-specific behaviors. The model accounts for homophily (beta_a, beta_b), which represents the tendency of individuals to interact more with their own group. Disease-specific parameters such as transmission probability (trans_p), recovery rate (rho), and mortality rate (mu) are included. The function also models behavioral changes in response to the pandemic, including the adoption of protective measures (pi), their effectiveness (kappa), and how people respond to deaths (zeta). Vaccination is incorporated through parameters like vacc_a, vacc_b, vacc_c, and vstart. The model even accounts for waning immunity (gamma) and allows for different initial infection rates in each group (I0_a, I0_b, I0_c). This comprehensive set of parameters enables researchers to explore how various factors influence the course of an epidemic across different segments of society.
