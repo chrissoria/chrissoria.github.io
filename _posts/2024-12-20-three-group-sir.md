@@ -111,7 +111,7 @@ On the other hand (notice $\kappa$):
 $$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_U + \gamma R_P$$
 </p>
 
-In other words, the protected susceptible population ($S_P$) increases as unprotected individuals adopt protective behaviors (at rate $\pi$) and decreases as protected individuals stop using protection (at rate $\phi$). Conversely, the unprotected susceptible population ($S_U$) changes in the opposite direction. Also, at any one point, there are people leaving the recovered classes ($R_U$ and $R_P$) and rejoining their respective susceptible classes. $/pi$ and $/phi$ are also constantly interacting with the other compartments $I$ and $R$, but for the sake of brevity and conciseness I will leave those out of this blog and refer you to the project's < a href="https://github.com/chrissoria/BICS_Political_Polarization/blob/main/code/disease_model/sir_behavior_three_party_simple.R">GitHub Repo</a>.
+In other words, the protected susceptible population ($S_P$) increases as unprotected individuals adopt protective behaviors (at rate $\pi$) and decreases as protected individuals stop using protection (at rate $\phi$). Conversely, the unprotected susceptible population ($S_U$) changes in the opposite direction. Also, at any one point, there are people leaving the recovered classes ($R_U$ and $R_P$) and rejoining their respective susceptible classes. $/pi$ and $/phi$ are also constantly interacting with the other compartments $I$ and $R$, but for the sake of brevity and conciseness I will leave those out of this blog and refer you to the project's <a href="https://github.com/chrissoria/BICS_Political_Polarization/blob/main/code/disease_model/sir_behavior_three_party_simple.R">GitHub Repo</a>.
 
 
 However, there's one last component we need to consider: vaccination.
@@ -134,7 +134,7 @@ $$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_U + \gamma R_
 On the other side of the process, the recovered equations become:
 
 <p style="text-align: center;">
-$$\frac{dR_U}{dt} =  \rho (1-\mu_a) I_U - \pi R_U + /phi RPa - \gamma R_U + vacc SUa$$
+$$\frac{dR_U}{dt} =  \rho \cdot (1-\mu_a) \cdot I_U - \pi \cdot R_U + \phi \cdot RPa - \gamma \cdot R_U + vacc \cdot SUa$$
 </p>
 
 
