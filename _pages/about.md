@@ -9,9 +9,7 @@ redirect_from:
 ---
 
 
-I'm a Demographer and Sociologist pursuing my PhD at the University of California, Berkeley, serving as a data manager for <a href="https://populationsciences.berkeley.edu/cadas/investigators/">The Caribbean-American Dementia and Aging Study (CADAS)</a> under Professor William Dow, and collaborating with Professor Claude Fischer on a project analyzing mobility within and between regions using data from the UC Berkeley Social Networks Study (UCNets). I'm also currently working alongside professors Dennis Feehan, Ayesha Mahmud, and Audrey Dorélien on a project aiming to understand how partisanship and social context impacted health behaviors during the pandemic using data from the Berkeley Interpersonal Contact Study (BICS). 
-
-My research is rooted in understanding the roots of inequality of various outcomes in health, mortality, and education in the US setting. Additionally, I'm currently exploring the ways  Large Language Models (LLMs) can augment the survey data collection and analysis process. 
+Chris Soria, a PhD candidate at UC Berkeley, Greater Good Science Fellow, and Wonderfest Science Envoy, investigates the impact of social networks on health outcomes, focusing on cognitive health and dementia in aging populations. Soria uses causal inference methods to examine how personal social networks affect cognitive aging and health disparities, developing dementia classification methods applicable across international settings. His work also explores mortality and disease inequalities among various groups, including political partisans, socially isolated individuals, and migrants, and studies how diversity within social networks can positively influence health outcomes. Additionally, working with Professor Claude Fischer, Soria is exploring the use of large language models to enhance survey data collection and augment the research process in social science.
 
 Social Network Determinants of Health and Cognitive Aging
 ------
@@ -37,7 +35,7 @@ A collaboration with Matthew Stenberg, Sara Quigley, Catherine Madsen, and Lisa 
 
 Utlizing Large Language Models for Assisting the Research Process
 ------
-A personal project of mine focused on how Large Language Models (LLM's) can help augment the research process. 
+How Large Language Models (LLM's) can help augment the research process. 
 
 For more info
 ------

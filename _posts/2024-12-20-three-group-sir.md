@@ -154,6 +154,13 @@ In summary, to account for differences in "protective", mitigating, behavior, we
 
 3. What is one limitation of the $\kappa$ parameter? What are its assumptions?
 
+4. How would you calculate the number of people vaccinated at any one point?
+
 ## Incorporating Groups (Partisans)
 
+Here's a more clear and concise version for a blog post:
 
+Our model has so far assumed a homogeneous population with uniform rates for contact, mask usage, vaccination, and mortality. However, our research reveals that accounting for group heterogeneity can significantly impact overall pandemic dynamics, even when we're not specifically focused on subgroup outcomes. This is especially true when groups within a population are behaving in very different ways, like partisan groups such as Democrats and Republicans.
+
+
+## Considering Homophily
