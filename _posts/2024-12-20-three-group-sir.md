@@ -148,7 +148,7 @@ In summary, to account for differences in "protective", mitigating, behavior, we
 
 **Challenge questions**: 
 
-1. Why is $(\pi \cdot R_U)$ in our calculation $\frac{dR_P}{dt}$? Why is $(\phi \cdot RPa)$ in our calculation $\frac{dR_U}{dt}$?
+1. Why is $(\pi \cdot R_U)$ in our calculation $\frac{dR_P}{dt}$? Why is $(\phi \cdot R_P_)$ in our calculation $\frac{dR_U}{dt}$?
 
 2. How would you draw the $vacc$ parameter onto the flow chart at the beginning of this section? What's an alternative way to incorporate vaccination? 
 
@@ -161,8 +161,10 @@ In summary, to account for differences in "protective", mitigating, behavior, we
 After this, incorporating partisanship is relatively easy. All we need to do is divide our initial two groups, the protected and unprotected, into an additional three groups so that, for example, equation 12 becomes:
 
 <p style="text-align: center;">
-$$\frac{dR_Ua}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_Ua) - (\pi \cdot R_Ua) + (\phi \cdot R_Pa) - (\gamma \cdot R_Ua) + (vacc \cdot S_U)$$
+$$\frac{dR_{Un}}{dt} =  (\rho \cdot (1-\mu_n) \cdot I_{Un}) - (\pi_n \cdot R_{Un}) + (\phi_n \cdot R_{Pa}) - (\gamma \cdot R_{Ua}) + (vacc \cdot S_{Ua})$$
 </p>
+
+Notice here that features of the disease remain the same, but anything that involves differences in behavior are assigned a unique subscript a, b, or c. This means $mu$ gets a subscrupt $mu_a, because the probability of dying is partially a consequence of age, and partisan groups tend to differ along average age. 
 
 
 
