@@ -127,21 +127,21 @@ To incorporate vaccination into our model, we move vaccinated individuals direct
 This simplified approach allows us to model the impact of vaccination on disease spread without adding extra compartments, though it doesn't account for potential differences in immunity between vaccinated and naturally recovered individuals. After we add vaccination, the equations for calculating the susceptible become:  
 
 <p style="text-align: center;">
-$$\frac{dS_U}{dt} = -(S_U\cdot\lambda) - (\pi\cdot S_U) + (\phi\cdot S_U) + (\gamma \cdot R_U) - (vacc \cdot SUa)$$
+$$\frac{dS_U}{dt} = -(S_U\cdot\lambda) - (\pi\cdot S_U) + (\phi\cdot S_U) + (\gamma \cdot R_U) - (vacc \cdot SU)$$
 </p>
 
 <p style="text-align: center;">
-$$\frac{dS_P}{dt} = -(S_P\lambda\cdot\kappa) + (\pi\cdot S_U) - (\phi \cdot S_U) + (\gamma \cdot R_P) - (vacc_a \cdot SPa)$$
+$$\frac{dS_P}{dt} = -(S_P\lambda\cdot\kappa) + (\pi\cdot S_U) - (\phi \cdot S_U) + (\gamma \cdot R_P) - (vacc_a \cdot SP)$$
 </p>
 
 On the other side of the process, the recovered equations become:
 
 <p style="text-align: center;">
-$$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_U) - (\pi \cdot R_U) + (\phi \cdot RPa) - (\gamma \cdot R_U) + (vacc \cdot S_U)$$
+$$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_U) - (\pi \cdot R_U) + (\phi \cdot R_P) - (\gamma \cdot R_U) + (vacc \cdot S_U)$$
 </p>
 
 <p style="text-align: center;">
-$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_P) - (\pi \cdot R_U) + (\phi \cdot RPa) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
+$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_P) - (\pi \cdot R_U) + (\phi \cdot R_P) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
 </p>
 
 In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\gamma$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\rho$. 
@@ -158,9 +158,15 @@ In summary, to account for differences in "protective", mitigating, behavior, we
 
 ## Incorporating Groups (Partisans)
 
-Here's a more clear and concise version for a blog post:
+After this, incorporating partisanship is relatively easy. All we need to do is divide our initial two groups, the protected and unprotected, into an additional three groups so that, for example, equation 12 becomes:
 
-Our model has so far assumed a homogeneous population with uniform rates for contact, mask usage, vaccination, and mortality. However, our research reveals that accounting for group heterogeneity can significantly impact overall pandemic dynamics, even when we're not specifically focused on subgroup outcomes. This is especially true when groups within a population are behaving in very different ways, like partisan groups such as Democrats and Republicans.
+<p style="text-align: center;">
+$$\frac{dR_Ua}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_Ua) - (\pi \cdot R_Ua) + (\phi \cdot R_Pa) - (\gamma \cdot R_Ua) + (vacc \cdot S_U)$$
+</p>
+
+
+
+
 
 
 ## Considering Homophily
