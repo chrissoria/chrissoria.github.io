@@ -84,18 +84,21 @@ Essentially, the protected class is impacted by s scaling factor $\kappa$, where
 Since $\kappa$ only scales transmission probabilities for the protected, we multiply only against $\frac{I_P}{N}$ so that:
 
 <p style="text-align: center;">
+
 $$\lambda = \tau c (\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 </p>
 
 The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
 
 <p style="text-align: center;">
+
 $$I_P = \frac{dSP}{dt} = -S_P \cdot \lambda \cdot \kappa$$
 </p>
 
 And those who "choose" not to wear protection effectively remains the same:
 
 <p style="text-align: center;">
+
 $$I_U = \frac{dSU}{dt} = -S_U \cdot \lambda$$
 </p>
 
@@ -104,12 +107,14 @@ Next, we need a parameter for determining the rate at which people choose to ado
 First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$. But, as we saw during the COVID-19 pandemic, people don't wear masks forever. We must also incorporate a rate of waning adoption, i.e. a transition of individuals from the protected class back to the unprotected. We will represent this rate as: $\phi$. 
 
 <p style="text-align: center;">
+
 $$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdot S_U + \phi\cdot S_U + \gamma R_U$$
 </p>
 
 On the other hand (notice $\kappa$): 
 
 <p style="text-align: center;">
+
 $$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_U + \gamma R_P$$
 </p>
 
@@ -127,21 +132,25 @@ To incorporate vaccination into our model, we move vaccinated individuals direct
 This simplified approach allows us to model the impact of vaccination on disease spread without adding extra compartments, though it doesn't account for potential differences in immunity between vaccinated and naturally recovered individuals. After we add vaccination, the equations for calculating the susceptible become:  
 
 <p style="text-align: center;">
-$$\frac{dS_U}{dt} = -(S_U\cdot\lambda) - (\pi\cdot S_U) + (\phi\cdot S_U) + (\gamma \cdot R_U) - (vacc \cdot SU)$$
+
+$$\frac{dS_U}{dt} = -(S_U\cdot\lambda) - (\pi\cdot S_U) + (\phi\cdot S_P) + (\gamma \cdot R_U) - (vacc \cdot S_U)$$
 </p>
 
 <p style="text-align: center;">
-$$\frac{dS_P}{dt} = -(S_P\lambda\cdot\kappa) + (\pi\cdot S_U) - (\phi \cdot S_U) + (\gamma \cdot R_P) - (vacc_a \cdot SP)$$
+
+$$\frac{dS_P}{dt} = -(S_P \cdot \lambda \cdot\kappa) + (\pi\cdot S_U) - (\phi \cdot S_P) + (\gamma \cdot R_P) - (vacc \cdot S_P)$$
 </p>
 
 On the other side of the process, the recovered equations become:
 
 <p style="text-align: center;">
-$$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_U) - (\pi \cdot R_U) + (\phi \cdot R_P) - (\gamma \cdot R_U) + (vacc \cdot S_U)$$
+
+$$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu) \cdot I_U) - (\pi \cdot R_U) + (\phi \cdot R_P) - (\gamma \cdot R_U) + (vacc \cdot S_U)$$
 </p>
 
 <p style="text-align: center;">
-$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_P) - (\pi \cdot R_U) + (\phi \cdot R_P) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
+
+$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu) \cdot I_P) - (\pi \cdot R_U) - (\phi \cdot R_P) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
 </p>
 
 In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\gamma$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\rho$. 
@@ -158,10 +167,87 @@ In summary, to account for differences in "protective", mitigating, behavior, we
 
 ## Incorporating Groups (Partisans)
 
-After this, incorporating partisanship is relatively easy. All we need to do is divide our initial two groups, the protected and unprotected, into an additional three groups so that, for example, equation 12 becomes:
+After this, incorporating partisanship is relatively easy. As we went over in the previous section, the model extends a standard SIR framework by incorporating both protection status. Each partisan group (Republicans, Democrats, and Independents) is divided into protected and unprotected individuals, creating six distinct subpopulations:
+
+For each partisan group $i \in \{a,b,c\}$, we track:
+
+**Susceptible Population**:
+$$ S_{Ui} \text{ (Unprotected)} \quad \text{and} \quad S_{Pi} \text{ (Protected)} $$
+
+**Infected Population**:
+$$ I_{Ui} \text{ (Unprotected)} \quad \text{and} \quad I_{Pi} \text{ (Protected)} $$
+
+**Recovered Population**:
+$$ R_{Ui} \text{ (Unprotected)} \quad \text{and} \quad R_{Pi} \text{ (Protected)} $$
+
+Where:
+- $i = a$: Republicans
+- $i = b$: Democrats
+- $i = c$: Independents
+
+The model tracks these compartments simultaneously with group-specific parameters:
+
+- Protection adoption rate: $\pi_i$
+-Contact rate: $c_i$
+- Mortality rate: $\mu_i$
+
+Using republicans as an example, we would calculate the rate of change in the susceptible class like this:
 
 <p style="text-align: center;">
-$$\frac{dR_{Un}}{dt} =  (\rho \cdot (1-\mu_n) \cdot I_{Un}) - (\pi_n \cdot R_{Un}) + (\phi_n \cdot R_{Pn}) - (\gamma \cdot R_{Un}) + (vacc \cdot S_{Un})$$
+
+For "unprotected" Republicans:
+$$\frac{dS_{Ua}}{dt} = -(S_{Ua} \cdot \lambda_a) - (\pi_a\cdot S_{Ua}) + (\phi_a \cdot S_{Pa}) + (\gamma \cdot R_{Ua}) - (vacc_a \cdot S_{Ua})$$
+
+And for the "protected" Republicans:
+
+$$\frac{dS_{Pa}}{dt} = -(S_{Pa} \cdot \lambda_a \cdot \kappa) + (\pi_a \cdot S_{Ua}) - (\phi_a \cdot S_{Pa}) + (\gamma \cdot R_{Pa}) - (vacc_a \cdot S_{Pa})$$
+
+</p>
+
+These two groups make up the susceptible compartment for the Republican group. Notice here that every parameter except for $\gamma$ and $\kappa$ is being assigned a subscript a. This is because $\gamma$ is the rate of waninng immunity, and we aren't expecting that to vary by party affiliation. As for $\kappa$, which represents the effectiveness of "protection," It's quite possible that Democrats, for example, are wearing protection that is more effective than Republicans. For example, we know that N95 masks are more effective at reducing transmission than cloth masks. However, for this early iteration of the model, we will keep it simple and calculate one value for $\kappa$. 
+
+Further, survey data from BICS shows that Republicans, Democrats, and Independents adopt protective behaviors like mask-wearing at different rates. To capture this variation, each group needs to have its own protection adoption rate ($\pi$) and protection waning rate ($\phi$). These group-specific rates reflect the real-world differences in how quickly each partisan group takes up and abandons protective measures.
+
+But why does $\lambda$ change based on partisan group? The force of infection varies by partisan group because it depends not just on how many contacts someone has, but *who* those contacts are and their protection status. Since protection rates differ by party, we must account for both the *quantity* and partisan composition of contacts. For example, if Republicans primarily interact with other Republicans who are less likely to be protected, their force of infection ($\lambda_a$) will naturally differ from Democrats who might mainly contact other Democrats with higher protection rates. This interaction between social mixing patterns and group-specific protection rates creates distinct transmission dynamics for each partisan group. For example, for Republicans, we calculate force of infection as:
+
+<p style="text-align: center;">
+
+$$\lambda_a = \tau \left( c_{a,a} \left(\frac{I_{Ua}}{N_a} + \kappa\frac{I_{Pa}}{N_a}\right) + 
+c_{a,b} \left(\frac{I_{Ub}}{N_b} + \kappa\frac{I_{Pb}}{N_b}\right) + c_{a,c} \left(\frac{I_{Uc}}{N_c} + \kappa\frac{I_{Pc}}{N_c}\right) \right)$$
+</p>
+
+There's a lot going on here, so let's break it down step-by-step. Frst, notice that the transmission probablity ($\tau$) is constant and doesn't have a subscript. This is because the transmission probability is a feature of the virus, which doesn't stop to consider your political affiliation before it infects you. Next, instead of just $c$ (contacts) we now have:
+
+   - $c_{a,a}$: Republican contacts with Republicans
+   - $c_{a,b}$: Republican contacts with Democrats
+   - $c_{a,c}$: Republican contacts with Independents
+
+Each contact rate is multiplied by the proportion of infected individuals in the corresponding group. Therefore, $\lambda_a$ increases with both the frequency of contacts and the infection levels within contacted groups. On the other hand, it decreases when contacts switch from a group that's highly infected to a group that's less infected (due to some combination of lower contacts or lower mask usage). We could also see this as three distinct $\lambda$ parameters, or:
+
+<p style="text-align: center;">
+
+$$\lambda_a = \lambda_{a,a} + \lambda_{a,b} + \lambda_{a,c}$$
+</p>
+
+Let's move on to the infected. 
+
+<p style="text-align: center;">
+
+$$
+\frac{dI_{Ua}}{dt} = (S_{Ua} \cdot \lambda_a) - (\pi_a \cdot I_{Ua}) + (\phi_a \cdot I_{Pa}) - (\rho \cdot I_{Ua})
+$$
+
+$$
+\frac{dI_{Pa}}{dt} = (S_{Pa} \cdot \kappa \cdot \lambda_a) + (\pi_a \cdot I_{Ua}) - (\phi_a \cdot I_{Pa}) - (\rho \cdot I_{Pa})
+$$
+
+</p>
+
+Calculating those in the the rate of change in the recovered class is done like this:
+<p style="text-align: center;">
+
+$$\frac{dR_{Ua}}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_{Ua}) - (\pi_a \cdot R_{Ua}) + (\phi_a \cdot R_{Pa}) - (\gamma \cdot R_{Ua}) + (vacc_a \cdot S_{Ua})$$
+
 </p>
 
 Notice here that features of the disease remain the same, but anything that involves differences in behavior are assigned a unique subscript a, b, or c. This means $mu$ gets a subscrupt $mu_a, because the probability of dying is partially a consequence of age, and partisan groups tend to differ along average age. 
@@ -172,3 +258,17 @@ Notice here that features of the disease remain the same, but anything that invo
 
 
 ## Considering Homophily
+
+<p style="text-align: center;">
+
+<div style="text-align: center;">
+
+|           | a     | b     | c     |
+|-----------|-------|-------|-------|
+| a         | a,a   | a,b   | a,c   |
+| b         | a,b   | b,b   | b,c   |
+| c         | a,c   | c,b   | c,c   |
+
+</div>
+
+</p>
