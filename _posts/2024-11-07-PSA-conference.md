@@ -1,14 +1,14 @@
 ---
-title: 'I presented at the California Association for Institutional Research'
-date: 2024-11-07
-permalink: /posts/2024/11/cair-presentation/
+title: 'I presented at the Pacific Sociological Association Conference in San Francisco'
+date: 2025-03-27
+permalink: /posts/2025/3/psa-presentation/
 tags:
   - Education
   - Inequality
   - DEI
 ---
 
-I had the opportunity to present our research on public school background and probability of enrollment in a graduate degree at the 2024 CAIR conference.
+I had the opportunity to present our research on public school background and probability of enrollment in a graduate degree at the 2025 PSA conference.
 
 This project is in collaboration with <a href="https://matthewstenberg.com/">Matthew Stenberg</a>, <a href="https://grad.berkeley.edu/staff/sara-quigley/">Sara Quigley</a>, <a href="https://grad.berkeley.edu/staff/catherine-madsen/">Catherine Madsen</a>, and <a href="https://bse.berkeley.edu/lisa-garc%C3%ADa-bedolla">Lisa Bedolla</a>.
 
