@@ -12,6 +12,6 @@ I had the opportunity to present our research on public school background and pr
 
 This project is in collaboration with <a href="https://matthewstenberg.com/">Matthew Stenberg</a>, <a href="https://grad.berkeley.edu/staff/sara-quigley/">Sara Quigley</a>, <a href="https://grad.berkeley.edu/staff/catherine-madsen/">Catherine Madsen</a>, and <a href="https://bse.berkeley.edu/lisa-garc%C3%ADa-bedolla">Lisa Bedolla</a>.
 
-Our analysis of graduate enrollment in R1 institutions reveals that students from public undergraduate institutions have significantly lower odds of enrollment (19% lower in the full model) compared to their private school counterparts. Similarly, students with community college experience face approximately 28% reduced odds of R1 enrollment. While undergraduate GPA strongly predicts success (57% higher odds per point increase), first-generation students experience about 14% lower enrollment odds than continuing-generation peers, even when controlling for institutional prestige and academic performance.
+See this <a href="https://whova.com/embedded/session/e780ckiPYExHCmlZ2S0k8AfBDwCaoqbz66kKqBwBY9A%3D/4484704/?widget=primary">link</a> for information on the presentation.
 
 ![publlic_admission_any_school](/images/any_public_ug_probabilities_main_plot.jpg)
