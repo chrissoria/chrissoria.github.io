@@ -1,5 +1,5 @@
 ---
-title: 'I presented at the Pacific Sociological Association Conference in San Francisco'
+title: 'I presented at the "Ask a Science Envoy" Event!'
 date: 2025-03-18
 permalink: /posts/2025/3/science-envoy/
 tags:
