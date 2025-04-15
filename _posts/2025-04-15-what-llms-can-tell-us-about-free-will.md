@@ -7,6 +7,8 @@ tags:
   - Free Will
   - Large Language Models
 ---
+![Shackled Brain](/images/free_will.jpeg)
+
 
 After a presentation at this year's Population Association of America, I had a fascinating hallway conversation with Matt Haur from Florida State about large language models (LLMs) and their reasoning capabilities. Our chat took an unexpected philosophical turn when we discussed a simple test for these AI systems.
 
