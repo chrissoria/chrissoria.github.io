@@ -1,7 +1,7 @@
 ---
 title: "The AI Second Opinion: How We're Using OpenAI's GPT-4o for Dementia Classification"
-date: 2025-04-29
-permalink: /posts/2025/4/cat-llm-for-images/
+date: 2025-06-02
+permalink: /posts/2025/6/cat-llm-for-images/
 tags:
   - Image Categorization
   - Vision Models
@@ -27,9 +27,23 @@ However, this manual assessment process faces several critical challenges. As hi
 
 ## Our AI-Powered Approach
 
-Our approach leverages AI models from OpenAI to transform this process. Using a tool called [[CatLLM](https://chrissoria.github.io/posts/2025/4/cat-llm-test/)], we combine vision models with language models (like GPT-4o) to automatically analyze these drawings and extract critical features. The AI evaluates specific elements-such as whether lines properly intersect or shapes are correctly closed-and assigns scores based on established criteria.
+Our approach leverages AI models from OpenAI to transform this process. Using a tool called [[CatLLM](https://pypi.org/project/cat-llm/)], we combine vision models with language models (like GPT-4o) to automatically analyze these drawings and extract critical features. The AI evaluates specific elements-such as whether lines properly intersect or shapes are correctly closed-and assigns scores based on established criteria.
 
 What makes this approach particularly valuable is our ability to compare AI assessments with human evaluations. Rather than having specialists review all 4,000 images in our dataset, they only need to examine the 400-800 cases where human and AI assessments differ-an efficiency improvement of 80-90%. This creates a powerful verification system where humans and AI complement each other's strengths.
+
+```python
+pip install cat-llm
+import catllm as cat
+circle_images_scored = cat.cerad_drawn_score(
+    shape="circle",
+    image_input=pr_cog['c_72_1_pic_path'].tolist(),
+    api_key=open_ai_key,
+    safety=True,
+    reference_in_image=True,
+    user_model="gpt-4o",
+    filename=f"{save_path}/c_72_1_machine_score_full.csv",
+)
+```
 
 ## Privacy and Ethical Considerations
 
