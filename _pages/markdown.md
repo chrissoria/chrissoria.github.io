@@ -13,7 +13,7 @@ redirect_from:
 
 ## Tools and Apps
 
-<a href="https://github.com/chrissoria/cat-llm target=">CatLLM</a>: A tool for categorizing, extracting categories, and scoring text and images. Contains custom-functions for scoring the CERAD Constructional Praxis test for dementia classification. 
+<a href="https://github.com/chrissoria/cat-llm">CatLLM</a>: A tool for categorizing, extracting categories, and scoring text and images. Contains custom-functions for scoring the CERAD Constructional Praxis test for dementia classification. 
 
 ## Links
 

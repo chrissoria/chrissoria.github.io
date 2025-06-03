@@ -42,6 +42,8 @@ circle_images_scored = cat.cerad_drawn_score(
 )
 ```
 
+<a href="https://github.com/chrissoria/CADAS/blob/main/ipynb/catllm_image_scores.ipynb">Example Script</a>
+
 ## Areas for Improvement
 
 We've identified several areas where contributions could enhance the tool's accuracy and utility:
