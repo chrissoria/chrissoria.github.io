@@ -9,6 +9,8 @@ tags:
   - CERAD Score
 ---
 
+![CERAD AI Scorer](/images/CERAD.png)
+
 We're developing an open-source tool to improve cognitive assessment and need collaborators for a research publication. We would benefit greatly from expert input by people who specialize in machine learning, deep learning, computer vision models, and related fields.
 
 ## What We're Building
