@@ -78,16 +78,6 @@ This package will be submitted to academic journal and will be open-source and a
 
 **Direct Development**: Make improvements directly to the <a href="https://github.com/chrissoria/cat-llm/blob/main/src/catllm/CERAD_functions.py">Git repository</a> and submit pull requests. We can provide test images for performance evaluation or run tests with your enhancements.
 
-## Technical Skills Needed
-
-We're seeking contributors with experience in:
-- Machine learning model development and evaluation[1][3]
-- Image processing and computer vision
-- AI model comparison and optimization[1]
-- Software efficiency and optimization
-- Medical data processing
-- Automated coding systems[2]
-
 ## Context and Impact
 
 This tool addresses the need for standardized, reproducible scoring in cognitive assessment. Manual scoring introduces variability between assessors, while automated scoring provides consistent input data for dementia classification systems.
