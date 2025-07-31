@@ -17,5 +17,5 @@ redirect_from:
 
 ## Interactive Plots
 
-<a href="https://chrissoria.github.io/disease_model_interactive_plots.html">Plots from our upcoming paper on partisanship contagion.</a>
+<a href="https://chrissoria.github.io/disease_model_interactive_plots.html">Partisan Contagion.</a>
 
