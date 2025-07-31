@@ -15,5 +15,7 @@ redirect_from:
 
 <a href="https://pypi.org/project/cat-llm/">CatLLM</a>: A tool for categorizing, extracting categories, and scoring text and images. Contains custom-functions for scoring the CERAD Constructional Praxis test for dementia classification. 
 
-## Links
+## Interactive Plots
+
+<a href="https://chrissoria.github.io/cum_incidence_heatmap/">Plot from our upcoming paper on partisanship contagion.</a>
 
