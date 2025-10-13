@@ -35,7 +35,7 @@ Partisanship, Health, and Mortality
 Our goal is to understand how political networks shape disease transmission during pandemics. 
 We investigate how partisan affiliation influences both health behaviors and contact patterns, and how social network structure—specifically the tendency for partisans to interact more frequently with politically similar others—amplifies or dampens epidemic dynamics across communities.​​
 
-A collaboration with Audrey Dorlien, Ayesha Mahmud, and Dennis Feehan.
+A collaboration with [Audrey Dorlien](https://soc.washington.edu/people/audrey-dorelien), [Ayesha Mahmud](https://vcresearch.berkeley.edu/faculty/ayesha-mahmud), and [Dennis Feehan](https://dennisfeehan.org/).
 
 We ask: How do estimates of prevalence and mortality change when we acknowledge that Democrats and Republicans not only behave differently during pandemics, but also interact within distinct social networks? 
 Our research reveals that Republicans report 20% more daily contacts than Democrats, adopt protective behaviors at lower rates, and exhibit strong political homophily—preferentially mixing with other Republicans. 
@@ -51,9 +51,9 @@ Large Language Models (LLMs) are transforming social science research by automat
 Open-ended survey questions provide rich insights but have been underutilized due to the weeks or months required for manual coding. 
 LLMs can process thousands of responses within hours while achieving human-level accuracy, democratizing sophisticated text analysis for researchers with limited resources.​
 
-My research demonstrates that leading models like GPT-4o and Claude 3.7 Sonnet achieve 88-97% similarity to expert human coders across various categorization tasks. 
+My [research](https://osf.io/preprints/socarxiv/wv6tk_v5) demonstrates that leading models like GPT-4o and Claude 3.7 Sonnet achieve 88-97% similarity to expert human coders across various categorization tasks. 
 These models excel at straightforward classification while maintaining reliability on complex interpretive challenges, and they serve as quality control tools that can identify inconsistencies in human annotation. 
-The CatLLM Python package operationalizes these capabilities by providing a standardized framework for applying language and vision models to common research workflows.​
+The [CatLLM](https://github.com/chrissoria/cat-llm/blob/main/academic_examples/paper.pdf) Python [package](https://pypi.org/project/cat-llm/) operationalizes these capabilities by providing a standardized framework for applying language and vision models to common research workflows.​
 
 Despite their potential, LLMs function best as supplements to human judgment rather than replacements. 
 Models struggle with vague language, implicit meanings, and very long responses, and researchers should remain vigilant about potential demographic biases. 
@@ -70,7 +70,8 @@ Beyond demographic and health research, I support work examining systemic inequa
 This project investigates biases in graduate school admissions that may contribute to broader educational inequality. 
 Using application data from over 100 graduate programs, we analyze how public school applicants fare relative to private school applicants in the admissions process. 
 We further examine whether the educational backgrounds of decision-making committee members influence admission outcomes, specifically testing whether public school applicants receive more favorable consideration when committee members share similar educational backgrounds. 
-This project is a collaboration with Matthew Stenberg, Sara Quigley, Catherine Madsen, and Lisa Bedolla.
+
+This project is a collaboration with [Matthew Stenberg](https://matthewstenberg.com/), [Sara Quigley](https://www.linkedin.com/in/sara-quigley-50411b8/), [Catherine Madsen](https://www.linkedin.com/in/catherine-madsen-713552124/), and [Lisa Bedolla](https://bse.berkeley.edu/lisa-garc%C3%ADa-bedolla).
 
 For more info
 ------
