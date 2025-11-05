@@ -16,6 +16,8 @@ His work has been presented at the Population Association of America (PAA), the 
 Soria also develops computational tools that augment social science research using large language models. 
 After encountering challenges analyzing open-ended survey responses in his research, he created [CatLLM](https://pypi.org/project/cat-llm/)—an open-source Python package that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise. 
 
+Interested in leveraging LLMs for your research but unsure where to start? I'm available for consulting to help integrate language models into your workflow—from survey analysis to data cleaning and beyond. Just email me!
+
 Social Network Determinants of Health and Cognitive Aging
 ------
 My research focuses on how the structure and quality of social networks influence health and cognitive aging. 
