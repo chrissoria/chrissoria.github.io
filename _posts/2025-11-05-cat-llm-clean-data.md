@@ -9,6 +9,8 @@ tags:
   - Python
 ---
 
+![CatLLM](/images/catllm_clean.png)
+
 # Using CatLLM to Flag Sensitive Information in Survey Data
 
 Data cleaning is one of the most time-consuming tasks in data science, especially when dealing with open-ended survey responses that may contain personally identifiable information (PII). Traditional approaches require manual review or complex regex patterns, but Large Language Models offer a more intelligent solution. CatLLM provides a streamlined way to automatically classify text data based on custom categories, making it particularly useful for identifying sensitive information in research datasets.
