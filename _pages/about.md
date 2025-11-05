@@ -62,8 +62,8 @@ When implemented thoughtfully with clear category definitions and human oversigh
 Other Research
 ------
 My research portfolio spans several collaborative projects examining social networks, mobility, and inequality across diverse populations. 
-I am currently assisting Professor Claude Fischer on a project using open-ended survey data from the UC Berkeley Social Networks Study (UCNets) to better understand the causal predictors of internal US mobility. 
-In a separate collaboration with William Dow, I examine how migration and network patterns help explain old age disability outcomes in migrant populations. 
+I am currently assisting Professor [Claude Fischer](https://sociology.berkeley.edu/faculty/claude-s-fischer) on a project using open-ended survey data from the UC Berkeley Social Networks Study [(UCNets)](https://ucnets.berkeley.edu/) to better understand the causal predictors of internal US mobility. 
+In a separate collaboration with [William Dow](https://publichealth.berkeley.edu/people/william-dow), I examine how migration and network patterns help explain old age disability outcomes in migrant populations. 
 I have also contributed to research assessing the [10/66 algorithm](https://academic.oup.com/aje/advance-article-abstract/doi/10.1093/aje/kwae470/7932838) for dementia classification across diverse international settings.
 
 Beyond demographic and health research, I support work examining systemic inequalities in higher education. 
