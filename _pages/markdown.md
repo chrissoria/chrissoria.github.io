@@ -11,6 +11,8 @@ redirect_from:
 
 <a href="https://chrissoria.github.io/disease_model_codebook" target="_blank">Disease Model Codebook</a>
 
+<a href="/censoc/">CenSoc Project</a>
+
 ## Tools and Apps
 
 <a href="https://pypi.org/project/cat-llm/">CatLLM</a>: A tool for categorizing, extracting categories, and scoring text and images. Contains custom-functions for scoring the CERAD Constructional Praxis test for dementia classification. 
