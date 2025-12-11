@@ -58,7 +58,10 @@
   <meta name="twitter:description" content="{{ seo_description }}">
   <meta name="twitter:url" content="{{ canonical_url }}">
 
-  {% if page.header.image %}
+  {% if page.header.og_image %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="{% if page.header.og_image contains "://" %}{{ page.header.og_image }}{% else %}{{ page.header.og_image | prepend: "/images/" | prepend: base_path }}{% endif %}">
+  {% elsif page.header.image %}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="{% if page.header.image contains "://" %}{{ page.header.image }}{% else %}{{ page.header.image | prepend: "/images/" | prepend: base_path }}{% endif %}">
   {% else %}
@@ -83,7 +86,9 @@
   {% endif %}
 {% endif %}
 
-{% if page.header.image %}
+{% if page.header.og_image %}
+  <meta property="og:image" content="{% if page.header.og_image contains "://" %}{{ page.header.og_image }}{% else %}{{ page.header.og_image | prepend: "/images/" | prepend: base_path }}{% endif %}">
+{% elsif page.header.image %}
   <meta property="og:image" content="{% if page.header.image contains "://" %}{{ page.header.image }}{% else %}{{ page.header.image | prepend: "/images/" | prepend: base_path }}{% endif %}">
 {% elsif page.header.overlay_image %}
   <meta property="og:image" content="{% if page.header.overlay_image contains "://" %}{{ page.header.overlay_image }}{% else %}{{ page.header.overlay_image | prepend: "/images/" | prepend: base_path }}{% endif %}">

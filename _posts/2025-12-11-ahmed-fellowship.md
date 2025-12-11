@@ -2,6 +2,8 @@
 title: 'Selected as a 2025 Bashir Ahmed Graduate Fellow'
 date: 2025-12-11
 permalink: /posts/2025/12/ahmed-fellowship/
+header:
+  og_image: ahmed.jpg
 tags:
   - Fellowship
   - UC Berkeley
