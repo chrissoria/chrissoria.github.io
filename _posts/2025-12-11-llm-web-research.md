@@ -61,7 +61,7 @@ results = lwr.precise_web_research(
 - Building high-quality datasets
 - Automated due diligence tasks
 
-Check out the [GitHub repository](https://github.com/chrissoria/llm-web-research) for full documentation and examples.
+Check out the [GitHub repository](https://github.com/chrissoria/llm-web-research) for full documentation and examples, or install directly from [PyPI](https://pypi.org/project/llm-web-research/).
 
 ---
 
