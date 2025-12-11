@@ -2,12 +2,16 @@
 title: 'New Python Package: llm-web-research for Verified Web Research'
 date: 2025-12-11
 permalink: /posts/2025/12/llm-web-research/
+header:
+  og_image: logo_llm_researcher.png
 tags:
   - Large Language Models
   - Python Package
   - Web Research
   - Data Collection
 ---
+
+![llm-web-research](/images/logo_llm_researcher.png)
 
 I'm excited to announce the release of a new Python package: [**llm-web-research**](https://github.com/chrissoria/llm-web-research). Part of the [CatLLM](https://pypi.org/project/cat-llm/) ecosystem, this tool enables LLM-powered web research with a focus on accuracy over quantity—designed for researchers who need verified, high-quality data.
 
