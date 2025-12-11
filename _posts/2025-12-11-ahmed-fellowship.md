@@ -2,14 +2,14 @@
 title: 'Selected as a 2025 Bashir Ahmed Graduate Fellow'
 date: 2025-12-11
 permalink: /posts/2025/12/ahmed-fellowship/
-header:
-  image: /images/ahmed.jpg
 tags:
   - Fellowship
   - UC Berkeley
   - Demography
   - Research
 ---
+
+![Ahmed Fellowship](/images/ahmed.jpg)
 
 I am honored to have been selected as a 2025 awardee of the Bashir Ahmed Graduate Fellowship at UC Berkeley's Department of Demography.
 
