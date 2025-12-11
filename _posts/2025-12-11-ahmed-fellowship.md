@@ -2,6 +2,8 @@
 title: 'Selected as a 2025 Bashir Ahmed Graduate Fellow'
 date: 2025-12-11
 permalink: /posts/2025/12/ahmed-fellowship/
+header:
+  image: /images/ahmed.jpg
 tags:
   - Fellowship
   - UC Berkeley
@@ -15,6 +17,6 @@ The Bashir Ahmed Graduate Fellowship supports dissertation research for students
 
 My research examines how social networks correlate with mortality outcomes at the county level, investigates how partisan social networks can worsen disease outcomes, and studies the impact of loneliness on aging and health. Beyond traditional demographic research, I also apply large language models to demographic studies, developing techniques for text classification and computational analysis of survey data.
 
-I am deeply grateful to the Department of Demography and the Ahmed family for this recognition and support. This fellowship will enable me to further develop my research on population health dynamics and continue bridging computational methods with demographic inquiry.
+What makes this recognition particularly meaningful to me is that this year the fellowship was not application-based—the faculty independently selected the recipient. I am deeply grateful to the Department of Demography and the Ahmed family for this recognition and support. This fellowship will enable me to further develop my research on population health dynamics and continue bridging computational methods with demographic inquiry.
 
 You can learn more about the fellowship and past recipients on the [UC Berkeley Demography website](https://www.demog.berkeley.edu/about/ahmed-fellowship/).
