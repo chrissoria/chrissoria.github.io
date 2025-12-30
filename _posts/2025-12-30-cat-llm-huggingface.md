@@ -9,19 +9,19 @@ tags:
   - Python Package
 ---
 
-![CatLLM](/images/catllm_logo.png)
+![CatLLM](/images/catllm_research.png)
 
-<a href="https://pypi.org/project/cat-llm/">**CatLLM**</a> now works with Huggingface! This is great news for researchers because it allows you to interact with open-weight and open-source models without needing to worry about having the compute power to run them locally. Just get your Huggingface API key (I recommend the Pro subscription for heavy usage—it's only $9/month) and you'll have access to models like Qwen, DeepSeek, and Llama. This is perfect for researchers who want to test open-weight models for their research or simply leverage their cheaper cost for classification tasks.
+<a href="https://pypi.org/project/cat-llm/">**CatLLM**</a> now works with Huggingface. This means you can use open-weight and open-source models without needing the compute power to run them locally. Just get your Huggingface API key (I recommend the Pro subscription for heavy usage—it's only $9/month) and you'll have access to models like Qwen, DeepSeek, and Llama. This is useful for researchers who want to test open-weight models or take advantage of their lower cost for classification tasks.
 
-This is also great because it allows researchers to draw on thousands of user-trained models for specific tasks. For example:
+Another benefit is access to thousands of user-trained models for specific tasks. For example:
 
 - **MedAlpaca-7B (Medical Domain)** - `medalpaca/medalpaca-7b` - A 7-billion parameter LLM specifically fine-tuned for medical domain tasks, built on top of the LLaMA architecture. It's designed to improve question-answering and medical dialogue capabilities.
 
 - **CodeLlama-7B (Code Generation & Understanding)** - `codellama/CodeLlama-7b-hf` - Meta's specialized code-focused LLM, available in 7B, 13B, 34B, and 70B parameter versions. It comes in three variants: base (general code), Python-specific, and Instruct (for code assistance).
 
-- **Aya-23-8B (Multilingual)** - `CohereLabs/aya-23-8B` - Developed by Cohere Labs, Aya 23 is an instruction-tuned model with exceptional multilingual capabilities, supporting 23 languages including Arabic, Chinese, French, German, Hindi, Japanese, Korean, Spanish, and more.
+- **Aya-23-8B (Multilingual)** - `CohereLabs/aya-23-8B` - Developed by Cohere Labs, Aya 23 is an instruction-tuned model supporting 23 languages including Arabic, Chinese, French, German, Hindi, Japanese, Korean, Spanish, and more.
 
-Even more exciting is the possibility of training and hosting your own models. Hugging Face provides several tools for fine-tuning:
+You can also train and host your own models. Hugging Face provides several tools for fine-tuning:
 
 - **Transformers Library** - Use the Trainer API for fine-tuning any model from the Hub
 - **PEFT (Parameter-Efficient Fine-Tuning)** - Techniques like LoRA and QLoRA for efficient fine-tuning with less compute
@@ -34,9 +34,9 @@ You can upload and host your models in several ways:
 - **Python Libraries** - Use `model.push_to_hub("your-username/model-name")` with Transformers or the huggingface_hub library
 - **Git** - Since repos are Git-based, you can push directly via command line
 
-Your model doesn't need to be compatible with Transformers—any custom model works!
+Your model doesn't need to be compatible with Transformers—any custom model works.
 
-Imagine the possibilities for your research:
+Here are a few examples of what you could do:
 
 1. **Region-specific language models** - Fine-tune a model specifically for extracting information from Spanish-speaking respondents from a particular country, rather than Spanish generally. For example, a model trained on Dominican or Puerto Rican Spanish would better understand the distinct vocabulary, slang, and expressions that differ significantly from Mexican Spanish.
 
