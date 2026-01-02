@@ -10,7 +10,7 @@ redirect_from:
 
 ## Tools and Apps
 
-<a href="/catllm/">CatLLM</a>: A tool for categorizing, extracting categories, and scoring text and images. Contains custom-functions for scoring the CERAD Constructional Praxis test for dementia classification.
+<a href="/catllm/">Categorize Your Data</a>: CatLLM is a suite of tools for researchers to score survey responses, PDFs, and images.
 
 ## Data
 
