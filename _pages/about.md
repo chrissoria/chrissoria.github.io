@@ -11,7 +11,7 @@ His [NIA F31-funded](https://reporter.nih.gov/search/kHoWAniqj0iJsgXgWI3_mQ/proj
 His work has been presented at the Population Association of America (PAA), the American Public Health Association (APHA), and the Pacific Sociological Association (PSA), and published in the American Journal of Epidemiology and The International Journal of Aging and Human Development.
 
 Soria also develops computational tools that augment social science research using large language models.
-After encountering challenges analyzing open-ended survey responses in his research, he created [CatLLM](https://pypi.org/project/cat-llm/)—an open-source Python package that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise.
+After encountering challenges analyzing open-ended survey responses in his research, he created [CatLLM](/catllm/)—an open-source Python package and web app that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise.
 
 Background
 ------
