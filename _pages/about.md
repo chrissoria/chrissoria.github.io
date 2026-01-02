@@ -12,6 +12,14 @@ His work has been presented at the Population Association of America (PAA), the 
 Soria also develops computational tools that augment social science research using large language models.
 After encountering challenges analyzing open-ended survey responses in his research, he created [CatLLM](https://pypi.org/project/cat-llm/)—an open-source Python package that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise.
 
+Background
+------
+I was born in Watsonville, CA, the son of an immigrant from Durango, Mexico, and grew up in Salinas. For my undergraduate studies, I attended City College of San Francisco as a sociology major, then transferred to UC Berkeley, also as a sociology major. I am currently a Demography PhD candidate at UC Berkeley.
+
+Personal
+------
+Outside of his academic pursuits, Soria's personal interests reflect an appreciation for literature, nature, and his home state of California. A devoted fan of John Steinbeck, with whom he shares a birthplace, Soria particularly cherishes "East of Eden" as his favorite work by the author. His love for exploration extends to hiking and discovering lesser-known areas, often accompanied by his pet dogs, Gus and Bentley. At home, Soria's enthusiasm for nurturing life has led to a veritable jungle of houseplants. In his spare time, he stubbornly persists in playing chess, his strategy best described as "optimistic confusion." Each game serves as a humbling reminder that his true talent lies in creatively losing pieces rather than channeling Magnus Carlsen.
+
 For more info
 ------
 Interested in leveraging LLMs for your research but unsure where to start? I'm available for consulting to help integrate language models into your workflow—from survey analysis to data cleaning and beyond. Just email me!
