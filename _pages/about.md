@@ -2,6 +2,7 @@
 permalink: /about/
 title: "About"
 excerpt: "About me"
+description: "About Chris Soria - PhD Candidate in Demography at UC Berkeley studying social networks and cognitive aging. Background, interests, and contact information."
 author_profile: true
 ---
 

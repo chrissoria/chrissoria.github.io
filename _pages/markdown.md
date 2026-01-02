@@ -1,6 +1,7 @@
 ---
 permalink: /data-and-tools/
 title: "Data and Tools"
+description: "Open-source tools and datasets for social science research. CatLLM for survey coding with LLMs, web data collection tools, and demographic data resources."
 author_profile: true
 redirect_from:
   - /md/

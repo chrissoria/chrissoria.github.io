@@ -124,7 +124,18 @@
       "@type" : "{% if site.social.type %}{{ site.social.type }}{% else %}Person{% endif %}",
       "name" : "{{ site.social.name | default: site.name }}",
       "url" : {{ seo_url | jsonify }},
-      "sameAs" : {{ site.social.links | jsonify }}
+      "sameAs" : {{ site.social.links | jsonify }},
+      "jobTitle" : "PhD Candidate in Demography",
+      "affiliation" : {
+        "@type" : "Organization",
+        "name" : "University of California, Berkeley"
+      },
+      "alumniOf" : {
+        "@type" : "Organization",
+        "name" : "University of California, Berkeley"
+      },
+      "knowsAbout" : ["Social Networks", "Cognitive Aging", "Dementia", "Causal Inference", "Large Language Models", "Computational Social Science"],
+      "image" : "{{ seo_url }}/images/profile.png"
     }
   </script>
 {% endif %}

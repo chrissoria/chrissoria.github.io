@@ -2,15 +2,16 @@
 permalink: /
 title: "Research"
 excerpt: "Research"
+description: "Chris Soria's research on social networks, cognitive aging, dementia, and computational tools for social science. PhD Candidate in Demography at UC Berkeley."
 author_profile: true
 redirect_from:
   - /research/
   - /research.html
 ---
 
-Chris Soria is a PhD candidate in Demography at the University of California, Berkeley, where he studies how social networks shape cognitive health and dementia in aging populations. His NIA F31-funded research uses causal inference methods to examine how personal relationships and network structures influence cognitive aging and health disparities across diverse social contexts. His work has been presented at the Population Association of America (PAA), the American Public Health Association (APHA), and the Pacific Sociological Association (PSA), and published in the American Journal of Epidemiology and The International Journal of Aging and Human Development.
+Chris Soria is a PhD candidate in Demography at the [University of California](https://www.demog.berkeley.edu/graduate-students/christopher-soria/#:~:text=Demography%20PhD&text=Chris%20Soria%2C%20a%20PhD%20candidate,and%20dementia%20in%20aging%20populations.), Berkeley, where he studies how social networks shape cognitive health and dementia in aging populations. His [NIA F31-funded](https://reporter.nih.gov/search/kHoWAniqj0iJsgXgWI3_mQ/project-details/11071776) research uses causal inference methods to examine how personal relationships and network structures influence cognitive aging and health disparities across diverse social contexts. His work has been presented at the Population Association of America (PAA), the American Public Health Association (APHA), and the Pacific Sociological Association (PSA), and published in the American Journal of Epidemiology and The International Journal of Aging and Human Development.
 
-Soria also develops computational tools that augment social science research using large language models. After encountering challenges analyzing open-ended survey responses in his research, he created CatLLM—an open-source Python package that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise.
+Soria also develops computational tools that augment social science research using large language models. After encountering challenges analyzing open-ended survey responses in his research, he created [CatLLM](https://pypi.org/project/cat-llm/)—an open-source Python package that enables researchers to apply language and vision models to survey coding, image analysis, and data categorization without machine learning expertise.
 
 **For more info:** Interested in leveraging LLMs for your research but unsure where to start? I'm available for consulting to help integrate language models into your workflow—from survey analysis to data cleaning and beyond. Just email me at chrissoria AT Berkeley DOT edu.
 
@@ -51,7 +52,7 @@ LLMs can process thousands of responses within hours while achieving human-level
 
 My [research](https://osf.io/preprints/socarxiv/wv6tk_v5) demonstrates that leading models like GPT-4o and Claude 3.7 Sonnet achieve 88-97% similarity to expert human coders across various categorization tasks.
 These models excel at straightforward classification while maintaining reliability on complex interpretive challenges, and they serve as quality control tools that can identify inconsistencies in human annotation.
-The [CatLLM](https://github.com/chrissoria/cat-llm/blob/main/academic_examples/paper.pdf) Python [package](https://pypi.org/project/cat-llm/) operationalizes these capabilities by providing a standardized framework for applying language and vision models to common research workflows.​
+The [CatLLM](https://github.com/chrissoria/cat-llm/blob/main/academic_examples/paper.pdf) Python [package](https://pypi.org/project/cat-llm/) and [web app](https://huggingface.co/spaces/CatLLM/survey-classifier) operationalize these capabilities by providing a standardized framework for applying language and vision models to common research workflows.​
 
 Despite their potential, LLMs function best as supplements to human judgment rather than replacements.
 Models struggle with vague language, implicit meanings, and very long responses, and researchers should remain vigilant about potential demographic biases.
