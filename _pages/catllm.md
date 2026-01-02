@@ -13,7 +13,7 @@ author_profile: true
 
 <a href="https://pypi.org/project/llm-web-research/">Build Datasets from Web Data</a>: Part of the CatLLM ecosystem, the llm-web-research package enables LLM-powered web research with a focus on accuracy over quantity. Uses a multi-step verification pipeline to catch ambiguous queries before returning potentially incorrect answers. <a href="https://github.com/chrissoria/llm-web-research">[GitHub]</a>
 
-[![Downloads](https://static.pepy.tech/badge/llm-web-research/month)](https://pepy.tech/projects/llm-web-research) [![Total Downloads](https://static.pepy.tech/badge/llm-web-research)](https://pepy.tech/projects/llm-web-research)
+<a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research" alt="Total Downloads"></a>
 
 ## Web Apps
 
