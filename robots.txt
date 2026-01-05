@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Block Plotly.js internal library paths that don't exist as pages
+Disallow: /lib/
+Disallow: /src/
+Disallow: /parse_sync/
+Disallow: /number/
+Disallow: /function/
+Disallow: /color/
+Disallow: /surface
+Disallow: /safe-to-string
+Disallow: /stackgl-modules/
+
+# Block development/utility files
+Disallow: /CLAUDE
+Disallow: /markdown_generator/
+
+# Sitemap location
+Sitemap: https://christophersoria.com/sitemap.xml
