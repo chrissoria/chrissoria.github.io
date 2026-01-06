@@ -10,7 +10,7 @@ tags:
   - Open Source
 ---
 
-![CatLLM](/images/wide_cat_llm.png)
+![CatLLM](/images/catllm_bw_banner.png)
 
 I've been working on <a href="https://pypi.org/project/cat-llm/">CatLLM</a>, a Python package for classifying open-ended survey responses with LLMs. This week I converted it into a web app.
 
