@@ -9,4 +9,4 @@ redirect_from:
 
 {% include base_path %}
 
-CV Link Here.
+<a href="/files/CSoria_CV_Research.pdf" class="btn btn--primary" download>Download CV (PDF)</a>
