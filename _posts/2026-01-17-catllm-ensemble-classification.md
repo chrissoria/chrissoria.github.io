@@ -10,7 +10,7 @@ tags:
   - Classification
 ---
 
-![CatLLM](/images/catllm_research.png)
+![CatLLM](/images/wide_cat_llm.png)
 
 <a href="https://pypi.org/project/cat-llm/">CatLLM</a> now supports ensemble classification—running multiple models in parallel and combining their predictions through voting. This addresses a persistent concern in LLM-based classification: how do you know if a single model's output is reliable?
 
