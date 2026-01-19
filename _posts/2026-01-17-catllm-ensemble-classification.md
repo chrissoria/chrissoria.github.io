@@ -2,6 +2,8 @@
 title: 'Ensemble Classification in CatLLM: Combining Multiple Models for Robust Results'
 date: 2026-01-17
 permalink: /posts/2026/01/catllm-ensemble-classification/
+header:
+  og_image: catllm_ensemble.png
 tags:
   - CatLLM
   - Ensemble Methods
