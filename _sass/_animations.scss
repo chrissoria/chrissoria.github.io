@@ -125,12 +125,13 @@
 }
 
 /* Scroll animation classes */
-.scroll-animate {
+.page__content h2 {
   opacity: 0;
+  -webkit-transform: translateY(60px);
   transform: translateY(60px);
 }
 
-.scroll-animate.is-visible {
+.page__content h2.is-visible {
   -webkit-animation: flyUpPlop 0.6s ease-out forwards;
   animation: flyUpPlop 0.6s ease-out forwards;
 }
