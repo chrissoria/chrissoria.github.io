@@ -1,6 +1,7 @@
 ---
 title: "Commentary: Examining Contextual Factors Contributing to Differentials in COVID-19 Mortality in U.S. vs. India"
 collection: publications
+type: peer-reviewed
 permalink: /publication/2022-11-01-covid-mortality-commentary
 excerpt: 'This commentary examines the disparities in COVID-19 mortality rates between the U.S. and India, exploring demographic dynamics and contextual factors contributing to the "Indian death paradox."'
 date: 2022-11-01

@@ -1,6 +1,7 @@
 ---
 title: "The Caribbean American Dementia and Aging Study: Protocol for a Population-Based Study of Older Adult Health and Dementia in Cuba, the Dominican Republic, and Puerto Rico"
 collection: publications
+type: peer-reviewed
 permalink: /publication/2025-08-29-cadas-protocol
 excerpt: 'CADAS is a multi-purpose household study of aging focused on the life course determinants and consequences of health and dementia in Puerto Rico, Dominican Republic, and Cuba.'
 date: 2025-08-29
