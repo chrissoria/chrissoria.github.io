@@ -15,17 +15,15 @@ Soria also develops computational tools that augment social science research usi
 
 Social Network Determinants of Health and Cognitive Aging
 ------
-My research focuses on how the structure and quality of social networks influence health and cognitive aging.
-Older adults with strong, diverse social connections tend to experience slower cognitive decline, suggesting that social networks can act as cognitive buffers by fostering mental engagement and emotional resilience.
-However, the mechanisms underlying this association remain unclear.
-My work seeks to disentangle the causal impact of objective social isolation—having few or infrequent social contacts—from subjective loneliness—feeling disconnected despite contact—and to determine how each uniquely affects cognitive trajectories.
+My research examines how social network structure and quality influence health and cognitive aging across individual and population scales.
+At the individual level, I use longitudinal data from the Health and Retirement Study to disentangle the effects of objective social isolation from subjective loneliness on cognitive trajectories.
+Building on the concept of Social Network Cognitive Buffers, I investigate whether restoring lost connections or forming new ones can slow—or even reverse—cognitive decline.
 
-Building on the concept of Social Network Cognitive Buffers (SNCBs), I examine both the quantity (e.g., network size, contact frequency) and quality (e.g., relationship satisfaction, emotional support) of social ties to understand how they jointly shape brain aging.
-I am particularly interested in whether restoring lost social connections or increasing engagement in new ones can not only slow but potentially reverse cognitive decline.
-Using longitudinal data from the Health and Retirement Study (HRS), I apply causal inference techniques to evaluate how changes in social connectedness before, during, and after the COVID-19 pandemic relate to changes in cognitive performance.
+In collaboration with [Dennis Feehan](https://dennisfeehan.org/), I extend this work to population-level network structure.
+Using measures from 21 billion Facebook friendships, we examine how county-level network cohesiveness and diversity relate to US mortality disparities.
+Network structure rivals traditional predictors like smoking and income in its association with mortality, and age-stratified analyses reveal that clustering is protective for working-age adults but associated with higher mortality among older populations.
 
-Ultimately, my goal is to identify the specific types of social interactions—such as contact with close versus peripheral network members—that most effectively protect against age-related cognitive decline.
-This research aims to inform interventions and public health strategies designed to strengthen social networks as a means of promoting cognitive health and reducing dementia risk in aging populations.
+This research aims to inform interventions that strengthen social networks to promote health across the life course.
 
 Partisanship, Health, and Mortality
 ------
