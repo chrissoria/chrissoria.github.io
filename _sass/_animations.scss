@@ -124,14 +124,14 @@
   }
 }
 
-/* Scroll animation classes - only apply when JS is active */
-.js-scroll-animations .page__content h2 {
+/* Scroll animation classes - animation applied via JS */
+.page__content h2.scroll-animate {
   opacity: 0;
   -webkit-transform: translateY(60px);
   transform: translateY(60px);
 }
 
-.js-scroll-animations .page__content h2.is-visible {
+.page__content h2.scroll-animate.is-visible {
   -webkit-animation: flyUpPlop 0.6s ease-out forwards;
   animation: flyUpPlop 0.6s ease-out forwards;
 }

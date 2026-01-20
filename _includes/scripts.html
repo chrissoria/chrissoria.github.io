@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
   var sections = document.querySelectorAll('.page__content h2');
   if (sections.length === 0) return;
 
-  // Enable animations only after JS confirms working
-  document.documentElement.classList.add('js-scroll-animations');
+  // Add scroll-animate class to enable animation CSS, then observe
+  sections.forEach(function(el) {
+    el.classList.add('scroll-animate');
+  });
 
   // Small delay to ensure CSS is applied before observing
   requestAnimationFrame(function() {
