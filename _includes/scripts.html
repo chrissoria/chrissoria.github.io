@@ -4,23 +4,28 @@
 // Scroll-triggered animations for research sections
 document.addEventListener('DOMContentLoaded', function() {
   var sections = document.querySelectorAll('.page__content h2');
-
   if (sections.length === 0) return;
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  // Enable animations only after JS confirms working
+  document.documentElement.classList.add('js-scroll-animations');
 
-  sections.forEach(function(el) {
-    observer.observe(el);
+  // Small delay to ensure CSS is applied before observing
+  requestAnimationFrame(function() {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    sections.forEach(function(el) {
+      observer.observe(el);
+    });
   });
 });
 </script>
