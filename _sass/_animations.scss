@@ -20,23 +20,54 @@
   }
 }
 
-@keyframes flyInPlop {
+@-webkit-keyframes flyInPlop {
   0% {
     opacity: 0;
+    -webkit-transform: translateX(-100px);
     transform: translateX(-100px);
   }
   60% {
     opacity: 1;
+    -webkit-transform: translateX(10px);
     transform: translateX(10px);
   }
   75% {
+    -webkit-transform: translateX(-5px);
     transform: translateX(-5px);
   }
   90% {
+    -webkit-transform: translateX(2px);
     transform: translateX(2px);
   }
   100% {
     opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes flyInPlop {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+  }
+  60% {
+    opacity: 1;
+    -webkit-transform: translateX(10px);
+    transform: translateX(10px);
+  }
+  75% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+  90% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
 }
