@@ -14,7 +14,7 @@ My path to demography came by chance. During a sociology class at Berkeley, I no
 
 Personal
 ------
-Outside of his academic pursuits, Soria's personal interests reflect an appreciation for literature, nature, and his home state of California. A devoted fan of John Steinbeck, with whom he shares a birthplace, Soria particularly cherishes "East of Eden" as his favorite work by the author. His love for exploration extends to hiking and discovering lesser-known areas, often accompanied by his pet dogs, Gus and Bentley. At home, Soria's enthusiasm for nurturing life has led to a veritable jungle of houseplants. In his spare time, he stubbornly persists in playing chess, his strategy best described as "optimistic confusion." Each game serves as a humbling reminder that his true talent lies in creatively losing pieces rather than channeling Magnus Carlsen.
+Outside of academia, I have an appreciation for literature, nature, and my home state of California. I'm a devoted fan of John Steinbeck, with whom I share a birthplace, and "East of Eden" is my favorite work by the author. I love hiking and discovering lesser-known areas, often accompanied by my dogs, Gus and Bentley. At home, my enthusiasm for nurturing life has led to a veritable jungle of houseplants. In my spare time, I stubbornly persist in playing chess, my strategy best described as "optimistic confusion." Each game serves as a humbling reminder that my true talent lies in creatively losing pieces rather than channeling Magnus Carlsen.
 
 For more info
 ------
