@@ -21,6 +21,8 @@
     @include span(10 of 12 last);
     @include prefix(0.5 of 12);
     @include suffix(2 of 12);
+    -webkit-animation: flyInFromRight 0.8s ease-out forwards;
+    animation: flyInFromRight 0.8s ease-out forwards;
   }
 
   .page__inner-wrap {
