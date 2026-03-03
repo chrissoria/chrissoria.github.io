@@ -293,3 +293,5 @@ Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/proje
 If you want to adapt it for your own platform or use case, [cat-llm](https://github.com/chrissoria/cat-llm) is open source and built to be forked. cat-vader is one fork; there's no reason there couldn't be a cat-reddit, a cat-bluesky, or a cat-transcripts for interview data. The core classification and exploration logic is platform-agnostic. All you need to wire up is a data ingestion layer for whatever source you're working with.
 
 If you build something interesting with it, I'd genuinely like to hear about it. Reach out at [chrissoria@berkeley.edu](mailto:chrissoria@berkeley.edu).
+
+One last thing: I'll be re-running this analysis in six months to see whether I've made good on my vow to reduce my shit posting. The pipeline takes an afternoon. The habit change may take longer.
