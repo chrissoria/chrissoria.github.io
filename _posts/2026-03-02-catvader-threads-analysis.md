@@ -74,14 +74,15 @@ results = cv.classify(
 )
 ```
 
-Here's what the raw data looks like for a sample of my posts from early March 2026:
+Here are my five most-liked posts from the dataset:
 
-| timestamp | text | likes | views | replies |
+| date | text | likes | views | replies |
 |---|---|---|---|---|
-| 2026-03-02 | Anthropic is all the hype but OpenAI still has... | 1 | 3,173 | 1 |
-| 2026-03-02 | Evidence shows the attack on Iran was pre-planned... | 5 | 2,402 | 1 |
-| 2026-03-01 | Britain, France and Germany said they were ready... | 0 | 3,509 | 2 |
-| 2026-03-01 | Rosalía's album in 2025 was album of the year... | 5 | 188 | 0 |
+| 2025-11-14 | Credit to Representative Robert Garcia for releasing the initial three emails from the Epstein emails. Dude is risking a lot. | 5,146 | 22,504 | 61 |
+| 2025-02-17 | Testing my hypothesis that the algorithm will boost the word Costco. If this gets more than my usual 0 likes then the null is rejected. Costco Costco Costco... | 2,637 | 35,387 | 36 |
+| 2025-01-12 | Alex Jones was posting on X that L.A. firefighters were battling the blazes using ladies' handbags as buckets because officials had donated equipment to Ukraine... | 1,123 | 8,235 | 127 |
+| 2025-09-24 | Did you all notice how your collective action just "overpowered" Trump and got Jimmy Kimmel back on the air? | 619 | 8,517 | 67 |
+| 2025-01-24 | The United State of California has a good ring to it. | 491 | 7,305 | 50 |
 
 For my account, pulling my full history returned **850 posts** going back to July 2023, about two and a half years. Of those, 176 were image posts, 5 were videos, and 582 had text content; the remainder were reposts or media-only posts.
 
