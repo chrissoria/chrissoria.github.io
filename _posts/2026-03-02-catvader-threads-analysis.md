@@ -15,7 +15,7 @@ tags:
 
 I spend a lot of time on Threads. Over the past two and a half years I've posted nearly 900 times — opinions on politics, technology, research, culture, and whatever else caught my attention that day. But I've never sat down and actually looked at what I post about. What are my real preoccupations? What topics dominate my feed? Which posts actually get engagement?
 
-This post is an attempt to answer those questions systematically, using an LLM-powered classification pipeline I built called **cat-vader** — a fork of my open-source survey classification package, **cat-llm**, adapted for social media data.
+This post is an attempt to answer those questions systematically, using an LLM-powered classification pipeline I built called **[cat-vader](https://pypi.org/project/cat-vader/)** — a fork of my open-source survey classification package, **[cat-llm](https://github.com/chrissoria/cat-llm)**, adapted for social media data.
 
 ---
 
@@ -23,7 +23,7 @@ This post is an attempt to answer those questions systematically, using an LLM-p
 
 [cat-llm](https://github.com/chrissoria/cat-llm) is an open-source Python package I originally built for classifying open-ended survey responses at scale. You give it a list of text responses and a set of categories, and it uses large language models to assign each response to one or more categories — with support for multi-model ensembles, chain-of-thought reasoning, and automatic category discovery. It was designed for researchers who need to code thousands of survey responses without manually reading each one.
 
-The core architecture turned out to be highly resilient to different kinds of text input. Survey responses and social media posts are structurally similar — short, opinionated, often ambiguous text that needs to be bucketed into meaningful categories. So I cloned cat-llm into **cat-vader**, stripped out the survey-specific scaffolding, and wired it directly to the Threads API. The result is a pipeline that can pull your entire feed, classify every post, and return an enriched dataset with engagement metrics — in a few lines of code.
+The core architecture turned out to be highly resilient to different kinds of text input. Survey responses and social media posts are structurally similar — short, opinionated, often ambiguous text that needs to be bucketed into meaningful categories. So I cloned cat-llm into **[cat-vader](https://github.com/chrissoria/cat-vader)**, stripped out the survey-specific scaffolding, and wired it directly to the Threads API. The result is a pipeline that can pull your entire feed, classify every post, and return an enriched dataset with engagement metrics — in a few lines of code.
 
 The goal of this post is to walk through that pipeline end-to-end, from pulling the data to the final classified dataset, and then use the results to take an honest look at what I've been posting about.
 
@@ -31,7 +31,7 @@ The goal of this post is to walk through that pipeline end-to-end, from pulling 
 
 ## Getting Started
 
-cat-vader is available on PyPI:
+[cat-vader](https://pypi.org/project/cat-vader/) is available on PyPI:
 
 ```bash
 pip install cat-vader
@@ -283,7 +283,7 @@ From there, `classify()` gives you a labelled dataset you can take in any direct
 - **Thread evolution.** Classify posts by month and track how your topical distribution has changed. Are you posting more or less about AI than you were a year ago? The data will tell you.
 - **Quote extraction.** Use `extract()` instead of `classify()` to pull structured fields out of free text — named entities, specific claims, URLs, anything you want to turn into a column.
 
-Beyond social media, the underlying engine is **cat-llm**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics — all the things you'd want for academic coding workflows.
+Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/project/cat-llm/)**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics — all the things you'd want for academic coding workflows.
 
 If you want to adapt it for your own platform or use case, [cat-llm](https://github.com/chrissoria/cat-llm) is open source and built to be forked. cat-vader is one fork; there's no reason there couldn't be a cat-reddit, a cat-bluesky, or a cat-transcripts for interview data. The core classification and exploration logic is platform-agnostic. All you need to wire up is a data ingestion layer for whatever source you're working with.
 
