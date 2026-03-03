@@ -15,6 +15,10 @@ tags:
 
 ![](/images/catvader-banner.png)
 
+<audio controls style="width:100%">
+  <source src="https://huggingface.co/datasets/chrissoria/blog-audio/resolve/main/catvader-threads-analysis.mp3" type="audio/mpeg">
+</audio>
+
 I spend a lot of time on Threads. Over the past two and a half years I've posted nearly 900 times: opinions on politics, technology, research, culture, and whatever else caught my attention that day. But I've never sat down and actually looked at what I post about. What are my real preoccupations? What topics dominate my feed? Which posts actually get engagement?
 
 This post is an attempt to answer those questions systematically, using an LLM-powered classification pipeline I built called **[cat-vader](https://pypi.org/project/cat-vader/)** — a fork of my open-source survey classification package, **[cat-llm](https://github.com/chrissoria/cat-llm)**, adapted for social media data.
