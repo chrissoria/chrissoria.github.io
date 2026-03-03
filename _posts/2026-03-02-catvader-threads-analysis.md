@@ -190,6 +190,8 @@ With my categories defined, I ran `classify()` on the full year of text posts �
 
 The chart below shows the percentage of posts that were assigned to each category. Because categories overlap, the bars don't sum to 100% — they can't. What the chart is really showing is the *frequency* of each topic in my feed: how often, across 582 posts, did I reach for a given subject. Think of it less as a pie chart and more as a set of independent thermometers, each measuring how much of my posting energy went toward a given theme.
 
+![](/images/catvader-category-distribution.png)
+
 A note on scope before we get to the results: this pass classified **text only**. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
 
 I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
@@ -197,8 +199,6 @@ I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — some
 One early finding did give me pause: **Shit Posting** came in tied with **Technology** at around 31% of posts. My first instinct was that something had gone wrong — a miscategorized label, a prompt that was too loose, something. I went back and spot-checked the flagged posts. Nope. Fully accurate. Apparently nearly a third of what I put out into the world is, by any reasonable definition, a shit post. I have made peace with this, though I've also quietly vowed to post with a bit more intention going forward, with the goal of demoting Shit Posting from a top-three category to something more like fifth.
 
 One other result worth flagging: **Thirst Trap** came in at exactly one post (0.2%). False positives happen, and this is a good example of why. The post in question was an image captioned simply *"Me"*, and since the model only had that single word to work with, tagging it as a thirst trap is a defensible inference. Whether it actually was one depends on the photo, which the model never saw. I'm not saying it wasn't.
-
-![](/images/catvader-category-distribution.png)
 
 ---
 
