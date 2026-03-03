@@ -240,7 +240,7 @@ The chart below shows the coefficients from the views model, with 95% confidence
 
 ![](/images/catvader-regression-views.png)
 
-Three categories emerge as significant positive predictors of views (R² = 6.8%, F p = 2.5×10⁻⁶):
+Three categories emerge as significant positive predictors of views *(for the stats nerds: R² = 6.8%, F p = 2.5×10⁻⁶)*:
 
 - **Artificial Intelligence** has the largest coefficient (β = 0.89) — the single strongest topic-level predictor. AI posts get meaningfully more eyeballs than baseline, even after controlling for everything else. AI has been the trendiest topic on the internet for the past two years, and the algorithm appears to reward it accordingly.
 
