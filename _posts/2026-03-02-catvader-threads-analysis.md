@@ -92,7 +92,7 @@ One note on the metrics: the Threads Insights API takes a few hours to populate 
 
 ## 2. Extracting Themes
 
-Before classifying anything, I needed to decide what categories to use. I could have imposed them from the top down — just picked eight topics that felt right — but that risks missing something real in the data, or imposing categories that don't actually fit how I write. Instead, I used cat-vader's `explore()` function to let the data suggest its own themes first.
+Before classifying anything, I needed to decide what categories to use. I could have imposed them from the top down — just picked eight topics that felt right — but that risks missing something real in my data, or imposing categories that don't actually fit how I write. Instead, I used cat-vader's `explore()` function to let the data suggest its own themes first.
 
 `explore()` works by repeatedly sampling random chunks of posts, asking the LLM to extract the most common topics from each chunk, and collecting all the extracted labels across many passes. It doesn't merge or deduplicate — it returns every raw label string from every chunk across every iteration. The idea is that categories which appear frequently and consistently are the ones that genuinely characterize the corpus, while one-off labels are noise.
 
@@ -146,7 +146,7 @@ The signal is clear. Collapsing the variants down, eight themes dominate: **Poli
 
 Rather than using bare labels, I defined each category with a description and concrete examples. This follows best-practice category construction from my own empirical work on LLM classification: verbose categories with descriptions and examples significantly outperform bare labels, improving accuracy by reducing model ambiguity on borderline cases.
 
-The `explore()` output pointed to the broad themes, but the final set draws heavily on my own domain knowledge of what I post about. I know I post a lot about politics, and I know that my political posts tend to fall into distinct registers — partisan frustration, specific policy arguments, and direct Trump commentary — that a generic "Politics" label would collapse together. I also know I post disproportionately about AI relative to most people, which warranted its own category rather than being folded into Technology. The final categories reflect both what the data showed and what I know about myself as a poster.
+The `explore()` output pointed to the broad themes, but the final set draws heavily on my own domain knowledge of what I post about. I know I post a lot about politics, and I know that my political posts tend to fall into distinct registers — partisan frustration, specific policy arguments, and direct Trump commentary — that a generic "Politics" label would collapse together. I also know I post disproportionately about AI relative to most people, which warranted its own category rather than being folded into Technology. My final categories reflect both what my data showed and what I know about myself as a poster.
 
 **1. Partisan Politics** — Posts relating to partisanship directly or indirectly: references to political parties, political tribalism, electoral dynamics, or the behavior of politicians and political actors as representatives of a party or ideological bloc (e.g., "The Republican Party has moved too far right," "Democrats keep losing working-class voters").
 
@@ -186,11 +186,11 @@ The `explore()` output pointed to the broad themes, but the final set draws heav
 
 ## 3. What Do I Actually Post About?
 
-With the categories defined, I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: the categories aren't mutually exclusive buckets, they're lenses.
+With my categories defined, I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: my categories aren't mutually exclusive buckets, they're lenses.
 
 The chart below shows the percentage of posts that were assigned to each category. Because categories overlap, the bars don't sum to 100% — they can't. What the chart is really showing is the *frequency* of each topic in my feed: how often, across 582 posts, did I reach for a given subject. Think of it less as a pie chart and more as a set of independent thermometers, each measuring how much of my posting energy went toward a given theme.
 
-A note on scope before we get to the results: this pass classified **text only**. The dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
+A note on scope before we get to the results: this pass classified **text only**. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
 
 I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
 
@@ -221,7 +221,7 @@ The chart below shows average likes and average replies broken out by category. 
 
 ![](/images/catvader-engagement-by-category.png)
 
-To see the full picture, the scatter plot below shows every post individually — x-axis is replies, y-axis is likes, log scale on both axes, colored by primary category. The log scale is doing a lot of work here. Without it, the chart is basically one dot in the top-right corner and 580 dots stacked on top of each other at zero. With it, you can actually see the distribution — which, in all honesty, is mostly a dense cloud of dots in the bottom-left. The majority of what I post sinks quietly into the void, liked by a handful of people who were probably just scrolling past and hit the button by accident. A few posts escape. Most do not. This is the reality of posting.
+To see the full picture, the scatter plot below shows every post individually — x-axis is replies, y-axis is likes, log scale on both axes, colored by primary category. The log scale is doing a lot of work here. Without it, the chart is basically one dot in the top-right corner and 580 dots stacked on top of each other at zero. With it, you can actually see my distribution — which, in all honesty, is mostly a dense cloud of dots in the bottom-left. The majority of what I post sinks quietly into the void, liked by a handful of people who were probably just scrolling past and hit the button by accident. A few posts escape. Most do not. This is the reality of posting.
 
 ![](/images/catvader-engagement-scatter.png)
 
@@ -255,7 +255,7 @@ The results are mostly robust but with one notable change. **Partisan Politics**
 
 ![](/images/catvader-regression-views-adj.png)
 
-One more alternative explanation worth ruling out: volume. Maybe on high-output days I'm simply flooding the feed and one post happens to catch a wave — meaning it's the quantity, not the quality of the content, doing the work. The chart below plots each post's views and likes against the number of posts I made that day.
+One more alternative explanation worth ruling out: volume. Maybe on high-output days I'm simply flooding my feed and one post happens to catch a wave — meaning it's the quantity, not the quality of the content, doing the work. The chart below plots each post's views and likes against the number of posts I made that day.
 
 ![](/images/catvader-freq-vs-engagement.png)
 
@@ -277,7 +277,7 @@ I don't have a strong theory for why Thursday in particular. It might be somethi
 
 ## Conclusion: Do This With Your Own Data
 
-Everything in this post — pulling the data, discovering categories, classifying 582 posts, and running the regressions — took a single afternoon. If you have a Threads account and a few API keys, you can run the same analysis on your own feed.
+Everything in this post — pulling my data, discovering my categories, classifying 582 posts, and running the regressions — took a single afternoon. If you have a Threads account and a few API keys, you can run the same analysis on your own feed.
 
 The most valuable step is `explore()` first. Don't impose your categories from the top down. Run the exploration pass, look at what themes emerge with high frequency, and let your actual content tell you what it's about. Your categories will be better for it, and you'll probably learn something about yourself in the process that you wouldn't have guessed going in.
 
