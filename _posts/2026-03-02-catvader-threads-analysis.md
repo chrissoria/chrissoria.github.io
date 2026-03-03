@@ -234,7 +234,7 @@ To see the full picture, the scatter plot below shows every post individually �
 
 ## 5. What Actually Predicts Views?
 
-The bar charts in Section 4 are descriptive — they show averages, but averages don't control for anything. A category might look high-performing simply because I happen to post it more, or because it correlates with another category that's doing the real work. To get a cleaner picture, I ran three separate multivariate OLS regressions — one each for views, likes, and replies — with all eight categories as simultaneous predictors. All three outcomes are right-skewed, so I log-transformed each one before modelling.
+The bar charts in Section 4 are descriptive — they show averages, but averages don't control for anything. A category might look high-performing simply because I happen to post it more, or because it correlates with another category that's doing the real work. To get a cleaner picture, I ran models that hold all categories constant simultaneously, isolating the independent effect of each one. I ran a separate model for each outcome — views, likes, and replies.
 
 The chart below shows the coefficients from the views model, with 95% confidence intervals. Points in red are statistically significant (p < 0.05); grey points are not.
 
