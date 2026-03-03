@@ -225,6 +225,29 @@ Late night posts (9pm–5am) average nearly 2,900 views — more than double the
 
 ---
 
+## Conclusion: Do This With Your Own Data
+
+Everything in this post — pulling my data, discovering my categories, classifying 582 posts, and running the regressions — took a single afternoon. The data pull and classification itself ran in about 30 minutes; the rest was just analysis and writing. If you have a Threads account and a few API keys, you can run the same analysis on your own feed.
+
+The most valuable step is `explore()` first. Don't impose your categories from the top down. Run the exploration pass, look at what themes emerge with high frequency, and let your actual content tell you what it's about. Your categories will be better for it, and you'll probably learn something about yourself in the process that you wouldn't have guessed going in.
+
+From there, `classify()` gives you a labelled dataset you can take in any direction. A few starting points:
+
+- **Sentiment and tone.** Instead of topic categories, define categories like "optimistic," "cynical," "ironic," or "earnest." You'll get a mood profile of your posting history.
+- **Audience targeting.** If you post for multiple audiences — say, researchers, practitioners, and general readers — define categories for each and see how your mix has shifted over time.
+- **Thread evolution.** Classify posts by month and track how your topical distribution has changed. Are you posting more or less about AI than you were a year ago? The data will tell you.
+- **Quote extraction.** Use `extract()` instead of `classify()` to pull structured fields out of free text — named entities, specific claims, URLs, anything you want to turn into a column.
+
+Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/project/cat-llm/)**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics: all the things you'd want for academic coding workflows.
+
+If you want to adapt it for your own platform or use case, [cat-llm](https://github.com/chrissoria/cat-llm) is open source and built to be forked. cat-vader is one fork; there's no reason there couldn't be a cat-reddit, a cat-bluesky, or a cat-transcripts for interview data. The core classification and exploration logic is platform-agnostic. All you need to wire up is a data ingestion layer for whatever source you're working with.
+
+If you build something interesting with it, I'd genuinely like to hear about it. Reach out at [chrissoria@berkeley.edu](mailto:chrissoria@berkeley.edu).
+
+One last thing: I'll be re-running this analysis in six months to see whether I've made good on my vow to reduce my shit posting. The pipeline takes an afternoon. The habit change may take longer.
+
+---
+
 ## How I Did It, and How You Can Too?
 
 Want to run this on your own data? Here's the technical setup.
@@ -283,26 +306,3 @@ Here are my five most-liked posts from the dataset:
 For my account, pulling my full history returned **850 posts** going back to July 2023, about two and a half years. Of those, 176 were image posts, 5 were videos, and 582 had text content; the remainder were reposts or media-only posts.
 
 One note on the metrics: the Threads Insights API takes a few hours to populate data for brand new posts, so very recent posts may show zeros. Older posts return accurate lifetime totals.
-
----
-
-## Conclusion: Do This With Your Own Data
-
-Everything in this post — pulling my data, discovering my categories, classifying 582 posts, and running the regressions — took a single afternoon. The data pull and classification itself ran in about 30 minutes; the rest was just analysis and writing. If you have a Threads account and a few API keys, you can run the same analysis on your own feed.
-
-The most valuable step is `explore()` first. Don't impose your categories from the top down. Run the exploration pass, look at what themes emerge with high frequency, and let your actual content tell you what it's about. Your categories will be better for it, and you'll probably learn something about yourself in the process that you wouldn't have guessed going in.
-
-From there, `classify()` gives you a labelled dataset you can take in any direction. A few starting points:
-
-- **Sentiment and tone.** Instead of topic categories, define categories like "optimistic," "cynical," "ironic," or "earnest." You'll get a mood profile of your posting history.
-- **Audience targeting.** If you post for multiple audiences — say, researchers, practitioners, and general readers — define categories for each and see how your mix has shifted over time.
-- **Thread evolution.** Classify posts by month and track how your topical distribution has changed. Are you posting more or less about AI than you were a year ago? The data will tell you.
-- **Quote extraction.** Use `extract()` instead of `classify()` to pull structured fields out of free text — named entities, specific claims, URLs, anything you want to turn into a column.
-
-Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/project/cat-llm/)**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics: all the things you'd want for academic coding workflows.
-
-If you want to adapt it for your own platform or use case, [cat-llm](https://github.com/chrissoria/cat-llm) is open source and built to be forked. cat-vader is one fork; there's no reason there couldn't be a cat-reddit, a cat-bluesky, or a cat-transcripts for interview data. The core classification and exploration logic is platform-agnostic. All you need to wire up is a data ingestion layer for whatever source you're working with.
-
-If you build something interesting with it, I'd genuinely like to hear about it. Reach out at [chrissoria@berkeley.edu](mailto:chrissoria@berkeley.edu).
-
-One last thing: I'll be re-running this analysis in six months to see whether I've made good on my vow to reduce my shit posting. The pipeline takes an afternoon. The habit change may take longer.
