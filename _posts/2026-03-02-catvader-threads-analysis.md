@@ -242,21 +242,21 @@ The chart below shows the coefficients from the views model, with 95% confidence
 
 Three categories emerge as significant positive predictors of views *(for the stats nerds: R² = 6.8%, F p = 2.5×10⁻⁶)*:
 
-- **Artificial Intelligence** has the largest coefficient (β = 0.89) — the single strongest topic-level predictor. AI posts get meaningfully more eyeballs than baseline, even after controlling for everything else. AI has been the trendiest topic on the internet for the past two years, and the algorithm appears to reward it accordingly.
+- **Artificial Intelligence** is the single strongest predictor. Holding everything else constant, an AI post gets roughly **2.4x as many views** as a comparable post on a different topic. AI has been the trendiest topic on the internet for the past two years, and the algorithm appears to reward it accordingly.
 
-- **Partisan Politics** (β = 0.74) is the second strongest predictor. Tribal political content travels well on social media — this surprises no one.
+- **Partisan Politics** comes in second. A partisan political post gets about **2x as many views** as a comparable non-partisan post. Tribal political content travels well on social media — this surprises no one.
 
-- **Shit Posting** (β = 0.61) rounds out the significant predictors. Blunt, low-effort, instantly legible takes are apparently what the algorithm rewards. I have complicated feelings about this.
+- **Shit Posting** rounds out the significant predictors, with posts in this category getting about **1.8x as many views**. Blunt, low-effort, instantly legible takes are apparently what the algorithm rewards. I have complicated feelings about this.
 
-The likes model (R² = 2.9%) tells a similar but quieter story: **Partisan Politics** (β = 0.39, p = 0.022) and **Shit Posting** (β = 0.29, p = 0.030) are again significant, but AI drops out entirely — AI posts apparently rack up views without proportionally converting to likes. Interesting.
+For likes, the story is similar but smaller in scale: partisan politics posts get about **50% more likes** than comparable posts, and shit posts about **35% more**. AI drops out entirely for likes — AI posts rack up views without proportionally converting to likes. Interesting.
 
-The replies model is a wash (R² = 1.1%, F p = 0.58) — no category significantly predicts reply count. Nothing I post about reliably generates conversation, which is either a sign of epistemic humility or evidence that I am not as interesting as I think I am.
+For replies, no category made a meaningful difference. Nothing I post about reliably generates conversation, which is either a sign of epistemic humility or evidence that I am not as interesting as I think I am.
 
-The overall R² figures are worth being honest about: topic explains a small fraction of variance in engagement. That's an accurate reflection of how social media works. Whether a post goes anywhere depends on timing, whether a high-follower account engages, and a dozen other factors that have nothing to do with what you're saying. The topics that do matter — AI and partisan politics for reach, partisan politics and shit posting for likes — are the predictable ones. Everything else is noise.
+Topic explains only a small slice of overall engagement — most of what determines whether a post goes anywhere is timing, luck, and whether someone with a large following happens to engage. But the categories that do matter are consistent and interpretable.
 
-One natural question is whether these category effects are real or just a reflection of timing — maybe I happen to post AI content on Thursdays at peak hours, and it's the timing doing the work rather than the topic. To check, I re-ran all three models controlling for both day of week and hour of day.
+One natural question is whether these effects are real or just a reflection of timing — maybe I happen to post AI content on Thursdays at peak hours, and it's the timing doing the work rather than the topic. To check, I re-ran all models controlling for both day of week and hour of day.
 
-The results are mostly robust but with one notable change. **Partisan Politics** (β = 0.79, p = 0.007) and **Artificial Intelligence** (β = 0.73, p = 0.040) hold up in the views model after full timing controls — those effects appear to be about the content itself. **Shit Posting**, however, weakens to marginal in views (β = 0.39, p = 0.087) and drops out entirely in the likes model, suggesting that some of its raw advantage was coming from *when* I tend to fire off a shit post rather than the content per se. The replies model remains a non-result throughout. The timing-robust finding is: AI and partisan political content genuinely reach more people, independent of when they're posted.
+The results held up for the most part. Partisan politics and AI posts still get roughly **2x as many views** after accounting for when they were posted — those effects appear to be about the content itself. Shit posting weakens once timing is controlled for, suggesting some of its raw advantage was coming from *when* I tend to fire off a shit post rather than the content. The reply non-result holds throughout.
 
 ![](/images/catvader-regression-views-adj.png)
 
