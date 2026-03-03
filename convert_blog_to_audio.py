@@ -15,6 +15,12 @@ def clean_blog_text(text):
     # Strip YAML front matter (--- ... ---)
     text = re.sub(r'^---.*?---\s*', '', text, flags=re.DOTALL)
 
+    # Remove HTML comments <!-- ... -->
+    text = re.sub(r'<!--.*?-->', '', text, flags=re.DOTALL)
+
+    # Remove HTML tags <...>
+    text = re.sub(r'<[^>]+>', '', text)
+
     # Remove image references  ![...](...)
     text = re.sub(r'!\[.*?\]\(.*?\)', '', text)
 
@@ -61,7 +67,7 @@ def clean_blog_text(text):
     return text.strip()
 
 
-async def generate_audio(text, output_file, voice="en-US-ChristopherNeural", chunk_size=5000):
+async def generate_audio(text, output_file, voice="en-US-BrianNeural", chunk_size=5000):
     if len(text) <= chunk_size:
         communicate = edge_tts.Communicate(text, voice)
         await communicate.save(output_file)
@@ -130,7 +136,7 @@ def main():
     print(cleaned[:500])
     print("---\n")
 
-    print("Generating audio (en-US-ChristopherNeural)...")
+    print("Generating audio (en-US-BrianNeural)...")
     asyncio.run(generate_audio(cleaned, mp3_file))
     print(f"Saved: {mp3_file}")
 

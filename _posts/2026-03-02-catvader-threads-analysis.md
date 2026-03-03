@@ -18,6 +18,9 @@ tags:
 <audio controls style="width:100%">
   <source src="https://huggingface.co/datasets/chrissoria/blog-audio/resolve/main/catvader-threads-analysis.mp3" type="audio/mpeg">
 </audio>
+<!-- Audio generated with edge_tts (en-US-BrianNeural) via convert_blog_to_audio.py in the repo root.
+     To regenerate: cd chrissoria.github.io && python3 convert_blog_to_audio.py
+     Hosted on HuggingFace: https://huggingface.co/datasets/chrissoria/blog-audio -->
 
 I spend a lot of time on Threads. Over the past two and a half years I've posted nearly 900 times: opinions on politics, technology, research, culture, and whatever else caught my attention that day. But I've never sat down and actually looked at what I post about. What are my real preoccupations? What topics dominate my feed? Which posts actually get engagement?
 
