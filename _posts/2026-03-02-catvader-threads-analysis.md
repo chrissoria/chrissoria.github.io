@@ -2,6 +2,8 @@
 title: 'Analyzing My Threads Feed with cat-vader: LLM-Powered Social Media Classification at Scale'
 date: 2026-03-02
 permalink: /posts/2026/03/catvader-threads-analysis/
+header:
+  og_image: "catvader-banner.png"
 tags:
   - LLM
   - social media
