@@ -33,7 +33,99 @@ The goal of this post is to walk through that pipeline end-to-end using my own T
 
 ## What Do I Actually Post About?
 
-I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. I classified each post against nine categories developed directly from the data itself (how I arrived at those categories is covered in the [How I Did It](#how-i-did-it-and-how-you-can-too) section below). Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: my categories aren't mutually exclusive buckets, they're lenses.
+Before classifying anything, I needed to decide what categories to use. I could have imposed them from the top down — just picked eight topics that felt right — but that risks missing something real in my data, or imposing categories that don't actually fit how I write. Instead, I used cat-vader's `explore()` function to let the data suggest its own themes first.
+
+`explore()` works by repeatedly sampling random chunks of posts, asking the LLM to extract the most common topics from each chunk, and collecting all the extracted labels across many passes. It doesn't merge or deduplicate — it returns every raw label string from every chunk across every iteration. The idea is that categories which appear frequently and consistently are the ones that genuinely characterize the corpus, while one-off labels are noise.
+
+```python
+import catvader as cv
+import pandas as pd
+
+df = pd.read_csv("threads_year.csv")
+texts = df[df["text"].str.len() > 0]["text"].tolist()  # 582 posts with text
+
+raw = cv.explore(
+    input_data=texts,
+    api_key="your-openai-api-key",
+    description="Social media posts about current events, politics, technology, culture, and personal opinions",
+    user_model="gpt-4o",
+    iterations=6,
+    divisions=15,
+    max_categories=8,
+    categories_per_chunk=8,
+)
+```
+
+This produced 720 raw category extractions across 6 iterations and 15 chunk divisions, yielding 229 unique label strings. I counted the frequency of each label and eyeballed the top results to identify which themes were genuinely dominant versus which were just slightly different phrasings of the same idea (e.g. "Economy", "Economics", "Economy and Business", and "Economy and Finance" are all the same theme).
+
+Here are the top categories by raw frequency:
+
+| Category | Times Found |
+|---|---|
+| Politics | 58 |
+| Technology | 52 |
+| Social Issues | 39 |
+| Personal Opinions | 27 |
+| Technology and AI | 22 |
+| Economics | 16 |
+| Education | 16 |
+| Health and Science | 16 |
+| Culture | 16 |
+| Economy | 13 |
+| Personal Experiences | 12 |
+| Culture and Society | 12 |
+| Media and Communication | 10 |
+| Personal Opinions and Experiences | 10 |
+| Media and Entertainment | 9 |
+| Economy and Business | 9 |
+| Education and Academia | 9 |
+| Science and Health | 9 |
+
+The signal is clear. Collapsing the variants down, eight themes dominate: **Politics**, **Technology & AI**, **Social Issues**, **Economics & Finance**, **Health & Science**, **Education & Research**, **Culture & Entertainment**, and **Personal**. These became the starting point for the final category set.
+
+### Defining My Categories
+
+Rather than using bare labels, I defined each category with a description and concrete examples. This follows best-practice category construction from my own empirical work on LLM classification: verbose categories with descriptions and examples significantly outperform bare labels, improving accuracy by reducing model ambiguity on borderline cases.
+
+The `explore()` output pointed to the broad themes, but the final set draws heavily on my own domain knowledge of what I post about. I know I post a lot about politics, and I know that my political posts tend to fall into distinct registers — partisan frustration, specific policy arguments, and direct Trump commentary — that a generic "Politics" label would collapse together. I also know I post disproportionately about AI relative to most people, which warranted its own category rather than being folded into Technology. My final categories reflect both what my data showed and what I know about myself as a poster.
+
+**1. Partisan Politics** — Posts relating to partisanship directly or indirectly: references to political parties, political tribalism, electoral dynamics, or the behavior of politicians and political actors as representatives of a party or ideological bloc (e.g., "The Republican Party has moved too far right," "Democrats keep losing working-class voters").
+
+> *"Either side of the political spectrum has little empathy for the other. They actively dislike each other. When an act of violence occurs, the first instinct is to ask which side did it."*
+
+**2. Policy Politics** — Posts advocating for or critiquing specific policies or policy positions, independent of partisan framing: arguments about what government should or shouldn't do, regulatory stances, or calls for systemic reform (e.g., "We need universal healthcare," "Tech companies need stronger antitrust enforcement").
+
+> *"It should be illegal to create AI videos meant to mislead and misinform people about current events."*
+
+**3. Anti-Trump** — Posts directly critiquing Donald Trump, his character, his decisions in office, his policies, or individuals and groups who support him or his agenda (e.g., "Trump's tariffs are going to tank the economy," "MAGA voters keep getting lied to").
+
+> *"Trump is doing a great job at driving global unity… in their opposition to the US as an international bully."*
+
+**4. Technology** — Posts discussing technology in any form, broadly construed: software, hardware, consumer devices, platforms, the tech industry, or the societal implications of technological change (e.g., "Apple's new chip is a generational leap," "Social media is rewiring how we form opinions").
+
+> *"Anthropic is all the hype but OpenAI still has the best models sorry to say."*
+
+**5. Artificial Intelligence** — Posts specifically about AI models, AI capabilities, or commentary on AI companies such as OpenAI, Anthropic, Google DeepMind, or xAI. This includes takes on specific models (GPT, Claude, Gemini, Grok), opinions on what AI can and cannot do, or the direction of the AI industry (e.g., "The AI hype cycle is showing cracks," "LLMs are great at pattern matching but terrible at actual reasoning").
+
+> *"In my opinion, the only people who are saying LLMs will someday automate all jobs don't really understand the technology."*
+
+**6. Social Issues** — Posts about social conditions, inequality, discrimination, or systemic patterns in society, without explicitly advocating for a specific policy response or criticizing political leadership. The focus is observational or normative about society itself rather than prescriptive about what government should do (e.g., "The wealth gap between generations is unlike anything we've seen," "Racism in hiring is still very much alive").
+
+> *"The most deflating thing about this whole thing is how two people will view the same video and come to entirely different conclusions."*
+
+**7. Shit Posting** — Low-effort, irreverent, or deliberately provocative posts with no pretense of serious commentary. The tone is casual to the point of flippant, the take is blunt, and the goal is more to express a vibe than make an argument (e.g., "Astrology is BS," "Nobody actually likes networking events").
+
+> *"Daily reminder that astrology is still BS."*
+
+**8. Economics & Finance** — Posts relating to economic conditions, financial markets, or specific market developments: references to stock prices, commodity prices, oil markets, interest rates, inflation, or broader signals about the state of the economy (e.g., "The stock market is pricing in a recession," "Coffee prices are up 40% and nobody is talking about it").
+
+> *"The Strait of Hormuz, which handles roughly 20% of the world's daily oil supply, is effectively shut down. That means lower supply, which means higher prices. When oil prices rise the price of all other commodities rise."*
+
+**9. Thirst Trap** — Posts that are flirty, self-promotional, or designed to attract attention and engagement through charm or physical appeal (e.g., "Just got a haircut and feeling myself," "Anyone else look good today or just me?").
+
+### My Category Breakdown
+
+With my categories defined, I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: my categories aren't mutually exclusive buckets, they're lenses.
 
 The chart below shows the percentage of posts that were assigned to each category. Because categories overlap, the bars don't sum to 100% — they can't. What the chart is really showing is the *frequency* of each topic in my feed: how often, across 582 posts, did I reach for a given subject. Think of it less as a pie chart and more as a set of independent thermometers, each measuring how much of my posting energy went toward a given theme.
 
@@ -135,7 +227,7 @@ Late night posts (9pm–5am) average nearly 2,900 views — more than double the
 
 ## How I Did It, and How You Can Too?
 
-Everything in this post — pulling my data, discovering my categories, classifying 582 posts, and running the regressions — took a single afternoon. The data pull and classification itself ran in about 30 minutes; the rest was just analysis and writing. Here's the full pipeline.
+Want to run this on your own data? Here's the technical setup.
 
 ### Getting Started
 
@@ -157,8 +249,6 @@ cat-vader will pick these up automatically when you call any function with `sm_s
 If you already have social media data — a CSV of posts from any platform, a scraped dataset, a platform export — you can skip the API setup entirely and pass your text directly to `classify()`, `explore()`, or `extract()` via the `input_data` parameter. The `sm_source` integration is a convenience layer on top of the same classification engine.
 
 ### Pulling My Threads History
-
-The first step is getting the data. For this analysis I'm using my own personal Threads history, pulled directly through the API — but this section is specific to that use case. If you're working with a general social media dataset from any source, you can skip straight to Extracting Themes below and pass your posts directly to `explore()`.
 
 For the Threads API pull: cat-vader connects to your account and retrieves your full post history — every post you've made, along with engagement metrics — automatically, without any manual data export. You authenticate once via the Threads Graph API, store your credentials in a `.env` file, and cat-vader handles the rest.
 
@@ -193,98 +283,6 @@ Here are my five most-liked posts from the dataset:
 For my account, pulling my full history returned **850 posts** going back to July 2023, about two and a half years. Of those, 176 were image posts, 5 were videos, and 582 had text content; the remainder were reposts or media-only posts.
 
 One note on the metrics: the Threads Insights API takes a few hours to populate data for brand new posts, so very recent posts may show zeros. Older posts return accurate lifetime totals.
-
-### Extracting Themes
-
-Before classifying anything, I needed to decide what categories to use. I could have imposed them from the top down — just picked eight topics that felt right — but that risks missing something real in my data, or imposing categories that don't actually fit how I write. Instead, I used cat-vader's `explore()` function to let the data suggest its own themes first.
-
-`explore()` works by repeatedly sampling random chunks of posts, asking the LLM to extract the most common topics from each chunk, and collecting all the extracted labels across many passes. It doesn't merge or deduplicate — it returns every raw label string from every chunk across every iteration. The idea is that categories which appear frequently and consistently are the ones that genuinely characterize the corpus, while one-off labels are noise.
-
-```python
-import catvader as cv
-import pandas as pd
-
-df = pd.read_csv("threads_year.csv")
-texts = df[df["text"].str.len() > 0]["text"].tolist()  # 582 posts with text
-
-raw = cv.explore(
-    input_data=texts,
-    api_key="your-openai-api-key",
-    description="Social media posts about current events, politics, technology, culture, and personal opinions",
-    user_model="gpt-4o",
-    iterations=6,
-    divisions=15,
-    max_categories=8,
-    categories_per_chunk=8,
-)
-```
-
-This produced 720 raw category extractions across 6 iterations and 15 chunk divisions, yielding 229 unique label strings. I counted the frequency of each label and eyeballed the top results to identify which themes were genuinely dominant versus which were just slightly different phrasings of the same idea (e.g. "Economy", "Economics", "Economy and Business", and "Economy and Finance" are all the same theme).
-
-Here are the top categories by raw frequency:
-
-| Category | Times Found |
-|---|---|
-| Politics | 58 |
-| Technology | 52 |
-| Social Issues | 39 |
-| Personal Opinions | 27 |
-| Technology and AI | 22 |
-| Economics | 16 |
-| Education | 16 |
-| Health and Science | 16 |
-| Culture | 16 |
-| Economy | 13 |
-| Personal Experiences | 12 |
-| Culture and Society | 12 |
-| Media and Communication | 10 |
-| Personal Opinions and Experiences | 10 |
-| Media and Entertainment | 9 |
-| Economy and Business | 9 |
-| Education and Academia | 9 |
-| Science and Health | 9 |
-
-The signal is clear. Collapsing the variants down, eight themes dominate: **Politics**, **Technology & AI**, **Social Issues**, **Economics & Finance**, **Health & Science**, **Education & Research**, **Culture & Entertainment**, and **Personal**. These became the starting point for the final category set.
-
-#### Defining the Final Categories
-
-Rather than using bare labels, I defined each category with a description and concrete examples. This follows best-practice category construction from my own empirical work on LLM classification: verbose categories with descriptions and examples significantly outperform bare labels, improving accuracy by reducing model ambiguity on borderline cases.
-
-The `explore()` output pointed to the broad themes, but the final set draws heavily on my own domain knowledge of what I post about. I know I post a lot about politics, and I know that my political posts tend to fall into distinct registers — partisan frustration, specific policy arguments, and direct Trump commentary — that a generic "Politics" label would collapse together. I also know I post disproportionately about AI relative to most people, which warranted its own category rather than being folded into Technology. My final categories reflect both what my data showed and what I know about myself as a poster.
-
-**1. Partisan Politics** — Posts relating to partisanship directly or indirectly: references to political parties, political tribalism, electoral dynamics, or the behavior of politicians and political actors as representatives of a party or ideological bloc (e.g., "The Republican Party has moved too far right," "Democrats keep losing working-class voters").
-
-> *"Either side of the political spectrum has little empathy for the other. They actively dislike each other. When an act of violence occurs, the first instinct is to ask which side did it."*
-
-**2. Policy Politics** — Posts advocating for or critiquing specific policies or policy positions, independent of partisan framing: arguments about what government should or shouldn't do, regulatory stances, or calls for systemic reform (e.g., "We need universal healthcare," "Tech companies need stronger antitrust enforcement").
-
-> *"It should be illegal to create AI videos meant to mislead and misinform people about current events."*
-
-**3. Anti-Trump** — Posts directly critiquing Donald Trump, his character, his decisions in office, his policies, or individuals and groups who support him or his agenda (e.g., "Trump's tariffs are going to tank the economy," "MAGA voters keep getting lied to").
-
-> *"Trump is doing a great job at driving global unity… in their opposition to the US as an international bully."*
-
-**4. Technology** — Posts discussing technology in any form, broadly construed: software, hardware, consumer devices, platforms, the tech industry, or the societal implications of technological change (e.g., "Apple's new chip is a generational leap," "Social media is rewiring how we form opinions").
-
-> *"Anthropic is all the hype but OpenAI still has the best models sorry to say."*
-
-**5. Artificial Intelligence** — Posts specifically about AI models, AI capabilities, or commentary on AI companies such as OpenAI, Anthropic, Google DeepMind, or xAI. This includes takes on specific models (GPT, Claude, Gemini, Grok), opinions on what AI can and cannot do, or the direction of the AI industry (e.g., "The AI hype cycle is showing cracks," "LLMs are great at pattern matching but terrible at actual reasoning").
-
-> *"In my opinion, the only people who are saying LLMs will someday automate all jobs don't really understand the technology."*
-
-**6. Social Issues** — Posts about social conditions, inequality, discrimination, or systemic patterns in society, without explicitly advocating for a specific policy response or criticizing political leadership. The focus is observational or normative about society itself rather than prescriptive about what government should do (e.g., "The wealth gap between generations is unlike anything we've seen," "Racism in hiring is still very much alive").
-
-> *"The most deflating thing about this whole thing is how two people will view the same video and come to entirely different conclusions."*
-
-**7. Shit Posting** — Low-effort, irreverent, or deliberately provocative posts with no pretense of serious commentary. The tone is casual to the point of flippant, the take is blunt, and the goal is more to express a vibe than make an argument (e.g., "Astrology is BS," "Nobody actually likes networking events").
-
-> *"Daily reminder that astrology is still BS."*
-
-**8. Economics & Finance** — Posts relating to economic conditions, financial markets, or specific market developments: references to stock prices, commodity prices, oil markets, interest rates, inflation, or broader signals about the state of the economy (e.g., "The stock market is pricing in a recession," "Coffee prices are up 40% and nobody is talking about it").
-
-> *"The Strait of Hormuz, which handles roughly 20% of the world's daily oil supply, is effectively shut down. That means lower supply, which means higher prices. When oil prices rise the price of all other commodities rise."*
-
-**9. Thirst Trap** — Posts that are flirty, self-promotional, or designed to attract attention and engagement through charm or physical appeal (e.g., "Just got a haircut and feeling myself," "Anyone else look good today or just me?").
 
 ---
 
