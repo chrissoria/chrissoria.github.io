@@ -15,6 +15,10 @@ author_profile: true
 
 <a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research" alt="Total Downloads"></a>
 
+<a href="https://pypi.org/project/cat-vader/">Classify and Analyze Social Media Posts</a>: CatVader is a fork of CatLLM adapted for social media data. It connects directly to the Threads API to pull your full post history, classify posts into custom categories, and return an enriched dataset with engagement metrics. <a href="/catvader/">[Learn more]</a> <a href="https://github.com/chrissoria/cat-vader">[GitHub]</a>
+
+<a href="https://pepy.tech/projects/cat-vader"><img src="https://static.pepy.tech/badge/cat-vader/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/cat-vader"><img src="https://static.pepy.tech/badge/cat-vader" alt="Total Downloads"></a>
+
 ## Web Apps
 
 <a href="https://huggingface.co/spaces/CatLLM/survey-classifier">Classify Survey Responses</a>: A web-based tool for categorizing survey responses.
