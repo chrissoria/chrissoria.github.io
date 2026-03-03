@@ -23,9 +23,9 @@ This post is an attempt to answer those questions systematically, using an LLM-p
 
 [cat-llm](https://github.com/chrissoria/cat-llm) is an open-source Python package I originally built for classifying open-ended survey responses at scale. You give it a list of text responses and a set of categories, and it uses large language models to assign each response to one or more categories — with support for multi-model ensembles, chain-of-thought reasoning, and automatic category discovery. It was designed for researchers who need to code thousands of survey responses without manually reading each one.
 
-The core architecture turned out to be highly resilient to different kinds of text input. Survey responses and social media posts are structurally similar — short, opinionated, often ambiguous text that needs to be bucketed into meaningful categories. So I cloned cat-llm into **[cat-vader](https://github.com/chrissoria/cat-vader)**, stripped out the survey-specific scaffolding, and wired it directly to the Threads API. The result is a pipeline that can pull your entire feed, classify every post, and return an enriched dataset with engagement metrics — in a few lines of code.
+The core architecture turned out to be highly resilient to different kinds of text input. Survey responses and social media posts are structurally similar — short, opinionated, often ambiguous text that needs to be bucketed into meaningful categories. So I cloned cat-llm into **[cat-vader](https://github.com/chrissoria/cat-vader)**, stripped out the survey-specific scaffolding, and built a pipeline that can classify any collection of social media posts — whether you're working from a scraped dataset, a platform export, or a direct API pull. For convenience, cat-vader also wires directly to the Threads API to pull your personal post history with engagement metrics in one call.
 
-The goal of this post is to walk through that pipeline end-to-end, from pulling the data to the final classified dataset, and then use the results to take an honest look at what I've been posting about.
+The goal of this post is to walk through that pipeline end-to-end using my own Threads feed as the example dataset, and then use the results to take an honest look at what I've been posting about. The same workflow applies to any corpus of social media text.
 
 ---
 
@@ -46,11 +46,15 @@ THREADS_USER_ID="your-numeric-user-id"
 
 cat-vader will pick these up automatically when you call any function with `sm_source="threads"`.
 
+If you already have social media data — a CSV of posts from any platform, a scraped dataset, a platform export — you can skip the API setup entirely and pass your text directly to `classify()`, `explore()`, or `extract()` via the `input_data` parameter. The `sm_source` integration is a convenience layer on top of the same classification engine.
+
 ---
 
 ## 1. Pulling My Threads History
 
-The first step is getting the data. cat-vader connects directly to the Threads API and pulls your personal post history — every post you've made, along with engagement metrics — automatically, without any manual data export. You authenticate once via the Threads Graph API, store your credentials in a `.env` file, and cat-vader handles the rest.
+The first step is getting the data. For this analysis I'm using my own personal Threads history, pulled directly through the API — but this section is specific to that use case. If you're working with a general social media dataset from any source, you can skip straight to Section 2 and pass your posts directly to `explore()`.
+
+For the Threads API pull: cat-vader connects to your account and retrieves your full post history — every post you've made, along with engagement metrics — automatically, without any manual data export. You authenticate once via the Threads Graph API, store your credentials in a `.env` file, and cat-vader handles the rest.
 
 Under the hood, the package paginates through your full post history (the API returns up to 100 posts per page), fetches engagement metrics for each post in a separate insights call, and returns everything as a single tidy DataFrame with one row per post. Columns include the post text, image URL (when an image was attached), media type, and metrics: likes, views, replies, reposts, quotes, and shares.
 
