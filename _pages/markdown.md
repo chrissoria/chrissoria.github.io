@@ -15,6 +15,8 @@ redirect_from:
 
 <a href="/llm-web-research/">Build Datasets from the Web</a>: A tool that retrieves data from the internet in a mechanistic way, designed to increase precision and accuracy rather than completeness. Returns structured datasets for data analysis.
 
+<a href="/catvader/">Classify and Analyze Social Media Posts</a>: CatVader is a fork of CatLLM adapted for social media data. Connects directly to the Threads API to pull your post history, classify posts with LLMs, and return an enriched dataset with engagement metrics.
+
 ## Data
 
 <a href="/censoc/">CenSoc Project</a>
