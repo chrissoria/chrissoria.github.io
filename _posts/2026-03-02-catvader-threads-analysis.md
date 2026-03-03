@@ -13,7 +13,7 @@ tags:
 
 ![](/images/catvader-banner.png)
 
-I spend a lot of time on Threads. Over the past two and a half years I've posted nearly 900 times — opinions on politics, technology, research, culture, and whatever else caught my attention that day. But I've never sat down and actually looked at what I post about. What are my real preoccupations? What topics dominate my feed? Which posts actually get engagement?
+I spend a lot of time on Threads. Over the past two and a half years I've posted nearly 900 times: opinions on politics, technology, research, culture, and whatever else caught my attention that day. But I've never sat down and actually looked at what I post about. What are my real preoccupations? What topics dominate my feed? Which posts actually get engagement?
 
 This post is an attempt to answer those questions systematically, using an LLM-powered classification pipeline I built called **[cat-vader](https://pypi.org/project/cat-vader/)** — a fork of my open-source survey classification package, **[cat-llm](https://github.com/chrissoria/cat-llm)**, adapted for social media data.
 
@@ -21,7 +21,7 @@ This post is an attempt to answer those questions systematically, using an LLM-p
 
 ## Background: cat-llm and cat-vader
 
-[cat-llm](https://github.com/chrissoria/cat-llm) is an open-source Python package I originally built for classifying open-ended survey responses at scale. You give it a list of text responses and a set of categories, and it uses large language models to assign each response to one or more categories — with support for multi-model ensembles, chain-of-thought reasoning, and automatic category discovery. It was designed for researchers who need to code thousands of survey responses without manually reading each one.
+[cat-llm](https://github.com/chrissoria/cat-llm) is an open-source Python package I originally built for classifying open-ended survey responses at scale. You give it a list of text responses and a set of categories, and it uses large language models to assign each response to one or more categories, with support for multi-model ensembles, chain-of-thought reasoning, and automatic category discovery. It was designed for researchers who need to code thousands of survey responses without manually reading each one.
 
 The core architecture turned out to be highly resilient to different kinds of text input. Survey responses and social media posts are structurally similar — short, opinionated, often ambiguous text that needs to be bucketed into meaningful categories. So I cloned cat-llm into **[cat-vader](https://github.com/chrissoria/cat-vader)**, stripped out the survey-specific scaffolding, and built a pipeline that can classify any collection of social media posts — whether you're working from a scraped dataset, a platform export, or a direct API pull. For convenience, cat-vader also wires directly to the Threads API to pull your personal post history with engagement metrics in one call.
 
@@ -44,7 +44,7 @@ THREADS_ACCESS_TOKEN="your-token-here"
 THREADS_USER_ID="your-numeric-user-id"
 ```
 
-cat-vader will pick these up automatically when you call any function with `sm_source="threads"`.
+cat-vader will pick these up automatically when you call any function with `sm_source="threads"`. Alternatively, you can pass your API key directly as a parameter in any function call — the `.env` file is just a convenience for avoiding repetition.
 
 If you already have social media data — a CSV of posts from any platform, a scraped dataset, a platform export — you can skip the API setup entirely and pass your text directly to `classify()`, `explore()`, or `extract()` via the `input_data` parameter. The `sm_source` integration is a convenience layer on top of the same classification engine.
 
@@ -83,7 +83,7 @@ Here's what the raw data looks like for a sample of my posts from early March 20
 | 2026-03-01 | Britain, France and Germany said they were ready... | 0 | 3,509 | 2 |
 | 2026-03-01 | Rosalía's album in 2025 was album of the year... | 5 | 188 | 0 |
 
-For my account, pulling my full history returned **850 posts** going back to July 2023 — about two and a half years. Of those, 176 were image posts, 5 were videos, and 582 had text content; the remainder were reposts or media-only posts.
+For my account, pulling my full history returned **850 posts** going back to July 2023, about two and a half years. Of those, 176 were image posts, 5 were videos, and 582 had text content; the remainder were reposts or media-only posts.
 
 One note on the metrics: the Threads Insights API takes a few hours to populate data for brand new posts, so very recent posts may show zeros. Older posts return accurate lifetime totals.
 
@@ -193,9 +193,9 @@ A note on scope before we get to the results: this pass classified **text only**
 
 I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
 
-One early finding did give me pause: **Shit Posting** came in tied with **Technology** at around 31% of posts. My first instinct was that something had gone wrong — a miscategorized label, a prompt that was too loose, something. I went back and spot-checked the flagged posts. Nope. Fully accurate. Apparently nearly a third of what I put out into the world is, by any reasonable definition, a shit post. I have made peace with this — though I've also quietly vowed to post with a bit more intention going forward, with the goal of demoting Shit Posting from a top-three category to something more like fifth.
+One early finding did give me pause: **Shit Posting** came in tied with **Technology** at around 31% of posts. My first instinct was that something had gone wrong — a miscategorized label, a prompt that was too loose, something. I went back and spot-checked the flagged posts. Nope. Fully accurate. Apparently nearly a third of what I put out into the world is, by any reasonable definition, a shit post. I have made peace with this, though I've also quietly vowed to post with a bit more intention going forward, with the goal of demoting Shit Posting from a top-three category to something more like fifth.
 
-One other result worth flagging: **Thirst Trap** came in at exactly one post (0.2%). False positives happen, and this is a good example of why. The post in question was an image captioned simply *"Me"* — and since the model only had that single word to work with, tagging it as a thirst trap is a defensible inference. Whether it actually was one depends on the photo, which the model never saw. I'm not saying it wasn't.
+One other result worth flagging: **Thirst Trap** came in at exactly one post (0.2%). False positives happen, and this is a good example of why. The post in question was an image captioned simply *"Me"*, and since the model only had that single word to work with, tagging it as a thirst trap is a defensible inference. Whether it actually was one depends on the photo, which the model never saw. I'm not saying it wasn't.
 
 ![](/images/catvader-category-distribution.png)
 
@@ -287,7 +287,7 @@ From there, `classify()` gives you a labelled dataset you can take in any direct
 - **Thread evolution.** Classify posts by month and track how your topical distribution has changed. Are you posting more or less about AI than you were a year ago? The data will tell you.
 - **Quote extraction.** Use `extract()` instead of `classify()` to pull structured fields out of free text — named entities, specific claims, URLs, anything you want to turn into a column.
 
-Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/project/cat-llm/)**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics — all the things you'd want for academic coding workflows.
+Beyond social media, the underlying engine is **[cat-llm](https://pypi.org/project/cat-llm/)**, which was designed for survey and qualitative data. If you're a researcher sitting on thousands of open-ended survey responses, interview transcripts, or product reviews, the same pipeline applies. Define your codebook as a set of verbose category descriptions, run `classify()`, and get back a coded dataset in minutes rather than weeks. The package supports multi-model ensembles, chain-of-thought reasoning, and automatic inter-rater reliability metrics: all the things you'd want for academic coding workflows.
 
 If you want to adapt it for your own platform or use case, [cat-llm](https://github.com/chrissoria/cat-llm) is open source and built to be forked. cat-vader is one fork; there's no reason there couldn't be a cat-reddit, a cat-bluesky, or a cat-transcripts for interview data. The core classification and exploration logic is platform-agnostic. All you need to wire up is a data ingestion layer for whatever source you're working with.
 
