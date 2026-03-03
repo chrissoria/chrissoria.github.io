@@ -264,7 +264,7 @@ One more alternative explanation worth ruling out: volume. Maybe on high-output 
 
 ![](/images/catvader-freq-vs-engagement.png)
 
-The correlations are r = 0.16 for views and r = 0.17 for likes — essentially zero. How many posts I fire off in a day has no meaningful relationship with how any individual post performs. The content effects from the regression aren't a frequency artifact.
+The correlations are r = 0.16 for views and r = 0.17 for likes — small but consistently positive, suggesting a weak connection. Posting more on a given day does seem to nudge individual post performance slightly, though the effect is modest enough that it's unlikely to be the main story. The content effects from the models hold.
 
 ---
 
