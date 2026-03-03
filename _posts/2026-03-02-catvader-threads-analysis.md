@@ -192,7 +192,7 @@ The chart below shows the percentage of posts that were assigned to each categor
 
 ![](/images/catvader-category-distribution.png)
 
-A note on scope before we get to the results: this pass classified **text only**. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
+A note on scope: cat-vader can classify images directly, but for this analysis I focused on text only. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
 
 I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
 
