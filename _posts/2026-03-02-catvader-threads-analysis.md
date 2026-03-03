@@ -31,7 +31,113 @@ The goal of this post is to walk through that pipeline end-to-end using my own T
 
 ---
 
-## Getting Started
+## What Do I Actually Post About?
+
+I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. I classified each post against nine categories developed directly from the data itself (how I arrived at those categories is covered in the [How I Did It](#how-i-did-it-and-how-you-can-too) section below). Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: my categories aren't mutually exclusive buckets, they're lenses.
+
+The chart below shows the percentage of posts that were assigned to each category. Because categories overlap, the bars don't sum to 100% — they can't. What the chart is really showing is the *frequency* of each topic in my feed: how often, across 582 posts, did I reach for a given subject. Think of it less as a pie chart and more as a set of independent thermometers, each measuring how much of my posting energy went toward a given theme.
+
+![](/images/catvader-category-distribution.png)
+
+A note on scope: cat-vader can classify images directly, but for this analysis I focused on text only. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
+
+I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
+
+One early finding did give me pause: **Shit Posting** came in second overall at 27.7% of posts, just behind **Social Issues** at 32.5% and ahead of **Technology** at 25.9%. My first instinct was that something had gone wrong — a miscategorized label, a prompt that was too loose, something. I went back and spot-checked the flagged posts. Nope. Fully accurate. Apparently more than a quarter of what I put out into the world is, by any reasonable definition, a shit post. I have made peace with this, though I've also quietly vowed to post with a bit more intention going forward, with the goal of demoting Shit Posting from a top-three category to something more like fifth. For what it's worth, my top four — Social Issues (32.5%), Shit Posting (27.7%), Technology (25.9%), and Partisan Politics (24.6%) — probably tells you everything you need to know about me as a person.
+
+One other result worth flagging: **Thirst Trap** came in at exactly one post (0.2%). False positives happen, and this is a good example of why. The post in question was an image captioned simply *"Me"*, and since the model only had that single word to work with, tagging it as a thirst trap is a defensible inference. Whether it actually was one depends on the photo, which the model never saw. I'm not saying it wasn't.
+
+---
+
+## Engagement by Category
+
+One of the advantages of pulling data directly through the Threads API is that cat-vader returns not just post text but a full set of engagement metrics alongside it. For every post, the package outputs:
+
+| Column | Description |
+|---|---|
+| `timestamp` | Date and time of the post |
+| `media_type` | Post type (text, image, video, repost) |
+| `text` | Post text content |
+| `image_url` | URL of attached image, if any |
+| `likes` | Number of likes |
+| `replies` | Number of replies/comments |
+| `reposts` | Number of reposts |
+| `quotes` | Number of quote posts |
+| `views` | Total post impressions |
+| `shares` | Number of shares |
+| `clicks` | Number of link clicks |
+
+That means the classified dataset isn't just a topic-coded text corpus — it's a topic-coded text corpus with performance data attached. Which opens up an obvious question: does what I post about actually affect how much engagement I get?
+
+The chart below shows average likes and average replies broken out by category. Because posts can belong to multiple categories, the same post may appear in more than one bar. The x-axis is sorted by average likes descending.
+
+![](/images/catvader-engagement-by-category.png)
+
+To see the full picture, the scatter plot below shows every post individually — x-axis is replies, y-axis is likes, log scale on both axes, colored by primary category. The log scale is doing a lot of work here. Without it, the chart is basically one dot in the top-right corner and 580 dots stacked on top of each other at zero. With it, you can actually see my distribution — which, in all honesty, is mostly a dense cloud of dots in the bottom-left. The majority of what I post sinks quietly into the void, liked by a handful of people who were probably just scrolling past and hit the button by accident. A few posts escape. Most do not. This is the reality of posting.
+
+![](/images/catvader-engagement-scatter.png)
+
+---
+
+## What Actually Predicts Views?
+
+The bar charts above are descriptive — they show averages, but averages don't control for anything. A category might look high-performing simply because I happen to post it more, or because it correlates with another category that's doing the real work. To get a cleaner picture, I ran models that hold all categories constant simultaneously, isolating the independent effect of each one. I ran a separate model for each outcome — views, likes, and replies.
+
+The chart below shows the coefficients from the views model, with 95% confidence intervals. Points in red are statistically significant (p < 0.05); grey points are not.
+
+![](/images/catvader-regression-views.png)
+
+Three categories emerge as significant positive predictors of views *(for the stats nerds: R² = 6.8%, F p = 2.5×10⁻⁶)*:
+
+- **Artificial Intelligence** is the single strongest predictor. Holding everything else constant, an AI post gets roughly **2.4x as many views** as a comparable post on a different topic. AI has been the trendiest topic on the internet for the past two years, and the algorithm appears to reward it accordingly.
+
+- **Partisan Politics** comes in second. A partisan political post gets about **2x as many views** as a comparable non-partisan post. Tribal political content travels well on social media — this surprises no one.
+
+- **Shit Posting** rounds out the significant predictors, with posts in this category getting about **1.8x as many views**. Blunt, low-effort, instantly legible takes are apparently what the algorithm rewards. I have complicated feelings about this.
+
+For likes, the story is similar but smaller in scale: partisan politics posts get about **50% more likes** than comparable posts, and shit posts about **35% more**. AI drops out entirely for likes — AI posts rack up views without proportionally converting to likes. Interesting.
+
+For replies, no category made a meaningful difference. Nothing I post about reliably generates conversation, which is either a sign of epistemic humility or evidence that I am not as interesting as I think I am.
+
+Topic explains only a small slice of overall engagement — most of what determines whether a post goes anywhere is timing, luck, and whether someone with a large following happens to engage. But the categories that do matter are consistent and interpretable.
+
+One natural question is whether these effects are real or just a reflection of timing — maybe I happen to post AI content on Thursdays at peak hours, and it's the timing doing the work rather than the topic. To check, I re-ran all models controlling for both day of week and hour of day.
+
+The results held up for the most part. Partisan politics and AI posts still get roughly **2x as many views** after accounting for when they were posted — those effects appear to be about the content itself. Shit posting weakens once timing is controlled for, suggesting some of its raw advantage was coming from *when* I tend to fire off a shit post rather than the content. The reply non-result holds throughout.
+
+![](/images/catvader-regression-views-adj.png)
+
+One more alternative explanation worth ruling out: volume. Maybe on high-output days I'm simply flooding my feed and one post happens to catch a wave — meaning it's the quantity, not the quality of the content, doing the work. The chart below plots each post's views and likes against the number of posts I made that day.
+
+![](/images/catvader-freq-vs-engagement.png)
+
+The correlations are r = 0.16 for views and r = 0.17 for likes — small but consistently positive, suggesting a weak connection. Posting more on a given day does seem to nudge individual post performance slightly, though the effect is modest enough that it's unlikely to be the main story. The content effects from the models hold.
+
+---
+
+## Bonus: Does the Day of the Week Matter?
+
+One last question that the timestamp data makes easy to answer: does *when* I post matter?
+
+![](/images/catvader-views-by-weekday.png)
+
+Thursday stands out immediately — average views of 3,241, more than double the next best day (Saturday at 1,439) and about four times Wednesday's average of 398. Monday and Friday are middling. Wednesday is the worst day to post, by a wide margin.
+
+I don't have a strong theory for why Thursday in particular. It might be something about my posting behavior on Thursdays — maybe I tend to post more shareable content, or post at better times within the day. It might also just be noise: with 72–106 posts per weekday, a handful of viral Thursday posts could skew the average significantly. Either way, the answer to "when should I post?" appears to be: not Wednesday.
+
+Time of day tells a cleaner story. The chart below breaks posts into five windows (Pacific Time):
+
+![](/images/catvader-views-by-timeofday.png)
+
+Late night posts (9pm–5am) average nearly 2,900 views — more than double the evening average of 1,126, and about twelve times the morning average of ~250. The pattern is monotonic: the later in the day, the more views. One plausible explanation is that late night is when I tend to post more impulsively about whatever's dominating the news cycle, which also happens to be when more people are doom-scrolling. Another is that late night posts have more hours to accumulate views before I wake up and post something else that pushes them down. Either way, if I want views, apparently I should stay up later — which is not advice I needed the algorithm to give me.
+
+---
+
+## How I Did It, and How You Can Too?
+
+Everything in this post — pulling my data, discovering my categories, classifying 582 posts, and running the regressions — took a single afternoon. The data pull and classification itself ran in about 30 minutes; the rest was just analysis and writing. Here's the full pipeline.
+
+### Getting Started
 
 [cat-vader](https://pypi.org/project/cat-vader/) is available on PyPI:
 
@@ -50,11 +156,9 @@ cat-vader will pick these up automatically when you call any function with `sm_s
 
 If you already have social media data — a CSV of posts from any platform, a scraped dataset, a platform export — you can skip the API setup entirely and pass your text directly to `classify()`, `explore()`, or `extract()` via the `input_data` parameter. The `sm_source` integration is a convenience layer on top of the same classification engine.
 
----
+### Pulling My Threads History
 
-## 1. Pulling My Threads History
-
-The first step is getting the data. For this analysis I'm using my own personal Threads history, pulled directly through the API — but this section is specific to that use case. If you're working with a general social media dataset from any source, you can skip straight to Section 2 and pass your posts directly to `explore()`.
+The first step is getting the data. For this analysis I'm using my own personal Threads history, pulled directly through the API — but this section is specific to that use case. If you're working with a general social media dataset from any source, you can skip straight to Extracting Themes below and pass your posts directly to `explore()`.
 
 For the Threads API pull: cat-vader connects to your account and retrieves your full post history — every post you've made, along with engagement metrics — automatically, without any manual data export. You authenticate once via the Threads Graph API, store your credentials in a `.env` file, and cat-vader handles the rest.
 
@@ -90,9 +194,7 @@ For my account, pulling my full history returned **850 posts** going back to Jul
 
 One note on the metrics: the Threads Insights API takes a few hours to populate data for brand new posts, so very recent posts may show zeros. Older posts return accurate lifetime totals.
 
----
-
-## 2. Extracting Themes
+### Extracting Themes
 
 Before classifying anything, I needed to decide what categories to use. I could have imposed them from the top down — just picked eight topics that felt right — but that risks missing something real in my data, or imposing categories that don't actually fit how I write. Instead, I used cat-vader's `explore()` function to let the data suggest its own themes first.
 
@@ -144,7 +246,7 @@ Here are the top categories by raw frequency:
 
 The signal is clear. Collapsing the variants down, eight themes dominate: **Politics**, **Technology & AI**, **Social Issues**, **Economics & Finance**, **Health & Science**, **Education & Research**, **Culture & Entertainment**, and **Personal**. These became the starting point for the final category set.
 
-### Defining the Final Categories
+#### Defining the Final Categories
 
 Rather than using bare labels, I defined each category with a description and concrete examples. This follows best-practice category construction from my own empirical work on LLM classification: verbose categories with descriptions and examples significantly outperform bare labels, improving accuracy by reducing model ambiguity on borderline cases.
 
@@ -183,108 +285,6 @@ The `explore()` output pointed to the broad themes, but the final set draws heav
 > *"The Strait of Hormuz, which handles roughly 20% of the world's daily oil supply, is effectively shut down. That means lower supply, which means higher prices. When oil prices rise the price of all other commodities rise."*
 
 **9. Thirst Trap** — Posts that are flirty, self-promotional, or designed to attract attention and engagement through charm or physical appeal (e.g., "Just got a haircut and feeling myself," "Anyone else look good today or just me?").
-
----
-
-## 3. What Do I Actually Post About?
-
-With my categories defined, I ran `classify()` on the full year of text posts — 582 posts with non-empty text content — using Llama 3.3 70B on SambaNova. Each post was classified against all categories independently, meaning a single post can and often does belong to more than one category. A post lamenting Trump's tariff policy, for example, might be tagged as both Anti-Trump and Economics & Finance. That's by design: my categories aren't mutually exclusive buckets, they're lenses.
-
-The chart below shows the percentage of posts that were assigned to each category. Because categories overlap, the bars don't sum to 100% — they can't. What the chart is really showing is the *frequency* of each topic in my feed: how often, across 582 posts, did I reach for a given subject. Think of it less as a pie chart and more as a set of independent thermometers, each measuring how much of my posting energy went toward a given theme.
-
-![](/images/catvader-category-distribution.png)
-
-A note on scope: cat-vader can classify images directly, but for this analysis I focused on text only. My dataset includes image posts, but the model was given just the text caption — no image content. Posts without any text were excluded entirely, and image posts were classified solely on whatever caption was attached. That's a real limitation, and one worth keeping in mind when interpreting any categories that might skew visual (more on that in a moment).
-
-I'll be honest: I wasn't sure what I'd find. I post somewhat mindlessly — something catches my eye, I have a reaction, I type it out. I don't sit down with a content strategy. So this is genuinely an exercise in holding up a mirror.
-
-One early finding did give me pause: **Shit Posting** came in second overall at 27.7% of posts, just behind **Social Issues** at 32.5% and ahead of **Technology** at 25.9%. My first instinct was that something had gone wrong — a miscategorized label, a prompt that was too loose, something. I went back and spot-checked the flagged posts. Nope. Fully accurate. Apparently more than a quarter of what I put out into the world is, by any reasonable definition, a shit post. I have made peace with this, though I've also quietly vowed to post with a bit more intention going forward, with the goal of demoting Shit Posting from a top-three category to something more like fifth. For what it's worth, my top four — Social Issues (32.5%), Shit Posting (27.7%), Technology (25.9%), and Partisan Politics (24.6%) — probably tells you everything you need to know about me as a person.
-
-One other result worth flagging: **Thirst Trap** came in at exactly one post (0.2%). False positives happen, and this is a good example of why. The post in question was an image captioned simply *"Me"*, and since the model only had that single word to work with, tagging it as a thirst trap is a defensible inference. Whether it actually was one depends on the photo, which the model never saw. I'm not saying it wasn't.
-
----
-
-## 4. Engagement by Category
-
-One of the advantages of pulling data directly through the Threads API is that cat-vader returns not just post text but a full set of engagement metrics alongside it. For every post, the package outputs:
-
-| Column | Description |
-|---|---|
-| `timestamp` | Date and time of the post |
-| `media_type` | Post type (text, image, video, repost) |
-| `text` | Post text content |
-| `image_url` | URL of attached image, if any |
-| `likes` | Number of likes |
-| `replies` | Number of replies/comments |
-| `reposts` | Number of reposts |
-| `quotes` | Number of quote posts |
-| `views` | Total post impressions |
-| `shares` | Number of shares |
-| `clicks` | Number of link clicks |
-
-That means the classified dataset isn't just a topic-coded text corpus — it's a topic-coded text corpus with performance data attached. Which opens up an obvious question: does what I post about actually affect how much engagement I get?
-
-The chart below shows average likes and average replies broken out by category. Because posts can belong to multiple categories, the same post may appear in more than one bar. The x-axis is sorted by average likes descending.
-
-![](/images/catvader-engagement-by-category.png)
-
-To see the full picture, the scatter plot below shows every post individually — x-axis is replies, y-axis is likes, log scale on both axes, colored by primary category. The log scale is doing a lot of work here. Without it, the chart is basically one dot in the top-right corner and 580 dots stacked on top of each other at zero. With it, you can actually see my distribution — which, in all honesty, is mostly a dense cloud of dots in the bottom-left. The majority of what I post sinks quietly into the void, liked by a handful of people who were probably just scrolling past and hit the button by accident. A few posts escape. Most do not. This is the reality of posting.
-
-![](/images/catvader-engagement-scatter.png)
-
----
-
-## 5. What Actually Predicts Views?
-
-The bar charts in Section 4 are descriptive — they show averages, but averages don't control for anything. A category might look high-performing simply because I happen to post it more, or because it correlates with another category that's doing the real work. To get a cleaner picture, I ran models that hold all categories constant simultaneously, isolating the independent effect of each one. I ran a separate model for each outcome — views, likes, and replies.
-
-The chart below shows the coefficients from the views model, with 95% confidence intervals. Points in red are statistically significant (p < 0.05); grey points are not.
-
-![](/images/catvader-regression-views.png)
-
-Three categories emerge as significant positive predictors of views *(for the stats nerds: R² = 6.8%, F p = 2.5×10⁻⁶)*:
-
-- **Artificial Intelligence** is the single strongest predictor. Holding everything else constant, an AI post gets roughly **2.4x as many views** as a comparable post on a different topic. AI has been the trendiest topic on the internet for the past two years, and the algorithm appears to reward it accordingly.
-
-- **Partisan Politics** comes in second. A partisan political post gets about **2x as many views** as a comparable non-partisan post. Tribal political content travels well on social media — this surprises no one.
-
-- **Shit Posting** rounds out the significant predictors, with posts in this category getting about **1.8x as many views**. Blunt, low-effort, instantly legible takes are apparently what the algorithm rewards. I have complicated feelings about this.
-
-For likes, the story is similar but smaller in scale: partisan politics posts get about **50% more likes** than comparable posts, and shit posts about **35% more**. AI drops out entirely for likes — AI posts rack up views without proportionally converting to likes. Interesting.
-
-For replies, no category made a meaningful difference. Nothing I post about reliably generates conversation, which is either a sign of epistemic humility or evidence that I am not as interesting as I think I am.
-
-Topic explains only a small slice of overall engagement — most of what determines whether a post goes anywhere is timing, luck, and whether someone with a large following happens to engage. But the categories that do matter are consistent and interpretable.
-
-One natural question is whether these effects are real or just a reflection of timing — maybe I happen to post AI content on Thursdays at peak hours, and it's the timing doing the work rather than the topic. To check, I re-ran all models controlling for both day of week and hour of day.
-
-The results held up for the most part. Partisan politics and AI posts still get roughly **2x as many views** after accounting for when they were posted — those effects appear to be about the content itself. Shit posting weakens once timing is controlled for, suggesting some of its raw advantage was coming from *when* I tend to fire off a shit post rather than the content. The reply non-result holds throughout.
-
-![](/images/catvader-regression-views-adj.png)
-
-One more alternative explanation worth ruling out: volume. Maybe on high-output days I'm simply flooding my feed and one post happens to catch a wave — meaning it's the quantity, not the quality of the content, doing the work. The chart below plots each post's views and likes against the number of posts I made that day.
-
-![](/images/catvader-freq-vs-engagement.png)
-
-The correlations are r = 0.16 for views and r = 0.17 for likes — small but consistently positive, suggesting a weak connection. Posting more on a given day does seem to nudge individual post performance slightly, though the effect is modest enough that it's unlikely to be the main story. The content effects from the models hold.
-
----
-
-## Bonus: Does the Day of the Week Matter?
-
-One last question that the timestamp data makes easy to answer: does *when* I post matter?
-
-![](/images/catvader-views-by-weekday.png)
-
-Thursday stands out immediately — average views of 3,241, more than double the next best day (Saturday at 1,439) and about four times Wednesday's average of 398. Monday and Friday are middling. Wednesday is the worst day to post, by a wide margin.
-
-I don't have a strong theory for why Thursday in particular. It might be something about my posting behavior on Thursdays — maybe I tend to post more shareable content, or post at better times within the day. It might also just be noise: with 72–106 posts per weekday, a handful of viral Thursday posts could skew the average significantly. Either way, the answer to "when should I post?" appears to be: not Wednesday.
-
-Time of day tells a cleaner story. The chart below breaks posts into five windows (Pacific Time):
-
-![](/images/catvader-views-by-timeofday.png)
-
-Late night posts (9pm–5am) average nearly 2,900 views — more than double the evening average of 1,126, and about twelve times the morning average of ~250. The pattern is monotonic: the later in the day, the more views. One plausible explanation is that late night is when I tend to post more impulsively about whatever's dominating the news cycle, which also happens to be when more people are doom-scrolling. Another is that late night posts have more hours to accumulate views before I wake up and post something else that pushes them down. Either way, if I want views, apparently I should stay up later — which is not advice I needed the algorithm to give me.
 
 ---
 
