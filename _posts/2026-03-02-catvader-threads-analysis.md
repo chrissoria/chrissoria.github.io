@@ -278,6 +278,12 @@ Thursday stands out immediately — average views of 3,241, more than double the
 
 I don't have a strong theory for why Thursday in particular. It might be something about my posting behavior on Thursdays — maybe I tend to post more shareable content, or post at better times within the day. It might also just be noise: with 72–106 posts per weekday, a handful of viral Thursday posts could skew the average significantly. Either way, the answer to "when should I post?" appears to be: not Wednesday.
 
+Time of day tells a cleaner story. The chart below breaks posts into five windows (Pacific Time):
+
+![](/images/catvader-views-by-timeofday.png)
+
+Late night posts (9pm–5am) average nearly 2,900 views — more than double the evening average of 1,126, and about twelve times the morning average of ~250. The pattern is monotonic: the later in the day, the more views. One plausible explanation is that late night is when I tend to post more impulsively about whatever's dominating the news cycle, which also happens to be when more people are doom-scrolling. Another is that late night posts have more hours to accumulate views before I wake up and post something else that pushes them down. Either way, if I want views, apparently I should stay up later — which is not advice I needed the algorithm to give me.
+
 ---
 
 ## Conclusion: Do This With Your Own Data
