@@ -3,7 +3,7 @@ title: 'What Bluesky''s Most-Followed Accounts Actually Post About'
 date: 2026-03-05
 permalink: /posts/2026/03/catvader-bluesky-analysis/
 header:
-  og_image: "catvader-banner.png"
+  og_image: "catvader-bluesky-banner.png"
 tags:
   - LLM
   - social media
@@ -13,7 +13,7 @@ tags:
   - open source
 ---
 
-![](/images/catvader-banner.png)
+![](/images/catvader-bluesky-banner.png)
 
 <audio controls style="width:100%">
   <source src="https://huggingface.co/datasets/chrissoria/blog-audio/resolve/main/catvader-bluesky-analysis.mp3" type="audio/mpeg">
