@@ -206,14 +206,19 @@ One other result worth flagging: **Thirst Trap** came in at exactly one post (0.
 
 One of the advantages of pulling data directly through the Threads API is that cat-vader returns not just post text but a full set of engagement metrics alongside it. For every post, the package outputs:
 
-| Metric | Description |
+| Column | Description |
 |---|---|
+| `timestamp` | Date and time of the post |
+| `media_type` | Post type (text, image, video, repost) |
+| `text` | Post text content |
+| `image_url` | URL of attached image, if any |
 | `likes` | Number of likes |
 | `replies` | Number of replies/comments |
 | `reposts` | Number of reposts |
 | `quotes` | Number of quote posts |
 | `views` | Total post impressions |
 | `shares` | Number of shares |
+| `clicks` | Number of link clicks |
 
 That means the classified dataset isn't just a topic-coded text corpus — it's a topic-coded text corpus with performance data attached. Which opens up an obvious question: does what I post about actually affect how much engagement I get?
 
