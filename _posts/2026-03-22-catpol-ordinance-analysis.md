@@ -37,8 +37,6 @@ For this analysis, the data comes from two HuggingFace datasets:
 
 Both datasets are scraped from official city clerk systems, include full ordinance text extracted from PDFs, and are updated weekly via automated scrapers. I took the 200 most recent ordinances with text from each city.
 
-The classification model is **Qwen 2.5-72B-Instruct** via HuggingFace's inference API — a strong open-source model that produces structured JSON output. For the political lean analysis, I used **Qwen3-235B** (the flagship mixture-of-experts thinking model) to see if reasoning capability affects ideological classification.
-
 ---
 
 ## San Francisco Passes Twice as Many Laws
