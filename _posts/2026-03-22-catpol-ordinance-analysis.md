@@ -1,5 +1,5 @@
 ---
-title: 'What California Cities Actually Legislate: Classifying 400 Municipal Ordinances with LLMs'
+title: 'What California Cities Actually Legislate: Classifying Municipal Ordinances with CatLLM'
 date: 2026-03-22
 permalink: /posts/2026/03/catpol-ordinance-analysis/
 header:
