@@ -21,7 +21,7 @@ Local laws shape daily life in ways that most people never see — your rent, yo
 
 **[cat-llm](https://github.com/chrissoria/cat-llm)** is designed to close that gap. It's an open-source Python package that pulls municipal ordinances, federal laws, executive orders, and political speech directly from public datasets, then uses LLMs to classify, summarize, and analyze them at scale. It can take a 15,000-word ordinance written in statutory language and tell you — in plain English — what it does, who it affects, and where it falls on the political spectrum.
 
-In this post, I used cat-pol to classify 200 recent ordinances each from **San Diego** and **San Francisco** — two major California cities with different political characters — against two classification schemes: a 12-category policy taxonomy and a 3-category political lean assessment. The goal: a quantitative snapshot of what these cities legislate about and whether the ideological differences between them show up in the text of their laws.
+In this post, I used [cat-llm](https://github.com/chrissoria/cat-llm) to classify 200 recent ordinances each from **San Diego** and **San Francisco** — two major California cities with different political characters — against two classification schemes: a 12-category policy taxonomy and a 3-category political lean assessment. The goal: a quantitative snapshot of what these cities legislate about and whether the ideological differences between them show up in the text of their laws.
 
 *Want to run this on your own data? Skip to the [methodology and replication section](#how-to-run-it-yourself) — the entire pipeline is open source and the datasets are public.*
 
