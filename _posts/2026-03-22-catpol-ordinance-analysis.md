@@ -60,47 +60,15 @@ This matters for everything that follows. When we compare the *share* of ordinan
 
 ## What Do These Cities Legislate About?
 
-### Category Setup
-
-Rather than imposing categories top-down, I used `catllm.extract_policy()` to discover them from the data itself. The extract function samples ordinances, uses the LLM to identify recurring themes, then semantically merges duplicates into a clean taxonomy. I started with 50 San Diego ordinances and refined the output into 12 policy domains, each with verbose descriptions and examples to guide the classifier:
-
-1. **Tax Increases** — new taxes, rate increases, special assessments, bond measures
-2. **Revenue and Financing** — bond issuances, grants, loan authorizations, fee structures
-3. **Budget and Appropriations** — budget amendments, fund transfers, de-appropriations
-4. **Housing and Residential Development** — affordable housing mandates, tenant protections, new construction
-5. **Zoning and Land Use Changes** — rezoning parcels, density adjustments, specific plan amendments
-6. **Infrastructure and Public Works** — road improvements, water/sewer systems, utility projects
-7. **Business Regulation** — licensing requirements, operating restrictions, labor standards
-8. **Pro-Business and Economic Development** — tax incentives, permit streamlining, enterprise zones
-9. **Environmental Protection** — emissions standards, habitat preservation, sustainability requirements
-10. **Public Safety** — police, fire, emergency services, surveillance
-11. **Health and Social Services** — public health programs, homelessness services, food safety
-12. **Parks, Recreation, and Culture** — park improvements, public art, community facilities
-
-These are multi-label categories: a single ordinance can be tagged with multiple domains (for example, a water infrastructure bond would hit both Infrastructure and Revenue). Classification was done by **Qwen 2.5-72B-Instruct**, a 72-billion parameter open-source model, via HuggingFace's inference API.
+Rather than imposing categories top-down, I used cat-llm's extract function to discover 12 policy domains directly from the ordinance text. Categories are multi-label, so a single ordinance can be tagged with multiple domains. See the [methodology section](#methodology-notes) for how the categories were generated and the full list.
 
 ### Results: Policy Domain Distribution
 
 ![](/images/catpol-policy-distribution.png)
 
-| Policy Domain | SD % | SF % | SD/month | SF/month |
-|---------------|------|------|----------|----------|
-| Infrastructure and Public Works | **42.9%** | 14.7% | **4.8** | 3.3 |
-| Budget and Appropriations | **33.8%** | 17.8% | **3.8** | 3.9 |
-| Zoning and Land Use | 11.1% | **26.9%** | 1.2 | **6.0** |
-| Revenue and Financing | 16.2% | **25.4%** | 1.8 | **5.6** |
-| Business Regulation | 8.1% | **24.4%** | 0.9 | **5.4** |
-| Health and Social Services | 6.1% | **23.9%** | 0.7 | **5.3** |
-| Public Safety | 13.1% | **18.8%** | 1.5 | **4.2** |
-| Environmental Protection | 16.2% | 17.8% | 1.8 | **3.9** |
-| Pro-Business and Econ Dev | 5.1% | **17.3%** | 0.6 | **3.8** |
-| Housing and Residential | 11.6% | **16.8%** | 1.3 | **3.7** |
-| Parks, Recreation, and Culture | **16.2%** | 10.2% | **1.8** | 2.3 |
-| Tax Increases | 2.5% | 0.5% | 0.3 | 0.1 |
-
-*200 most recent ordinances per city. Monthly counts estimated from 2020–2025 avg rates (SD: 11.2/mo, SF: 22.2/mo). Multi-label (rows sum to >100%). Model: Qwen 2.5-72B-Instruct.*
-
 ![](/images/catpol-policy-gap.png)
+
+*200 most recent ordinances per city. Multi-label (rows sum to >100%). Model: Qwen 2.5-72B-Instruct.*
 
 ### What the Numbers Mean
 
@@ -186,7 +154,11 @@ A few important details about how this analysis works and where it might break.
 
 **Model choice.** I used two models: **Qwen 2.5-72B-Instruct** for the 12-category policy domain classification and **Qwen3-235B** (a 235-billion parameter mixture-of-experts thinking model) for the political lean analysis. Both are open-source models accessed via HuggingFace's inference API, no OpenAI dependency. The robustness check used GPT-4o on a larger sample to confirm the results hold across model families.
 
-**Category discovery.** Categories weren't hand-picked. I used `catllm.extract_policy()` to sample 50 ordinances and let the LLM discover recurring themes, then semantically merged duplicates into a clean taxonomy. The `specificity="specific"` parameter ensures category names include examples (e.g., "Infrastructure and Public Works (e.g., road improvements, water/sewer systems)"), which significantly improves classification accuracy over bare labels.
+**Category discovery.** Categories weren't hand-picked. I used `catllm.extract_policy()` to sample 50 ordinances and let the LLM discover recurring themes, then semantically merged duplicates into a clean taxonomy. The `specificity="specific"` parameter ensures category names include examples, which significantly improves classification accuracy over bare labels. The 12 policy domain categories used:
+
+1. Tax Increases 2. Revenue and Financing 3. Budget and Appropriations 4. Housing and Residential Development 5. Zoning and Land Use Changes 6. Infrastructure and Public Works 7. Business Regulation 8. Pro-Business and Economic Development 9. Environmental Protection 10. Public Safety 11. Health and Social Services 12. Parks, Recreation, and Culture
+
+For the political lean analysis, three categories: Conservative/Right-Leaning Policy, Progressive/Left-Leaning Policy, and Neutral.
 
 **Limitations.** There's no ground truth here — no human-coded comparison set for municipal ordinances. The classifications reflect what the model *thinks* these ordinances are about, not an objective standard. Model bias is a real concern, especially for the political lean analysis; LLMs have known tendencies in how they interpret political language. The sample sizes (200 for the Qwen runs, 1,000 for the GPT-4o robustness check) are reasonable but not exhaustive. The full classified datasets (1,700 SD ordinances, 3,900 SF ordinances) are now public on HuggingFace for anyone who wants to validate or extend this analysis.
 
