@@ -37,6 +37,8 @@ For this analysis, the data comes from two HuggingFace datasets:
 
 Both datasets are scraped from official city clerk systems, include full ordinance text extracted from PDFs, and are updated weekly via automated scrapers. I took the 200 most recent ordinances with text from each city.
 
+What follows is a demonstration of what you can learn from municipal legislation using a few lines of Python and no specialized legal knowledge. Everything here — the data, the categories, the classifications — was generated programmatically. If you can write `pip install cat-llm`, you can replicate and extend every finding below.
+
 ---
 
 ## San Francisco Passes Twice as Many Laws
