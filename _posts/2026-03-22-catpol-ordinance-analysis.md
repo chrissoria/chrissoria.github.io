@@ -29,7 +29,7 @@ In this post, I used [cat-llm](https://github.com/chrissoria/cat-llm) to classif
 
 ## Background: cat-pol and the Data
 
-**[cat-pol](https://github.com/chrissoria/cat-pol)** is a political text analysis package built on the **[cat-stack](https://github.com/chrissoria/cat-stack)** classification engine. It ships with 15 built-in political data sources on HuggingFace — municipal ordinances from 11 California cities, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts — all accessible with a single `source=` parameter.
+**[cat-llm](https://github.com/chrissoria/cat-llm)** is an ecosystem of open-source Python packages that use LLMs to classify text at scale. Users interested specifically in political text analysis can install **[cat-pol](https://pypi.org/project/cat-pol/)** (`pip install cat-pol`), which ships with 16 built-in political data sources on HuggingFace — municipal ordinances from 12 California cities and counties, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts — all accessible with a single `source=` parameter.
 
 For this analysis, the data comes from two HuggingFace datasets:
 - **[chrissoria/san-diego-ordinances](https://huggingface.co/datasets/chrissoria/san-diego-ordinances)** — 87,983 records (ordinances + resolutions) going back to 1905
