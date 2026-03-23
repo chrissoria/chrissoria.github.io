@@ -86,25 +86,7 @@ The environmental protection rate is nearly identical between the two cities (~1
 
 Put differently: **San Diego legislates like a city that wants to run well. San Francisco legislates like a city that wants to do good.** Whether "doing good" through regulation and social programs actually produces better outcomes is a separate empirical question, but the legislative priorities are unmistakable in the data. SD's council spends its time keeping the lights on and the water flowing. SF's council spends its time deciding who gets housing protections, which businesses need new permits, and how to fund homelessness services.
 
-### Robustness Check: 1,000 Ordinances with GPT-4o
-
-To verify these findings aren't an artifact of the sample or model, I ran a separate classification on 1,000 ordinances per city using GPT-4o (OpenAI's flagship) with a different set of categories. These were data-driven categories extracted directly from San Diego ordinances, less curated than the 12 above. The results tell the same story.
-
-| Category | San Diego | San Francisco | |
-|----------|----------|---------------|--|
-| Contract Amendments | **66.6%** | 54.7% | SD +12 |
-| Infrastructure Projects | **28.4%** | 13.3% | SD +15 |
-| Construction Management | **16.5%** | 3.3% | SD +13 |
-| Health and Safety | 11.2% | **22.0%** | SF +11 |
-| Environmental Compliance | 13.2% | **22.2%** | SF +9 |
-| Housing Development | 5.6% | **12.7%** | SF +7 |
-| Historical Preservation | 0.6% | **4.5%** | SF +4 |
-
-*1,000 most recent ordinances per city. Model: GPT-4o. Categories: data-driven via extract().*
-
-Different model. Five times the sample. Looser category scheme. Same conclusion: San Diego spends its legislative energy managing the physical city: contracts, construction, infrastructure. San Francisco spends its energy managing the social city: health services, environmental rules, housing policy, historical preservation. The gap is not subtle: SD's construction management rate is 5x higher than SF's; SF's health and safety rate is 2x higher than SD's.
-
-This consistency across models and sample sizes is encouraging. It suggests the pattern is real and not an artifact of how we asked the question.
+As a robustness check, I re-ran the analysis on 1,000 ordinances per city using GPT-4o with a different, data-driven category scheme. Different model, five times the sample, looser categories. Same conclusion: SD dominates on infrastructure and construction; SF dominates on health, environment, and housing. The pattern holds.
 
 ---
 
