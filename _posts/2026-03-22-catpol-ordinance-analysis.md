@@ -17,9 +17,7 @@ tags:
 
 <!-- TODO: generate audio version -->
 
-Local laws shape daily life in ways that most people never see. Your rent, your commute, what gets built on the corner lot, whether a new business opens or closes — all of it traces back to ordinances passed by city councils. But these documents are notoriously difficult to engage with. They're written in dense legal language, buried in city clerk archives, and produced at a volume that makes it impossible for any individual to keep up. San Diego alone has passed nearly 90,000 ordinances and resolutions. San Francisco adds dozens per month.
-
-The result is a transparency gap: the laws that most directly affect people's lives are the ones least accessible to them. Journalists cover the headline votes; researchers study federal legislation; but the vast majority of municipal lawmaking happens without any systematic analysis at all.
+Local laws shape daily life in ways that most people never see — your rent, your commute, what gets built on the corner lot — but they're written in dense legal language, buried in city clerk archives, and produced at a volume no individual can keep up with. San Diego alone has passed nearly 90,000 ordinances and resolutions. San Francisco adds dozens per month. Journalists cover the headline votes; researchers study federal legislation; but the vast majority of municipal lawmaking happens without any systematic analysis at all.
 
 **[cat-pol](https://pypi.org/project/cat-pol/)**, part of the **[cat-llm](https://github.com/chrissoria/cat-llm)** ecosystem, is designed to close that gap. It's an open-source Python package that pulls municipal ordinances, federal laws, executive orders, and political speech directly from public datasets, then uses LLMs to classify, summarize, and analyze them at scale. It can take a 15,000-word ordinance written in statutory language and tell you — in plain English — what it does, who it affects, and where it falls on the political spectrum.
 
