@@ -15,11 +15,11 @@ Networks, Health & Aging
 ------
 My primary research examines how social network structure and quality influence health and cognitive aging at both individual and population scales.
 
-**Social isolation, loneliness, and cognitive decline.** Using longitudinal data from the Health and Retirement Study, I investigate how objective social isolation and subjective loneliness independently shape cognitive trajectories in older adults, with particular attention to post-COVID dynamics. This work is funded by an [NIH/NIA F31 fellowship](https://reporter.nih.gov/search/kHoWAniqj0iJsgXgWI3_mQ/project-details/11071776).
+**Social isolation, loneliness, and cognitive decline.** Using longitudinal data from the Health and Retirement Study, I investigate how objective social isolation and subjective loneliness independently shape cognitive trajectories in older adults, with particular attention to post-COVID dynamics. This work forms the core of my dissertation, chaired by [William Dow](https://publichealth.berkeley.edu/people/william-dow), and is funded by an [NIH/NIA F31 fellowship](https://reporter.nih.gov/search/kHoWAniqj0iJsgXgWI3_mQ/project-details/11071776).
 
-**New tie formation after network shocks.** Building on the concept of social network cognitive buffers, I examine whether restoring lost connections or forming new ties after network disruptions can improve wellbeing and self-rated health.
+**New tie formation after network shocks.** In collaboration with [Claude Fischer](https://sociology.berkeley.edu/faculty/claude-s-fischer), I examine whether restoring lost connections or forming new ties after network disruptions can improve wellbeing and self-rated health, building on the concept of social network cognitive buffers.
 
-**Social networks and mortality.** In collaboration with [Dennis Feehan](https://dennisfeehan.org/), I use measures from 21 billion Facebook friendships to examine how county-level network cohesiveness and diversity relate to U.S. mortality disparities. Network structure rivals traditional predictors like smoking and income in its association with mortality. [Preprint](https://osf.io/preprints/socarxiv/kvmx6_v2)
+**Social networks and mortality.** In collaboration with [Dennis Feehan](https://dennisfeehan.org/), I use measures from 21 billion Facebook friendships to examine how county-level network cohesiveness and diversity relate to U.S. mortality disparities. Network structure rivals traditional predictors like smoking and income in its association with mortality. [Preprint](https://osf.io/preprints/socarxiv/kvmx6_v3)
 
 **Dementia classification across diverse settings.** I contribute to work assessing the [10/66 algorithm](https://academic.oup.com/aje/advance-article-abstract/doi/10.1093/aje/kwae470/7932838) for dementia classification, mapping methods validated in low- and middle-income countries to U.S. data—bridging my substantive interest in dementia with my methodological focus on algorithmic classification. Published in the *American Journal of Epidemiology*.
 
@@ -34,6 +34,8 @@ Computational & AI Methods
 I develop computational tools and methods that serve my substantive research on networks, health, and aging.
 
 **CatLLM.** [CatLLM](/catllm/) is an open-source Python package and web app I created for applying language and vision models to survey coding, image analysis, and data categorization. It emerged from challenges I encountered analyzing open-ended survey responses in my own research. [PyPI](https://pypi.org/project/cat-llm/) · [GitHub](https://github.com/chrissoria/cat-llm) · [Web App](https://huggingface.co/spaces/CatLLM/survey-classifier)
+
+**Scaling Open-Ended Survey Coding.** My [preprint](https://osf.io/preprints/socarxiv/gjvcf_v1) introduces CatLLM's empirical validation across 21 LLMs, finding that all models over-classify by default—with precision lagging 40–50 percentage points behind sensitivity—and that ensembles of inexpensive open-weight models outperform the best individual cloud model. Under review at the *Journal of Computational Social Science*.
 
 **High Agreement, Different Stories.** My [research](https://osf.io/preprints/socarxiv/wv6tk_v5) demonstrates that leading LLMs achieve 88–97% agreement with expert human coders across survey categorization tasks, while revealing systematic differences in how models and humans handle ambiguity. Under review at *JSSAM*.
 
