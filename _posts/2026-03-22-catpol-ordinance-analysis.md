@@ -1,5 +1,5 @@
 ---
-title: 'What California Cities Actually Legislate: Classifying Municipal Ordinances with CatLLM'
+title: 'What California Cities Actually Legislate: Classifying Municipal Ordinances with cat-pol'
 date: 2026-03-22
 permalink: /posts/2026/03/catpol-ordinance-analysis/
 header:
@@ -19,9 +19,9 @@ tags:
 
 Local laws shape daily life in ways that most people never see — your rent, your commute, what gets built on the corner lot — but they're written in dense legal language, buried in city clerk archives, and produced at a volume no individual can keep up with. San Diego alone has passed nearly 90,000 ordinances and resolutions. San Francisco adds dozens per month. Journalists cover the headline votes; researchers study federal legislation; but the vast majority of municipal lawmaking happens without any systematic analysis at all.
 
-**[cat-llm](https://github.com/chrissoria/cat-llm)** is designed to close that gap. It's an open-source Python package that pulls municipal ordinances, federal laws, executive orders, and political speech directly from public datasets, then uses LLMs to classify, summarize, and analyze them at scale. It can take a 15,000-word ordinance written in statutory language and tell you, in plain English, what it does, who it affects, and where it falls on the political spectrum.
+**[cat-pol](https://github.com/chrissoria/cat-pol)** is designed to close that gap. It's an open-source Python package that pulls municipal ordinances, federal laws, executive orders, and political speech directly from public datasets, then uses LLMs to classify, summarize, and analyze them at scale. Built on top of [cat-stack](https://github.com/chrissoria/cat-stack), it can take a 15,000-word ordinance written in statutory language and tell you, in plain English, what it does, who it affects, and where it falls on the political spectrum.
 
-In this post, I used [cat-llm](https://github.com/chrissoria/cat-llm) to classify 200 recent ordinances each from **San Diego** and **San Francisco** — two major California cities with different political characters, against two classification schemes: a 12-category policy taxonomy and a 3-category political lean assessment. The goal: a quantitative snapshot of what these cities legislate about and whether the ideological differences between them show up in the text of their laws.
+In this post, I used [cat-pol](https://github.com/chrissoria/cat-pol) to classify 200 recent ordinances each from **San Diego** and **San Francisco** — two major California cities with different political characters, against two classification schemes: a 12-category policy taxonomy and a 3-category political lean assessment. The goal: a quantitative snapshot of what these cities legislate about and whether the ideological differences between them show up in the text of their laws.
 
 *Want to run this on your own data? Skip to the [methodology and replication section](#how-to-run-it-yourself). The entire pipeline is open source and the datasets are public.*
 
@@ -29,7 +29,7 @@ In this post, I used [cat-llm](https://github.com/chrissoria/cat-llm) to classif
 
 ## Background: cat-pol and the Data
 
-**[cat-llm](https://github.com/chrissoria/cat-llm)** is an ecosystem of open-source Python packages that use LLMs to classify text at scale. Users interested specifically in political text analysis can install **[cat-pol](https://pypi.org/project/cat-pol/)** (`pip install cat-pol`), which ships with 16 built-in political data sources on HuggingFace, including municipal ordinances from 12 California cities and counties, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts, all accessible with a single `source=` parameter.
+**[cat-stack](https://github.com/chrissoria/cat-stack)** is a domain-agnostic LLM classification engine. **[cat-pol](https://pypi.org/project/cat-pol/)** (`pip install cat-pol`) is its political text wrapper, shipping with 17 built-in political data sources on HuggingFace, including municipal ordinances from 12 California cities and counties, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts, all accessible with a single `source=` parameter.
 
 For this analysis, the data comes from two HuggingFace datasets:
 - **[chrissoria/san-diego-ordinances](https://huggingface.co/datasets/chrissoria/san-diego-ordinances)** — 87,983 records (ordinances + resolutions) going back to 1905
@@ -37,7 +37,7 @@ For this analysis, the data comes from two HuggingFace datasets:
 
 Both datasets are scraped from official city clerk systems, include full ordinance text extracted from PDFs, and are updated weekly via automated scrapers. I took the 200 most recent ordinances with text from each city.
 
-What follows is a demonstration of what you can learn from municipal legislation using a few lines of Python and no specialized legal knowledge. The entire analysis can be reproduced for free: the data is publicly hosted on [HuggingFace](https://huggingface.co/chrissoria), cat-llm is [open source](https://github.com/chrissoria/cat-llm), and the classification can run on free-tier HuggingFace models or local models via [Ollama](https://ollama.com) with zero API costs. If you can write `pip install cat-llm`, you can replicate and extend every finding below.
+What follows is a demonstration of what you can learn from municipal legislation using a few lines of Python and no specialized legal knowledge. The entire analysis can be reproduced for free: the data is publicly hosted on [HuggingFace](https://huggingface.co/chrissoria), cat-pol is [open source](https://github.com/chrissoria/cat-pol), and the classification can run on free-tier HuggingFace models or local models via [Ollama](https://ollama.com) with zero API costs. If you can write `pip install cat-pol`, you can replicate and extend every finding below.
 
 ---
 
@@ -60,7 +60,7 @@ This matters for everything that follows. When we compare the *share* of ordinan
 
 ## What Do These Cities Legislate About?
 
-Rather than imposing categories top-down, I used cat-llm's extract function to discover 12 policy domains directly from the ordinance text. Categories are multi-label, so a single ordinance can be tagged with multiple domains. See the [methodology section](#methodology-notes) for how the categories were generated and the full list.
+Rather than imposing categories top-down, I used cat-pol's `extract()` function to discover 12 policy domains directly from the ordinance text. Categories are multi-label, so a single ordinance can be tagged with multiple domains. See the [methodology section](#methodology-notes) for how the categories were generated and the full list.
 
 ### Results: Policy Domain Distribution
 
@@ -136,7 +136,7 @@ A few important details about how this analysis works and where it might break.
 
 **Model choice.** I used two models: **Qwen 2.5-72B-Instruct** for the 12-category policy domain classification and **Qwen3-235B** (a 235-billion parameter mixture-of-experts thinking model) for the political lean analysis. Both are open-source models accessed via HuggingFace's inference API, no OpenAI dependency. The robustness check used GPT-4o on a larger sample to confirm the results hold across model families.
 
-**Category discovery.** Categories weren't hand-picked. I used `catllm.extract_policy()` to sample 50 ordinances and let the LLM discover recurring themes, then semantically merged duplicates into a clean taxonomy. The `specificity="specific"` parameter ensures category names include examples, which significantly improves classification accuracy over bare labels. The 12 policy domain categories used:
+**Category discovery.** Categories weren't hand-picked. I used `pol.extract()` to sample 50 ordinances and let the LLM discover recurring themes, then semantically merged duplicates into a clean taxonomy. The `specificity="specific"` parameter ensures category names include examples, which significantly improves classification accuracy over bare labels. The 12 policy domain categories used:
 
 1. Tax Increases 2. Revenue and Financing 3. Budget and Appropriations 4. Housing and Residential Development 5. Zoning and Land Use Changes 6. Infrastructure and Public Works 7. Business Regulation 8. Pro-Business and Economic Development 9. Environmental Protection 10. Public Safety 11. Health and Social Services 12. Parks, Recreation, and Culture
 
@@ -152,14 +152,12 @@ All data and classification results are publicly available:
 
 - **San Diego ordinances**: [chrissoria/san-diego-ordinances](https://huggingface.co/datasets/chrissoria/san-diego-ordinances) (87,983 records)
 - **San Francisco ordinances**: [chrissoria/sf-ordinances](https://huggingface.co/datasets/chrissoria/sf-ordinances) (4,048 records)
-- **Classification results**: <!-- TODO: upload classified CSVs to HF -->
-
-The source registry includes 16 datasets across California cities and counties, federal legislation, and social media:
+The source registry includes 17 datasets across California cities and counties, federal legislation, and social media:
 
 ```python
-import catllm
+import cat_pol as pol
 
-catllm.list_policy_sources()  # see all 16 sources
+pol.list_sources()  # see all 17 sources
 ```
 
 ---
@@ -167,15 +165,14 @@ catllm.list_policy_sources()  # see all 16 sources
 ## How to Run It Yourself
 
 ```bash
-pip install cat-llm          # full ecosystem
-# or: pip install cat-pol    # just the political text package
+pip install cat-pol
 ```
 
 ```python
-import catllm
+import cat_pol as pol
 
 # Discover categories from your data
-categories = catllm.extract_policy(
+categories = pol.extract(
     source="city_san_diego",
     doc_type="ordinance",
     n=50,
@@ -187,7 +184,7 @@ categories = catllm.extract_policy(
 )
 
 # Classify using discovered categories
-results = catllm.classify_policy(
+results = pol.classify(
     source="city_san_diego",
     categories=categories["top_categories"],
     doc_type="ordinance",
@@ -198,7 +195,7 @@ results = catllm.classify_policy(
 )
 
 # Summarize in plain language
-summaries = catllm.summarize_policy(
+summaries = pol.summarize(
     source="city_san_diego",
     n=10,
     format="bullets",
@@ -207,7 +204,7 @@ summaries = catllm.summarize_policy(
 )
 
 # Optimize prompts with user feedback
-result = catllm.prompt_tune_policy(
+result = pol.prompt_tune(
     source="city_san_diego",
     categories=["Housing", "Public Safety", "Finance"],
     api_key="your-key",
@@ -215,10 +212,10 @@ result = catllm.prompt_tune_policy(
 )
 
 # Fetch raw data (no API key needed)
-df = catllm.fetch_policy_source("city_san_diego", n=100, doc_type="ordinance")
+df = pol.fetch_source("city_san_diego", n=100, doc_type="ordinance")
 ```
 
-cat-llm handles the data pull, classification, and output in a consistent pipeline. Every dataset in the registry uses the same `source=` parameter across all six functions (`classify_policy`, `extract_policy`, `explore_policy`, `summarize_policy`, `prompt_tune_policy`, `fetch_policy_source`).
+cat-pol handles the data pull, classification, and output in a consistent pipeline. Every dataset in the registry uses the same `source=` parameter across all five functions (`classify`, `extract`, `explore`, `summarize`, `prompt_tune`) plus `fetch_source` and `list_sources`.
 
 ---
 
@@ -236,7 +233,7 @@ Neither mode is inherently better. SD's approach keeps government lean and focus
 
 ### What's Next
 
-This analysis covers two cities. cat-pol ships with 16 data sources (and growing): 12 California cities, San Diego County, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts. The same classification pipeline can be applied to any of them. Some questions I haven't answered:
+This analysis covers two cities. cat-pol ships with 17 data sources (and growing): 12 California cities, San Diego County, federal public laws, executive orders, presidential speeches, and Trump's Truth Social posts. The same classification pipeline can be applied to any of them. Some questions I haven't answered:
 
 - **Time series**: Has SF always been this regulatory, or did it shift after a particular election?
 - **City-size effects**: Do smaller cities (Salinas, Clovis) look more like SD or SF?
