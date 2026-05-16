@@ -11,11 +11,7 @@ redirect_from:
 
 ## Tools and Apps
 
-<a href="/catllm/">Categorize Your Data</a>: CatLLM is a suite of tools for researchers to score survey responses, PDFs, and images.
-
-<a href="/llm-web-research/">Build Datasets from the Web</a>: A tool that retrieves data from the internet in a mechanistic way, designed to increase precision and accuracy rather than completeness. Returns structured datasets for data analysis.
-
-<a href="/catvader/">Classify and Analyze Social Media Posts</a>: CatVader is a fork of CatLLM adapted for social media data. Connects directly to the Threads API to pull your post history, classify posts with LLMs, and return an enriched dataset with engagement metrics.
+<a href="/catllm/">CatLLM</a>: An open-source Python and R ecosystem for LLM-powered text classification — covering survey responses, PDFs, images, web content, and social media posts. Reproducible, provider-agnostic, and validated against expert human coders.
 
 ## Data
 
