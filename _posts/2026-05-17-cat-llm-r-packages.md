@@ -1,26 +1,31 @@
 ---
-title: 'CatLLM is Now an R Package (Eight of Them, Actually)'
+title: 'CatLLM R Package: Classify Survey Text with LLMs in R'
 date: 2026-05-17
 permalink: /posts/2026/05/cat-llm-r-packages/
+description: 'CatLLM is now available as eight R packages on r-universe. Classify open-ended survey responses, social media, web content, academic papers, and policy documents with any LLM, directly from R via reticulate.'
 header:
   og_image: catllm_bw_banner.png
 tags:
   - CatLLM
   - R
+  - R Package
+  - Reticulate
   - Large Language Models
+  - Text Classification
   - Survey Data
+  - NLP
   - Open Source
 ---
 
-![CatLLM](/images/catllm_bw_banner.png)
+![CatLLM R package ecosystem banner](/images/catllm_bw_banner.png)
 
-<a href="https://pypi.org/project/cat-llm/">CatLLM</a> started life as a Python package for classifying open-ended survey responses with LLMs. It still is — but a lot of the researchers I want to reach work in R, not Python. Asking a sociologist or demographer to spin up a Python project just to categorize a column of text responses is a friction tax most won't pay.
+The **CatLLM R package** is now live. <a href="https://pypi.org/project/cat-llm/">CatLLM</a> started life as a Python package for classifying open-ended survey responses with LLMs, and it still is, but a lot of the researchers I want to reach work in R, not Python. Asking a sociologist or demographer to spin up a Python project just to categorize a column of text responses is a friction tax most won't pay.
 
-So I built the R layer. As of this week, **eight R packages** — `cat.stack`, `cat.survey`, `cat.vader`, `cat.ademic`, `cat.cog`, `cat.pol`, `cat.web`, and the `cat.llm` meta-package — are installable from [r-universe](https://chrissoria.r-universe.dev). They wrap the Python ecosystem via [reticulate](https://rstudio.github.io/reticulate/), expose the same `classify()`, `extract()`, `explore()`, and `summarize()` API, and return results bitwise-equivalent to the Python equivalents. There's no R-specific logic — it's a thin shim. But it means you can stay in your `tidyverse` pipeline.
+So I built the R layer. As of this week, **eight R packages** (`cat.stack`, `cat.survey`, `cat.vader`, `cat.ademic`, `cat.cog`, `cat.pol`, `cat.web`, and the `cat.llm` meta-package) are installable from [r-universe](https://chrissoria.r-universe.dev). They wrap the Python CatLLM ecosystem via [reticulate](https://rstudio.github.io/reticulate/), expose the same `classify()`, `extract()`, `explore()`, and `summarize()` API, and return results bitwise-equivalent to the Python equivalents. There is no R-specific logic; it is a thin shim. But it means you can stay in your `tidyverse` pipeline.
 
-## Why an R layer at all
+## Why a CatLLM R Package
 
-A huge share of survey methodology, demography, sociology, political science, and public health work happens in R. The available options for those users have been (1) reticulate the Python package themselves, (2) round-trip data to a separate Python script, or (3) hand-code text by RA. The first is fiddly, the second is annoying, the third doesn't scale. A native R interface removes all three.
+A huge share of survey methodology, demography, sociology, political science, and public health work happens in R. The available options for those users have been (1) reticulate the Python package themselves, (2) round-trip data to a separate Python script, or (3) hand-code text by RA. The first is fiddly, the second is annoying, the third does not scale. A native R interface removes all three.
 
 ## Installation
 
@@ -35,13 +40,13 @@ library(cat.llm)
 install_cat_stack()   # one-time Python backend setup
 ```
 
-> **Not on CRAN yet.** Install from r-universe for now — the packages aren't on CRAN while the API stabilizes. R-universe is set up like an additional repo, so `install.packages()` works as usual.
+> **Not on CRAN yet.** Install from r-universe for now. The packages are not on CRAN while the API stabilizes. R-universe is set up like an additional repo, so `install.packages()` works as usual.
 
-> **Why the dot in `cat.llm`?** R's convention for multi-word package names uses a dot — like `data.table`, `R.utils`. The Python equivalents drop the dot (`catllm`, `catstack`, `catsurvey`, …). Use the dotted form in `library()` and `install.packages()`.
+> **Why the dot in `cat.llm`?** R's convention for multi-word package names uses a dot, like `data.table` or `R.utils`. The Python equivalents drop the dot (`catllm`, `catstack`, `catsurvey`, and so on). Use the dotted form in `library()` and `install.packages()`.
 
-`install_cat_stack()` runs once. Under the hood it calls `pip install` for the Python backend packages and configures reticulate to find them. After that you don't think about Python again.
+`install_cat_stack()` runs once. Under the hood it calls `pip install` for the Python backend packages and configures reticulate to find them. After that you do not think about Python again.
 
-## A first classification — entirely local
+## A First Classification with a Local LLM
 
 The simplest way to verify the install is to classify a handful of responses with a local [Ollama](https://ollama.com) model. No API key, no cloud calls, no per-token cost.
 
@@ -63,7 +68,7 @@ responses <- c(
 )
 
 # Verbose category descriptions classify several percentage points
-# more accurately than short labels — especially for smaller local
+# more accurately than short labels, especially for smaller local
 # models like Qwen 14B below.
 verbose_cats <- c(
   "Positive: The respondent expresses satisfaction, approval, or favorable sentiment.",
@@ -82,11 +87,11 @@ results <- classify(
 print(results)
 ```
 
-You get back a data frame with one column per category and one row per response — a binary matrix ready to merge back into your main dataset. The Ollama server starts automatically the first time you call `classify()` with `model_source = "ollama"`; you don't have to manage `ollama serve` yourself.
+You get back a data frame with one column per category and one row per response, a binary matrix ready to merge back into your main dataset. The Ollama server starts automatically the first time you call `classify()` with `model_source = "ollama"`; you do not have to manage `ollama serve` yourself.
 
 To run the same example against a cloud model, swap `model_source = "ollama"` and `user_model = "qwen2.5:14b"` for `user_model = "gpt-5"` (or `"claude-sonnet-4-6"`, `"gemini-2.0-flash"`, etc.) and pass `api_key = Sys.getenv("OPENAI_API_KEY")`. Everything else stays the same.
 
-## The eight packages
+## The Eight R Packages
 
 Each domain package depends on `cat.stack` (the shared classification engine) and adds parameters relevant to its data type.
 
@@ -101,9 +106,9 @@ Each domain package depends on `cat.stack` (the shared classification engine) an
 | **cat.web**    | Web content (URL fetching)          | Auto-fetch URLs, inject domain + content-type metadata      |
 | **cat.llm**    | Meta-package (installs all 7)       | Single install for the full ecosystem                       |
 
-A few examples of what the domain-specific parameters look like:
+A few examples of what the domain-specific parameters look like.
 
-**`cat.ademic`** — pull abstracts directly from OpenAlex and classify them by method:
+**`cat.ademic`**: pull abstracts directly from OpenAlex and classify them by method:
 
 ```r
 library(cat.ademic)
@@ -117,9 +122,9 @@ results <- classify(
 )
 ```
 
-No DataFrame to assemble — `journal_name` and `paper_limit` do the fetching for you.
+No data frame to assemble; `journal_name` and `paper_limit` do the fetching for you.
 
-**`cat.web`** — point at URLs and let the package render the page content before classification:
+**`cat.web`**: point at URLs and let the package render the page content before classification:
 
 ```r
 library(cat.web)
@@ -131,7 +136,7 @@ results <- classify(
 )
 ```
 
-**`cat.cog`** — a single-purpose function for scoring CERAD constructional-praxis drawings (image input only, for clinical / cognitive-aging research):
+**`cat.cog`**: a single-purpose function for scoring CERAD constructional-praxis drawings (image input only, for clinical and cognitive-aging research):
 
 ```r
 library(cat.cog)
@@ -144,7 +149,7 @@ score <- cerad_drawn_score(
 
 The remaining packages (`cat.survey`, `cat.vader`, `cat.pol`, `cat.stack`) all share the same `classify()` / `extract()` / `explore()` / `summarize()` API; the vignettes show domain-tuned examples for each.
 
-## Verifying the install end-to-end
+## Verifying the R Package Install
 
 After cloning the parent repo, this one command installs all eight R packages from local source, sets up the Python backends, and runs a minimal classification per package:
 
@@ -156,10 +161,10 @@ Expected output: `8 / 8 passed (0 failed, 0 skipped)`. CI runs the same script o
 
 ## Caveats
 
-- **Not on CRAN yet** — r-universe only while the API stabilizes.
-- **Python ≥3.9 required.** `install_cat_stack()` runs `pip install` under the hood; if you don't have Python, reticulate will prompt you to install miniconda.
-- **For Ollama workflows**, the Ollama binary is a separate download from [ollama.com](https://ollama.com/download). Local 7B–14B models trail frontier cloud models by a few percentage points on classification accuracy — fine for most survey work, worth validating against a labeled subsample for high-stakes coding.
-- **`cat.cog` is single-function for now** — CERAD scoring on drawn-shape images. More cognitive instruments to come.
+- **Not on CRAN yet.** R-universe only while the API stabilizes.
+- **Python ≥3.9 required.** `install_cat_stack()` runs `pip install` under the hood; if you do not have Python, reticulate will prompt you to install miniconda.
+- **For Ollama workflows**, the Ollama binary is a separate download from [ollama.com](https://ollama.com/download). Local 7B–14B models trail frontier cloud models by a few percentage points on classification accuracy, which is fine for most survey work but worth validating against a labeled subsample for high-stakes coding.
+- **`cat.cog` is single-function for now.** CERAD scoring on drawn-shape images. More cognitive instruments to come.
 
 ## Links
 
@@ -168,4 +173,4 @@ Expected output: `8 / 8 passed (0 failed, 0 skipped)`. CI runs the same script o
 - **Python Package:** [pypi.org/project/cat-llm/](https://pypi.org/project/cat-llm/)
 - **GitHub:** [github.com/chrissoria/cat-llm](https://github.com/chrissoria/cat-llm)
 
-If you run into trouble installing, hit a confusing error from reticulate, or want to suggest a domain wrapper that doesn't exist yet, reach out at [ChrisSoria@Berkeley.edu](mailto:ChrisSoria@Berkeley.edu).
+If you run into trouble installing, hit a confusing error from reticulate, or want to suggest a domain wrapper that does not exist yet, reach out at [ChrisSoria@Berkeley.edu](mailto:ChrisSoria@Berkeley.edu).
