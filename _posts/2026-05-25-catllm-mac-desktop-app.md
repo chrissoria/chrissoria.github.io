@@ -4,7 +4,7 @@ date: 2026-05-25
 permalink: /posts/2026/05/catllm-mac-desktop-app/
 description: 'CatLLM is now available as a self-contained Mac app. Drag in a CSV, pick categories, get a coded dataset back — the same engine as the Python and R packages, no Python install required.'
 header:
-  og_image: catllm_bw_banner.png
+  og_image: catllm-desktop-screenshot.png
 tags:
   - CatLLM
   - Desktop App
@@ -15,8 +15,6 @@ tags:
   - Survey Data
   - Open Source
 ---
-
-![CatLLM ecosystem banner](/images/catllm_bw_banner.png)
 
 ![CatLLM desktop app — General Classify view](/images/catllm-desktop-screenshot.png)
 
