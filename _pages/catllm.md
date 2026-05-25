@@ -13,7 +13,7 @@ author_profile: true
 
 **CatLLM** is an open-source Python and R ecosystem for systematic LLM-powered text classification. The `cat-llm` meta-package installs a family of domain-specific tools — survey responses, social media, academic papers, political text, web content, and more — all sharing the same `classify()` / `extract()` / `summarize()` API. Validated against expert human coders across multiple datasets.
 
-<a href="https://pypi.org/project/cat-llm/"><img src="https://static.pepy.tech/badge/cat-llm/month" alt="Downloads per month"></a> <a href="https://pypi.org/project/cat-llm/"><img src="https://static.pepy.tech/badge/cat-llm" alt="Total Downloads"></a>
+<a href="https://pypi.org/project/cat-llm/"><img src="https://static.pepy.tech/badge/cat-llm/month" alt="Downloads per month"></a> <a href="https://pypi.org/project/cat-llm/"><img src="https://static.pepy.tech/badge/cat-llm" alt="Total Downloads"></a> <a href="https://doi.org/10.21105/joss.09678"><img src="https://joss.theoj.org/papers/10.21105/joss.09678/status.svg" alt="JOSS DOI"></a>
 
 ## The Ecosystem
 
@@ -67,4 +67,4 @@ author_profile: true
 
 If you use CatLLM in your research, please cite:
 
-Soria, C. (2026). *CatLLM: A Reproducible Python Ecosystem for Generating, Assigning, and Scoring Open-Ended Text, Images, and Documents Across Research Domains* (v3.0.0) [Software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.19960067">https://doi.org/10.5281/zenodo.19960067</a>
+Soria, C. (2026). *Scaling Open-Ended Survey Coding: An LLM Pipeline Where Definitions Do the Heavy Lifting*. *Journal of Open Source Software*. <a href="https://doi.org/10.21105/joss.09678">https://doi.org/10.21105/joss.09678</a>
