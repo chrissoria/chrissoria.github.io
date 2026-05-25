@@ -1,0 +1,35 @@
+{% include base_path %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item archive__item--collapse" itemscope itemtype="http://schema.org/CreativeWork">
+    <details>
+      <summary>
+        <h2 class="archive__item-title" itemprop="headline">{{ title }}</h2>
+      </summary>
+
+      <div class="archive__item-body">
+        {% if post.collection == 'publications' and post.venue %}
+          <p class="archive__item-venue"><i>{{ post.venue }}</i>{% if post.date %}, {{ post.date | date: "%Y" }}{% endif %}</p>
+        {% endif %}
+
+        {% if post.excerpt %}
+          <div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>
+        {% endif %}
+
+        {% if post.citation %}
+          <p class="archive__item-citation"><span class="archive__item-citation-label">Recommended citation:</span> {{ post.citation }}{% if post.paperurl %} <a href="{{ post.paperurl }}">{{ post.paperurl }}</a>{% endif %}</p>
+        {% elsif post.paperurl %}
+          <p><a href="{{ post.paperurl }}">{{ post.paperurl }}</a></p>
+        {% endif %}
+
+        <p class="archive__item-permalink"><a href="{{ base_path }}{{ post.url }}" rel="permalink">Full entry &rarr;</a></p>
+      </div>
+    </details>
+  </article>
+</div>

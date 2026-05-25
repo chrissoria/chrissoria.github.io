@@ -12,11 +12,61 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+.archive__item--collapse { padding: 0; margin: 0; }
+.archive__item--collapse details {
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  padding: 0.35em 0;
+}
+.archive__item--collapse details summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 0.35em 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+.archive__item--collapse details summary::-webkit-details-marker { display: none; }
+.archive__item--collapse details summary::before {
+  content: '\25B8';
+  color: #888;
+  font-size: 0.8em;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+.archive__item--collapse details[open] summary::before { transform: rotate(90deg); }
+.archive__item--collapse summary h2.archive__item-title {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.archive__item--collapse summary:hover h2.archive__item-title {
+  text-decoration: underline;
+}
+.archive__item--collapse .archive__item-body {
+  padding: 0.4em 0 0.7em 1.7em;
+  font-size: 0.92em;
+  color: #444;
+}
+.archive__item--collapse .archive__item-body p { margin: 0.4em 0; }
+.archive__item--collapse .archive__item-excerpt p { margin: 0.4em 0; }
+.archive__item--collapse .archive__item-venue { color: #666; }
+.archive__item--collapse .archive__item-citation { font-size: 0.88em; color: #555; }
+.archive__item--collapse .archive__item-citation-label { color: #888; }
+.archive__item--collapse .archive__item-permalink { font-size: 0.85em; }
+.archive__item--collapse .archive__item-permalink a { color: #888; }
+</style>
+
 ## Peer-Reviewed
 
 {% for post in site.publications reversed %}
   {% if post.type == "peer-reviewed" %}
-    {% include archive-single.html %}
+    {% include archive-single-collapse.html %}
   {% endif %}
 {% endfor %}
 
@@ -24,6 +74,6 @@ author_profile: true
 
 {% for post in site.publications reversed %}
   {% if post.type == "preprint" %}
-    {% include archive-single.html %}
+    {% include archive-single-collapse.html %}
   {% endif %}
 {% endfor %}
