@@ -53,7 +53,9 @@ author_profile: true
 
 <a href="https://pepy.tech/projects/cat-web"><img src="https://static.pepy.tech/badge/cat-web/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/cat-web"><img src="https://static.pepy.tech/badge/cat-web" alt="Total Downloads"></a>
 
-## Web Apps
+## Apps
+
+<a href="https://catllm.com#download">CatLLM Desktop (Mac)</a>: A self-contained Mac app — drag in a CSV, pick categories, get a coded dataset back. Same engine as the Python and R packages, no Python install required.
 
 <a href="https://huggingface.co/spaces/CatLLM/survey-classifier">Classify Survey Responses</a>: A web-based tool for categorizing survey responses without writing code.
 
