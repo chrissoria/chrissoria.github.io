@@ -53,12 +53,6 @@ author_profile: true
 
 <a href="https://pepy.tech/projects/cat-web"><img src="https://static.pepy.tech/badge/cat-web/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/cat-web"><img src="https://static.pepy.tech/badge/cat-web" alt="Total Downloads"></a>
 
-### Related packages
-
-<a href="https://pypi.org/project/llm-web-research/">llm-web-research</a>: A separate package in the CatLLM family for **LLM-powered web research** with a focus on accuracy over quantity. Uses a multi-step verification pipeline to catch ambiguous queries before returning potentially incorrect answers. <a href="https://github.com/chrissoria/llm-web-research">[GitHub]</a>
-
-<a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research/month" alt="Downloads per month"></a> <a href="https://pepy.tech/projects/llm-web-research"><img src="https://static.pepy.tech/badge/llm-web-research" alt="Total Downloads"></a>
-
 ## Web Apps
 
 <a href="https://huggingface.co/spaces/CatLLM/survey-classifier">Classify Survey Responses</a>: A web-based tool for categorizing survey responses without writing code.
