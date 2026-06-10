@@ -63,4 +63,4 @@ author_profile: true
 
 If you use CatLLM in your research, please cite:
 
-Soria, C. (2026). *Scaling Open-Ended Survey Coding: An LLM Pipeline Where Definitions Do the Heavy Lifting*. *Journal of Open Source Software*. <a href="https://doi.org/10.21105/joss.09678">https://doi.org/10.21105/joss.09678</a>
+Soria, C. (2026). *CatLLM: A Python package for Generating, Assigning, and Scoring Open-Ended Survey Data and Images*. *Journal of Open Source Software*. <a href="https://doi.org/10.21105/joss.09678">https://doi.org/10.21105/joss.09678</a>
