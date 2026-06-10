@@ -57,7 +57,7 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter "CSoriaResearch"
+  username               : &twitter
 facebook:
   username               :
   app_id                 :
@@ -73,7 +73,6 @@ social:
     - "https://github.com/chrissoria"
     - "https://www.linkedin.com/in/chris-soria-9340931a/"
     - "https://orcid.org/0009-0007-3558-5896"
-    - "https://twitter.com/CSoriaResearch"
 
 
 # Analytics
@@ -113,14 +112,14 @@ author:
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
-  tumblr           : "christophersoria"
-  twitter          : "CSoriaResearch"
+  tumblr           :
+  twitter          :
   vine             :
   weibo            :
   xing             :
   youtube          :
   wikipedia        :
-  threads          : "supersoria"
+  threads          :
 
 
 # Reading Files
