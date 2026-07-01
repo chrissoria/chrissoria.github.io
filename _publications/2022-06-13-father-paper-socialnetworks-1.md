@@ -3,7 +3,7 @@ title: "Connecting Fathers: Fathers' Impact on Adult Children's Social Networks"
 collection: publications
 type: peer-reviewed
 permalink: /publication/2022-06-13-father-paper
-excerpt: 'This study examines how having an emotionally close and active father in an adult child's social network shapes network composition, using data from the 2015 UC Berkeley Social Networks Study (UCNets).'
+excerpt: "This study examines how having an emotionally close and active father in an adult child's social network shapes network composition, using data from the 2015 UC Berkeley Social Networks Study (UCNets)."
 date: 2022-06-13
 venue: 'The International Journal of Aging and Human Development'
 paperurl: 'https://journals.sagepub.com/doi/full/10.1177/00914150221106645'
