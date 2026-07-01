@@ -5,12 +5,27 @@ permalink: /talks/
 author_profile: true
 ---
 
+{% include archive-collapse-style.html %}
+
+<style>
+.archive__year-heading {
+  margin: 1.5em 0 0.2em;
+  padding-bottom: 0.1em;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+</style>
+
 {% if site.talkmap_link == true %}
 
 <p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
 
 {% endif %}
 
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
+{% assign talks_by_year = site.talks | group_by_exp: "talk", "talk.date | date: '%Y'" | sort: "name" | reverse %}
+{% for year in talks_by_year %}
+  <h2 class="archive__year-heading" id="year-{{ year.name }}">{{ year.name }}</h2>
+  {% assign year_talks = year.items | sort: "date" | reverse %}
+  {% for post in year_talks %}
+    {% include archive-single-collapse.html %}
+  {% endfor %}
 {% endfor %}

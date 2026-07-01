@@ -18,6 +18,10 @@
           <p class="archive__item-venue"><i>{{ post.venue }}</i>{% if post.date %}, {{ post.date | date: "%Y" }}{% endif %}</p>
         {% endif %}
 
+        {% if post.collection == 'talks' %}
+          <p class="archive__item-venue">{{ post.type }}{% if post.venue %} &middot; {{ post.venue }}{% endif %}{% if post.location %} &middot; {{ post.location }}{% endif %}{% if post.date %} &middot; {{ post.date | date: "%B %-d, %Y" }}{% endif %}</p>
+        {% endif %}
+
         {% if post.excerpt %}
           <div class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>
         {% endif %}
