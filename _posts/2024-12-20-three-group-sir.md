@@ -8,15 +8,15 @@ tags:
 - Research
 ---
 
-In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utlizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
+In our upcoming paper, "Measuring and Modeling the Impact of Partisan Differences in Health Behaviors on COVID-19 Dynamics," we use a three-group Susceptible-Infected-Recovered model to highlight the importance of incorporating partisan differences into models of disease transmission. In this blog post, I want to fully explain what is happening in the background for readers who may be interested in utilizing it themselves. For those users, we also built an R shiny app (soon to be published as well). The link to the shiny app will be: here.
 
-There is a lot to unpack here, so let's start with the basic conceptualization of how the model. 
+There is a lot to unpack here, so let's start with the basic conceptualization of how the model works. 
 
 ## A Simplified Model
 
 <p align="center"> <img src="/images/simple_sir.png" alt="Basic SIR"> </p>
 
-In the above diagram, there are so five transitions possible. 
+In the above diagram, there are four transitions possible. 
 
 First, $\lambda$ is the force of infection. It combines the chance of getting infected, when meeting someone (which we are setting to 5%) with how often people meet and how many infected people are around. We will represent the chance of getting infected with a $\tau$, for transmission probability. To determine how many people are to be met, and how many of them are infected, we also need to define the size of the population, which we will represent with $N$. The size of the population will repeatedly be adjusted as people drop out (or die) due to the disease, but the initial size of the population will be represented as $N0$. 
 
@@ -30,7 +30,7 @@ $$
 
 In the above equation, we see that $c$, the average number of contacts, directly increases or decreases $\lambda$. 
 
-The number of new infections at in the early phases of the simulation, those people who leave the susceptible class, is therefore calculated as:
+The number of new infections in the early phases of the simulation, those people who leave the susceptible class, is therefore calculated as:
 
 <p style="text-align: center;">
 $$\text{number of infections} = \frac{dS}{dt} = -S\lambda$$
@@ -44,7 +44,7 @@ $$\text{Average duration of infectiousness} = \frac{1} {\rho}$$
 
 In our study, we use $\rho$ = .1, which translates to average duration of infectiousness is 10 time units (days). 
 
-To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calcuted as a combination of transmission probability$\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster rate at which individuals leave the infected state which in turns lowers $\lambda$ by reducing the number of infected individuals $I$. 
+To summarize, in order for a transition from $S$ to $I$ to occur, we need a person in state $S$ to come into contact with someone in state $I$. Their probability of transitioning is dependent on $\lambda$, which is calculated as a combination of transmission probability $\tau$ and average number of contacts $c$. Indirectly, $\lambda$ is impacted by $\rho$, which helps determine the proportion infected at any time $\frac{I}{N}$. To calculate new infections at time t, we multiply $\lambda$ by $S$. A higher $\rho$ leads to faster rate at which individuals leave the infected state which in turns lowers $\lambda$ by reducing the number of infected individuals $I$. 
 
 Next, we need to define what happens with people after they've become infected. In this case, they can either move into the recovered state or they can die. The transitions are governed by two rates:
 
@@ -78,7 +78,7 @@ This SIR model implementation uses the deSolve package to numerically solve the 
 
 The Berkeley Interpersonal Contacts Study (BICS) showed that Republicans and Democrats report wearing masks at different rates. Since mask-wearing affects disease spread, our model needs to account for these partisan differences. We've expanded our basic SIR model to include two new categories: protected ($P$) and unprotected ($U$). This means each state in our model is now split into two. For example, we now have Susceptible Protected ($S_P$) and Susceptible Unprotected ($S_U$), which when added together equal ($S$).
 
-Essentially, the protected class is impacted by s scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$. To show this mathematically, we first split the infected class into two groups: $\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$.
+Essentially, the protected class is impacted by a scaling factor $\kappa$, where $\kappa = 1$ means no protection and $\kappa = 0$ perfect protection. Thus, the name "protected" class is a bit of a misnomer if $\kappa$ is not set to 0. Alternatively, we could label it a transmission mitigated class. Thus, for the transmission mitigated class, the force of infection, $\lambda$, is scaled down by a factor $\kappa$. To show this mathematically, we first split the infected class into two groups: $\frac{I}{N} = \frac{I_U}{N} + \frac{I_P}{N}$.
 
 
 Since $\kappa$ only scales transmission probabilities for the protected, we multiply only against $\frac{I_P}{N}$ so that:
@@ -88,18 +88,18 @@ Since $\kappa$ only scales transmission probabilities for the protected, we mult
 $$\lambda = \tau c (\frac{I_U}{N} + \frac{I_P}{N}\kappa)$$
 </p>
 
-The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters our equation calculating how many people ended as infected for the protected group as:
+The above formula implies that contacts with the protected limits an individual's probability of becoming infected. Of course, the reverse is also true. More contact with the unprotected relatively increases an individual's probability of becoming infected. However, before becoming infected, the individual also falls into either $S_P$ or $S_U$, which means their probability of becoming infected can become reduced even further. This alters the rate at which protected susceptibles leave $S_P$ by becoming infected. The flow of new protected infections is $S_P \cdot \lambda \cdot \kappa$, so the infection term of the protected-susceptible equation is:
 
 <p style="text-align: center;">
 
-$$I_P = \frac{dSP}{dt} = -S_P \cdot \lambda \cdot \kappa$$
+$$\left.\frac{dS_P}{dt}\right|_{\text{infection}} = -S_P \cdot \lambda \cdot \kappa$$
 </p>
 
-And those who "choose" not to wear protection effectively remains the same:
+And for those who "choose" not to wear protection, the corresponding infection flow is unchanged:
 
 <p style="text-align: center;">
 
-$$I_U = \frac{dSU}{dt} = -S_U \cdot \lambda$$
+$$\left.\frac{dS_U}{dt}\right|_{\text{infection}} = -S_U \cdot \lambda$$
 </p>
 
 Next, we need a parameter for determining the rate at which people choose to adopt protective behavior. That is, we need a way of transitioning some individuals from the unprotected classes to the protected. For this, we utilize $\pi$, which represents a background rate of adopting protective behavior. It enters our model in the following ways:
@@ -108,20 +108,22 @@ First, it reduces the population in $S_U$ at a rate $\pi$ and adds them to $S_P$
 
 <p style="text-align: center;">
 
-$$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdot S_U + \phi\cdot S_U + \gamma R_U$$
+$$\frac{dS_U}{dt} = -S_U\cdot\lambda - \pi\cdot S_U + \phi\cdot S_P + \gamma R_U$$
 </p>
 
 On the other hand (notice $\kappa$): 
 
 <p style="text-align: center;">
 
-$$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_U + \gamma R_P$$
+$$\frac{dS_P}{dt} = -S_P\lambda\cdot\kappa + \pi\cdot S_U - \phi S_P + \gamma R_P$$
 </p>
 
 In other words, the protected susceptible population ($S_P$) increases as unprotected individuals adopt protective behaviors (at rate $\pi$) and decreases as protected individuals stop using protection (at rate $\phi$). Conversely, the unprotected susceptible population ($S_U$) changes in the opposite direction. Also, at any one point, there are people leaving the recovered classes ($R_U$ and $R_P$) and rejoining their respective susceptible classes. $\pi$ and $\phi$ are also constantly interacting with the other compartments $I$ and $R$, but for the sake of brevity and conciseness I will leave those out of this blog and refer you to the project's <a href="https://github.com/chrissoria/BICS_Political_Polarization/blob/main/code/disease_model/sir_behavior_three_party_simple.R">GitHub Repo</a>.
 
 
 Almost done, but there's one last component we need to consider: **vaccination**.
+
+> **A note for readers of the paper:** vaccination is available in the model code and the Shiny app, but the published paper's simulations do **not** activate it — in every paper scenario `vstart` is set beyond the simulation horizon, so vaccination never fires and the headline results describe an unvaccinated population. It is included here so that readers using the tool understand the option.
 
 To incorporate vaccination into our model, we move vaccinated individuals directly from the susceptible to the recovered class. This approach assumes that vaccines provide immunity similar to natural infection, with the same waning rate ($\gamma$). The model introduces two key vaccination parameters:
 
@@ -150,10 +152,10 @@ $$\frac{dR_U}{dt} =  (\rho \cdot (1-\mu) \cdot I_U) - (\pi \cdot R_U) + (\phi \c
 
 <p style="text-align: center;">
 
-$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu) \cdot I_P) - (\pi \cdot R_U) - (\phi \cdot R_P) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
+$$\frac{dR_P}{dt} =  (\rho \cdot (1-\mu) \cdot I_P) + (\pi \cdot R_U) - (\phi \cdot R_P) - (\gamma \cdot R_P) + (vacc \cdot S_P)$$
 </p>
 
-In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_S$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\gamma$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\rho$. 
+In summary, to account for differences in "protective", mitigating, behavior, we split up each compartment (S, I, R) into sub-compartments for the protected and unprotected. Most directly, this alters the probability that people in the susceptible class transition into the infected class by altering the equation for $\lambda$. However, indirectly, this impacts the overall pandemic by reducing the proportion of people in the infected class ($I = I_U + I_P$) at any one time, effectively creating a positive feedback loop where $\lambda$ being lower contributes to further declines in $\lambda$ in future states (See equation 1 for the force of infection formula). However, people don't wear protection forever, and our model reflects that through a parameter $\phi$ which represents waning adoption. The vaccination rate ($vacc$) and vaccination start time ($vstart$) allows us to transition a percentage of people out of the susceptible compartments and into the recovered compartments, yet they slowly rejoin the susceptible class as their immunity wanes at a rate $\gamma$. 
 
 **Challenge questions**: 
 
@@ -188,7 +190,7 @@ Where:
 The model tracks these compartments simultaneously with group-specific parameters:
 
 - Protection adoption rate: $\pi_i$
--Contact rate: $c_i$
+- Contact rate: $c_i$
 - Mortality rate: $\mu_i$
 
 Using republicans as an example, we would calculate the rate of change in the susceptible class like this:
@@ -204,7 +206,7 @@ $$\frac{dS_{Pa}}{dt} = -(S_{Pa} \cdot \lambda_a \cdot \kappa) + (\pi_a \cdot S_{
 
 </p>
 
-These two groups make up the susceptible compartment for the Republican group. Notice here that every parameter except for $\gamma$ and $\kappa$ is being assigned a subscript a. This is because $\gamma$ is the rate of waninng immunity, and we aren't expecting that to vary by party affiliation. As for $\kappa$, which represents the effectiveness of "protection," It's quite possible that Democrats, for example, are wearing protection that is more effective than Republicans. For example, we know that N95 masks are more effective at reducing transmission than cloth masks. However, for this early iteration of the model, we will keep it simple and calculate one value for $\kappa$. 
+These two groups make up the susceptible compartment for the Republican group. Notice here that every parameter except for $\gamma$ and $\kappa$ is being assigned a subscript a. This is because $\gamma$ is the rate of waning immunity, and we aren't expecting that to vary by party affiliation. As for $\kappa$, which represents the effectiveness of "protection," It's quite possible that Democrats, for example, are wearing protection that is more effective than Republicans. For example, we know that N95 masks are more effective at reducing transmission than cloth masks. However, for this early iteration of the model, we will keep it simple and calculate one value for $\kappa$. 
 
 Further, survey data from BICS shows that Republicans, Democrats, and Independents adopt protective behaviors like mask-wearing at different rates. To capture this variation, each group needs to have its own protection adoption rate ($\pi$) and protection waning rate ($\phi$). These group-specific rates reflect the real-world differences in how quickly each partisan group takes up and abandons protective measures.
 
@@ -216,7 +218,7 @@ $$\lambda_a = \tau \left( c_{a,a} \left(\frac{I_{Ua}}{N_a} + \kappa\frac{I_{Pa}}
 c_{a,b} \left(\frac{I_{Ub}}{N_b} + \kappa\frac{I_{Pb}}{N_b}\right) + c_{a,c} \left(\frac{I_{Uc}}{N_c} + \kappa\frac{I_{Pc}}{N_c}\right) \right)$$
 </p>
 
-There's a lot going on here, so let's break it down step-by-step. Frst, notice that the transmission probablity ($\tau$) is constant and doesn't have a subscript. This is because the transmission probability is a feature of the virus, which doesn't stop to consider your political affiliation before it infects you. Next, instead of just $c$ (contacts) we now have:
+There's a lot going on here, so let's break it down step-by-step. First, notice that the transmission probability ($\tau$) is constant and doesn't have a subscript. This is because the transmission probability is a feature of the virus, which doesn't stop to consider your political affiliation before it infects you. Next, instead of just $c$ (contacts) we now have:
 
    - $c_{a,a}$: Republican contacts with Republicans
    - $c_{a,b}$: Republican contacts with Democrats
@@ -250,7 +252,7 @@ $$\frac{dR_{Ua}}{dt} =  (\rho \cdot (1-\mu_a) \cdot I_{Ua}) - (\pi_a \cdot R_{Ua
 
 </p>
 
-Notice here that features of the disease remain the same, but anything that involves differences in behavior are assigned a unique subscript a, b, or c. This means $mu$ gets a subscrupt $mu_a, because the probability of dying is partially a consequence of age, and partisan groups tend to differ along average age. 
+Notice here that features of the disease remain the same, but anything that involves differences in behavior is assigned a unique subscript a, b, or c. Mortality is a partial exception: $\mu$ can take a subscript $\mu_a$ because the probability of dying is partly a consequence of age, and partisan groups tend to differ in average age. In the paper, however, the *main* simulations assume a **uniform** infection-fatality rate $\mu$ across all groups; the group-specific, age-adjusted $\mu_i$ (following Levin et al.) is used only as a sensitivity analysis. 
 
 
 
@@ -259,16 +261,67 @@ Notice here that features of the disease remain the same, but anything that invo
 
 ## Considering Homophily
 
+So far we've treated the between-group contact rates $c_{a,b}$, $c_{a,c}$, and so on as if they were simply handed to us. In reality, they are *constructed* from three ingredients: each group's average number of contacts, each group's share of the population, and a **homophily** parameter $\beta$ that governs how much people prefer to interact within their own group. This section shows how, following the approach of Currarini et al.
+
+We start by asking what share of all the contacts happening in the population "belong to" each group. If group $i$ has $N_i$ people who each make $c_i$ contacts on average, then group $i$ accounts for $N_i c_i$ of the total contact "ends." We define its **contact share** as:
+
 <p style="text-align: center;">
 
-<div style="text-align: center;">
+$$
+m_i = \frac{N_i c_i}{N_a c_a + N_b c_b + N_c c_c}
+$$
+</p>
 
-|           | a     | b     | c     |
-|-----------|-------|-------|-------|
-| a         | a,a   | a,b   | a,c   |
-| b         | a,b   | b,b   | b,c   |
-| c         | a,c   | c,b   | c,c   |
+Next we introduce the homophily parameter $\beta \geq 1$, which controls how likely people are to interact within their own group. The fraction of a group's contacts that stay *within* the group is:
+
+<p style="text-align: center;">
+
+$$
+q_{ii} = m_i^{1/\beta_i}
+$$
+</p>
+
+When $\beta_i = 1$, this reduces to $q_{ii} = m_i$: contacts happen in proportion to group size, i.e. random (proportional) mixing. When $\beta_i > 1$, we get $q_{ii} > m_i$, meaning people in group $i$ contact their own group *more* than random mixing would predict — this is in-group preference, or homophily. In our three-group model we let $\beta_a$ and $\beta_b$ vary freely; group $c$'s homophily is then implied by the constraints below.
+
+Whatever contacts are *not* within-group must be split among the other two groups. We divide group $a$'s out-group contacts in proportion to the other groups' contact shares:
+
+<p style="text-align: center;">
+
+$$
+q_{ab} = (1 - q_{aa})\frac{m_b}{m_b + m_c}, \qquad q_{ac} = (1 - q_{aa})\frac{m_c}{m_b + m_c}
+$$
+</p>
+
+There is one more physical constraint: contacts have to be reciprocal. The total number of contacts group $a$ has with group $b$ must equal the total number group $b$ has with group $a$, or $N_a c_{a,b} = N_b c_{b,a}$. This **balance** condition pins down the remaining mixing fractions from the ones we've already set:
+
+<p style="text-align: center;">
+
+$$
+q_{ba} = q_{ab}\frac{c_a N_a}{c_b N_b}, \qquad q_{ca} = q_{ac}\frac{c_a N_a}{c_c N_c}, \qquad q_{cb} = q_{bc}\frac{c_b N_b}{c_c N_c}
+$$
+</p>
+
+with $q_{bc}$ and $q_{cc}$ following as the residuals that make each group's mixing fractions sum to one (for example, $q_{bc} = 1 - q_{ba} - q_{bb}$). Collecting these, we get a full mixing matrix $q_{ij}$ — the fraction of group $i$'s contacts that go to group $j$:
+
+<div style="text-align: center;" markdown="1">
+
+|         | a        | b        | c        |
+|---------|----------|----------|----------|
+| **a**   | $q_{aa}$ | $q_{ab}$ | $q_{ac}$ |
+| **b**   | $q_{ba}$ | $q_{bb}$ | $q_{bc}$ |
+| **c**   | $q_{ca}$ | $q_{cb}$ | $q_{cc}$ |
 
 </div>
 
+Finally, we turn these fractions back into actual per-person contact counts by multiplying each group's row by its average number of contacts:
+
+<p style="text-align: center;">
+
+$$
+c_{i,j} = q_{ij}\, c_i
+$$
 </p>
+
+These $c_{i,j}$ are exactly the terms that appear in the force of infection $\lambda_a = \tau\left(c_{a,a}(\dots) + c_{a,b}(\dots) + c_{a,c}(\dots)\right)$ from the previous section. In other words, homophily is what determines *who* each group tends to meet, and — because protection rates differ by party — that in turn shapes each group's force of infection. When $\beta = 1$ everywhere, mixing is proportional and the groups differ only through their contact counts and protection rates; as $\beta$ increases, partisans increasingly encounter their own group, amplifying the behavioral differences between them.
+
+For the full derivation, including all of the symmetry conditions used to solve for every entry of the matrix, see the paper's appendix (*Disease Model Parameters and Equations*) and Currarini et al.
