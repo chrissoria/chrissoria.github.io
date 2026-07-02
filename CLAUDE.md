@@ -21,6 +21,18 @@ bundle exec jekyll build
 
 If you get errors during `bundle install`, delete `Gemfile.lock` and try again.
 
+Changes to `_config.yml` are not hot-reloaded — restart the Jekyll server to see them.
+
+## Deploying / Publishing
+
+The site auto-builds and deploys via **GitHub Pages** on every push to `origin/main`. There is no CI workflow and no staging — **pushing to `origin` publishes the live site at christophersoria.com immediately.** Preview locally with `bundle exec jekyll liveserve` before pushing.
+
+This repo has two remotes: `origin` (the live site, `chrissoria.github.io`) and `academic-template` (the upstream academicpages fork). Always push to `origin` — never `academic-template`.
+
+## Commit Convention
+
+Commit messages use a `section: lowercase imperative` prefix for the area changed — e.g. `publications:`, `talks:`, `cv:`, `research:`, `about:`, `site:`. Commits go straight to `main`.
+
 ## Site Architecture
 
 **Content Collections** (in `_config.yml`):
@@ -36,15 +48,7 @@ If you get errors during `bundle install`, delete `Gemfile.lock` and try again.
 - `_data/navigation.yml` - Main navigation menu structure
 - `_data/authors.yml` - Author metadata
 
-**Templates**:
-- `_layouts/` - Page layout templates
-- `_includes/` - Reusable HTML components
-- `_sass/` - SCSS stylesheets
-
-**Static Assets**:
-- `images/` - Image files
-- `files/` - PDFs and downloadable files (accessible at /files/filename.pdf)
-- `assets/` - CSS, JS, and other assets
+Layouts (`_layouts/`), includes (`_includes/`), and styles (`_sass/`) follow standard Minimal Mistakes conventions. PDFs in `files/` are served at `/files/filename.pdf`.
 
 ## Content Format
 
@@ -60,4 +64,9 @@ tags:
 ---
 ```
 
-Files are named with date prefix: `YYYY-MM-DD-slug.md`
+File naming differs by collection:
+- `_posts/YYYY-MM-DD-slug.md`
+- `_publications/YYYY-MM-DD-slug.md`
+- `_talks/YYYY-MM-DD-talk-N.md` — talks are **numbered**, not slugged
+
+Publications and talks carry richer front matter than posts (`collection`, `type`, `permalink`, `venue`, and for publications `paperurl` + `citation`). `markdown_generator/` has Python scripts (`publications.py`, `talks.py`, `pubsFromBib.py`) to generate these entries from `.tsv`/BibTeX.
