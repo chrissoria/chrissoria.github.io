@@ -20,6 +20,10 @@ I have a busy conference season ahead. Here is where I'll be presenting and what
 
 **Sunbelt 2026** — Daytona Beach, June 22–28. Oral presentation on social isolation, loneliness, and cognitive decline.
 
+**AAIC 2026** — London, July 12. Gateway/HCAP consensus session on the [CADAS](/publication/2025-08-29-cadas-protocol) study, examining cross-national differences in web-based dementia diagnosis across clinician teams from five countries.
+
+**ECMTB 2026** — Graz, Austria, July 13–17. Minisymposium on advances in modeling human behavior and infectious disease spread.
+
 **ASA 2026** — New York, August 7–11 *(pending)*
 
 **ΨMCA 2026** — August 9–14. Presentation on algorithmic classification in dementia research.
