@@ -231,6 +231,15 @@ Each contact rate is multiplied by the proportion of infected individuals in the
 $$\lambda_a = \lambda_{a,a} + \lambda_{a,b} + \lambda_{a,c}$$
 </p>
 
+More compactly, for any group $i$ the force of infection is just a sum over the groups $j$ it contacts:
+
+<p style="text-align: center;">
+
+$$\lambda_i = \tau \sum_{j} c_{i,j}\left(\frac{I_{Uj} + \kappa\, I_{Pj}}{N_j}\right)$$
+</p>
+
+This is the standard structured-SIR force of infection $\lambda_i = \tau \sum_j c_{i,j} I_j / N_j$, with one twist: each group's prevalence $I_j$ is replaced by its *protection-weighted* version $I_{Uj} + \kappa\, I_{Pj}$, so contacts with protected people transmit less. The contact terms $c_{i,j}$ are exactly what the next section explains how to build.
+
 Let's move on to the infected. 
 
 <p style="text-align: center;">
