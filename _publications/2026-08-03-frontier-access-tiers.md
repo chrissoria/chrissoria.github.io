@@ -1,0 +1,14 @@
+---
+title: "What Does Frontier Access Buy? Benchmarking LLM Access Tiers and the Reproducibility Case for Open Weights in Survey Coding"
+collection: publications
+type: preprint
+permalink: /publication/2026-08-03-frontier-access-tiers
+excerpt: "Eighteen LLMs across four access tiers — proprietary flagships to laptop-scale open weights — benchmarked against human consensus on five survey-coding tasks. The flagship tier's margin over cheaper commercial models is statistically indistinguishable from zero despite 1.3–6× higher per-token prices, and the largest open-weight models match both proprietary tiers on cell-level agreement."
+date: 2026-08-03
+venue: 'SocArXiv'
+paperurl: 'https://osf.io/preprints/socarxiv/5g34x_v1'
+citation: 'Soria C. What Does Frontier Access Buy? Benchmarking LLM Access Tiers and the Reproducibility Case for Open Weights in Survey Coding. SocArXiv. 2026. https://osf.io/preprints/socarxiv/5g34x_v1'
+---
+Social scientists coding open-ended survey responses with large language models (LLMs) face a tradeoff between proprietary frontier systems, cheaper commercial alternatives, and open-weight models that can be audited and self-hosted. This study benchmarks eighteen LLMs across four access tiers, from proprietary flagships to open-weight models small enough to run on a laptop, zero-shot against a human consensus on three open-ended questions from a probability-sampled U.S. panel. External validation adds a British Election Study task and an online-comment emotion task (GoEmotions), spanning five tasks in three contexts. The flagship proprietary models' average margin over their cheaper counterparts is statistically indistinguishable from zero, despite stronger general-benchmark performance. Pricing tells the same story: frontier models cost 1.3–6× more per token, yet for most of them some cheaper model is also more accurate, and the field's second-best macro F1 comes from its cheapest closed model. Open-weight models have largely caught up. The largest ones match both proprietary tiers on cell-level agreement, while on the stricter macro F1 they trail by about two points on average. They reach this at no per-call cost, with the reproducibility and data-privacy advantages of self-hosting. Both patterns hold out of domain. The leading models, closed and open alike, agree with a trained human coder about as well as the two coders agree with each other. Failure is patterned. Errors concentrate on interpretive categories where the human coders themselves disagreed, and on longer responses, penalties from which frontier prices buy little relief. The caveat is scale. Laptop-scale models show strong cell-level agreement but trail further on macro F1, so fully local deployment carries a modest, task-dependent accuracy cost. Hardware scale and question difficulty, not price or license, are the binding constraints on these tasks.
+
+*Under review at Social Science Computer Review.*
