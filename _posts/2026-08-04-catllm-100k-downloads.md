@@ -4,7 +4,7 @@ date: 2026-08-04
 permalink: /posts/2026/08/catllm-100k-downloads/
 description: 'CatLLM has passed 100,000 downloads on PyPI. A look at the peer-reviewed validation behind its defaults, the papers it has produced, and the non-survey research people are using it for.'
 header:
-  og_image: catllm_research.png
+  og_image: wide_cat_llm.png
 tags:
   - CatLLM
   - Large Language Models
@@ -15,7 +15,7 @@ tags:
   - Computational Social Science
 ---
 
-![CatLLM](/images/catllm_research.png)
+![CatLLM logo](/images/wide_cat_llm.png)
 
 [CatLLM](https://pypi.org/project/cat-llm/) has passed **100,000 downloads on PyPI**. I started it because I had a column of open-ended survey responses and no good way to code them at scale; I did not expect it to end up anywhere near six figures.
 
