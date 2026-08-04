@@ -27,10 +27,10 @@ Most LLM classification tooling ships with defaults chosen because they seemed r
 
 The core finding across those studies is that **LLMs systematically over-classify.** They assign categories too liberally on ambiguous cases, producing high sensitivity and much lower precision, which means default configurations can substantially overstate how common a theme is in your data. That single failure mode is what most of CatLLM's defaults are designed to correct:
 
-- **Verbose category definitions with explicit inclusion and exclusion criteria** — vague category labels are where over-classification concentrates.
-- **Unanimous multi-model ensembling** — requiring cross-provider agreement drops the false positive rate on the most ambiguous categories from 50% to 3% and triples precision.
-- **An automatic "Other" escape valve** — models forced to choose among your categories will force-fit responses that belong in none of them.
-- **Advanced prompting strategies off by default** — they showed no reliable benefit on these tasks, so they are opt-in rather than assumed.
+- **Verbose category definitions with explicit inclusion and exclusion criteria.** Vague category labels are where over-classification concentrates.
+- **Unanimous multi-model ensembling.** Requiring cross-provider agreement drops the false positive rate on the most ambiguous categories from 50% to 3% and triples precision.
+- **An automatic "Other" escape valve.** Models forced to choose among your categories will force-fit responses that belong in none of them.
+- **Advanced prompting strategies off by default.** They showed no reliable benefit on these tasks, so they are opt-in rather than assumed.
 
 The package is also peer-reviewed. It went through review at the *Journal of Open Source Software*, and the empirical validation behind the defaults is written up separately and under review at disciplinary journals. That is a deliberately slower path than shipping a package and writing a README, and I think it is the right one for tooling that produces variables people then run regressions on.
 
@@ -83,7 +83,7 @@ PyPI tells me the package has been downloaded. It tells me nothing about who, fo
 - Domains I have not benchmarked at all: clinical notes, interview transcripts, historical documents, customer feedback.
 - Cases where it did *not* work. Negative results are more useful to me than success stories, and they will shape the defaults for the next version.
 
-Reach me at **chrissoria@berkeley.edu**, or open a thread on the [GitHub repo](https://github.com/chrissoria/cat-llm). No formality needed — a link and a sentence is plenty.
+Reach me at **chrissoria@berkeley.edu**, or open a thread on the [GitHub repo](https://github.com/chrissoria/cat-llm). No formality needed. A link and a sentence is plenty.
 
 ## Install It
 
