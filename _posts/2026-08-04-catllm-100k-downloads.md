@@ -54,7 +54,7 @@ Five papers so far, all of which either document CatLLM or exist because of the 
   <br>*Sixteen models across three cost tiers and six providers. Cross-provider diversity is the active ingredient, not model size or temperature; three diverse cheap models reliably beat GPT-5. Revise and resubmit at Public Opinion Quarterly.*
 
 - Soria C. [What Does Frontier Access Buy? Benchmarking LLM Access Tiers and the Reproducibility Case for Open Weights in Survey Coding](https://osf.io/preprints/socarxiv/5g34x_v1). *SocArXiv.* 2026.
-  <br>*Eighteen LLMs across four access tiers on five tasks. The flagship tier's accuracy margin over cheaper models is statistically indistinguishable from zero despite costing 1.3–6× more per token, and the largest open-weight models match both proprietary tiers on cell-level agreement. Under review at Social Science Computer Review.*
+  <br>*Eighteen LLMs across four access tiers on five tasks. The flagship tier's accuracy margin over cheaper models is statistically indistinguishable from zero despite costing 1.3–6× more per token, and the largest open-weight models match both proprietary tiers on cell-level agreement. Under review at Survey Research Methods.*
 
 The practical upshot of the last two, if you only take one thing from this section: you probably do not need the expensive model. You need a few different ones.
 
