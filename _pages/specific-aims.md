@@ -9,7 +9,7 @@ redirect_from:
 ---
 
 <div style="padding: 14px 18px; margin-bottom: 28px; background: #f4f9f8; border-left: 3px solid #2a9d8f; border-radius: 4px; font-size: 0.95rem;">
-  <strong>NIH/NIA Ruth L. Kirschstein Predoctoral Fellowship (F31)</strong>, award 1F31AG087682, 2025&ndash;2027. Sponsor: <a href="https://publichealth.berkeley.edu/people/william-dow">William H. Dow</a>. Official project title: "Examining the Relevance of Social Network Characteristics and Cognitive Aging: A Causal Inference Study." <a href="https://reporter.nih.gov/search/kHoWAniqj0iJsgXgWI3_mQ/project-details/11071776">View on NIH RePORTER</a>.
+  <strong>NIH/NIA Ruth L. Kirschstein Predoctoral Fellowship (F31)</strong>, award 1F31AG087682, 2025&ndash;2027. Sponsor: <a href="https://publichealth.berkeley.edu/people/william-dow">William H. Dow</a>. Official project title: "Examining the Relevance of Social Network Characteristics and Cognitive Aging: A Causal Inference Study."
 </div>
 
 *The Specific Aims page from the funded application, as submitted.*
