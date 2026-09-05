@@ -1,13 +1,13 @@
 ---
-title: "Why Would They Help Me?: Reasons People Expect (or Do Not Expect) Social Support"
+title: "Why Would Others Help Me?: How People Explain Why They Can (or Cannot) Rely on Family and Friends"
 collection: publications
 type: peer-reviewed
 permalink: /publication/2026-07-01-spq-social-support
-excerpt: 'A study of the reasons people give for expecting—or not expecting—social support from family and friends, drawing on the UC Berkeley Social Networks Study (UCNets).'
+excerpt: 'A study of how people explain why they can—or cannot—rely on family and friends for support, drawing on open-ended responses from the UC Berkeley Social Networks Study (UCNets).'
 date: 2026-07-01
 venue: 'Social Psychology Quarterly'
-citation: 'Fischer CS, Soria C. Why Would They Help Me?: Reasons People Expect (or Do Not Expect) Social Support. Social Psychology Quarterly. 2026. In press.'
+citation: 'Fischer CS, Soria C. Why Would Others Help Me?: How People Explain Why They Can (or Cannot) Rely on Family and Friends. Social Psychology Quarterly. 2026.'
 ---
-This study examines the reasons people give for why they expect (or do not expect) social support from family and friends, drawing on open-ended responses from the UC Berkeley Social Networks Study (UCNets).
+This study examines how people explain why they can (or cannot) rely on family and friends for support, drawing on open-ended responses from the UC Berkeley Social Networks Study (UCNets).
 
-*Accepted for publication in Social Psychology Quarterly (in press).*
+*Published in Social Psychology Quarterly.*
