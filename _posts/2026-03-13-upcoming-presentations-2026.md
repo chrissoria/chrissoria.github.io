@@ -28,6 +28,8 @@ I have a busy conference season ahead. Here is where I'll be presenting and what
 
 **ΨMCA 2026** — August 9–14. Presentation on algorithmic classification in dementia research.
 
+**Stata Conference 2026** — Boston, October 1. Poster on the [CatLLM](/catllm/) Stata package for LLM-assisted coding of open-ended survey text. Shared in the conference proceedings rather than presented in person.
+
 **USC Gateway Brownbag** — Fall semester
 
 **GSA 2026** — National Harbor, MD, November 4–7 *(pending)*
