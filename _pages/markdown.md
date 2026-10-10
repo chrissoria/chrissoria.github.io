@@ -13,6 +13,8 @@ redirect_from:
 
 <a href="/catllm/">CatLLM</a>: An open-source Python and R ecosystem for LLM-powered text classification — covering survey responses, PDFs, images, web content, and social media posts. Reproducible, provider-agnostic, and validated against expert human coders.
 
+<a href="/capitol-world-map/">Capitol World</a>: A pixel-art map of the U.S. Congress that shows where every active bill sits in the legislative process, who sponsors it, and what moved on the latest day. Built on a public dataset of all bills of the 119th Congress that refreshes daily from Congress.gov.
+
 ## Algorithms
 
 <a href="https://github.com/chrissoria/1066_Algorithm">10/66 Dementia Classification Algorithm</a>: An open-source Stata and SPSS implementation of the 10/66 dementia diagnostic algorithm — covering the original 10/66 study, HRS ADAMS, and CADAS. Harmonized variable mappings across datasets, validated against expert clinical diagnosis.
