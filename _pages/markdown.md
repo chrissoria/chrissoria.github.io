@@ -13,7 +13,7 @@ redirect_from:
 
 <a href="/catllm/">CatLLM</a>: An open-source Python and R ecosystem for LLM-powered text classification — covering survey responses, PDFs, images, web content, and social media posts. Reproducible, provider-agnostic, and validated against expert human coders.
 
-<a href="/capitol-world-map/">Capitol World</a>: A pixel-art map of the U.S. Congress that shows where every active bill sits in the legislative process, who sponsors it, and what moved on the latest day. Built on a public dataset of all bills of the 119th Congress that refreshes daily from Congress.gov.
+<a href="/capitol-world-map/">Capitol World</a>: A pixel-art map of American government. It shows where every active bill sits in Congress and in the California Legislature, how San Diego's county board and city council voted, and a map of every state, county and city. Built on public datasets that refresh daily.
 
 ## Algorithms
 
