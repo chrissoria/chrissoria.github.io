@@ -39,6 +39,8 @@ I develop computational tools and methods that serve my substantive research on 
 
 **Demographic patterns in LLM coding.** [High Agreement, Different Stories](https://osf.io/preprints/socarxiv/85kyd_v1) shows that leading LLMs reach 88–97% agreement with expert human coders across survey categorization tasks, while revealing that high per-category agreement can mask systematic differences in how models and humans handle ambiguity — and how thematic patterns diverge across demographic groups (revise and resubmit at *JSSAM*).
 
+**Stable categories from repeated extraction.** [Saturation Prompting](https://osf.io/preprints/socarxiv/wtkpm_v1) repeats LLM category extraction across random samples of open-ended responses and counts how often each theme recurs. On four UC Berkeley Social Networks Study questions, a small open-weight model recovers 43–47 of the 50 categories in hand-built codebooks, against 31–37 from a single call, and run-to-run consistency rises from 0.85 to 0.96 (revise and resubmit at *Survey Practice*).
+
 I am extending these methods to dementia research, developing algorithmic classification approaches that improve the consistency and scalability of dementia assessment across clinical settings — bridging my methodological and substantive research streams.
 
 Partisanship & Health
