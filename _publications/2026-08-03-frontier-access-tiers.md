@@ -1,5 +1,5 @@
 ---
-title: "The Frontier Premium Is Narrow: Benchmark Capability, Price, and Open Weights in LLM Coding of Open-Ended Survey Responses"
+title: "Benchmark Scores Are a Poor Guide to LLM Coding of Open-Ended Survey Responses"
 collection: publications
 type: preprint
 permalink: /publication/2026-08-03-frontier-access-tiers
@@ -7,6 +7,6 @@ excerpt: "Eighteen LLMs from six developers, half of them open-weight, held to t
 date: 2026-11-21
 venue: 'SocArXiv'
 paperurl: 'https://osf.io/preprints/socarxiv/5g34x_v2'
-citation: 'Soria C. The Frontier Premium Is Narrow: Benchmark Capability, Price, and Open Weights in LLM Coding of Open-Ended Survey Responses. SocArXiv. 2026. https://osf.io/preprints/socarxiv/5g34x_v2'
+citation: 'Soria C. Benchmark Scores Are a Poor Guide to LLM Coding of Open-Ended Survey Responses. SocArXiv. 2026. https://osf.io/preprints/socarxiv/5g34x_v2'
 ---
 Benchmarks of expert-level reasoning rank the most capable language models well above smaller ones. Coding survey responses looks simpler, yet still comes with its own set of difficulties. This note asks whether the models scoring highest on one, Humanity's Last Exam (HLE), agree most with human coders, how they differ, and whether open-weight models match closed-weight ones. Eighteen models from six developers, half of them open-weight, coded three open-ended questions from a Bay Area panel survey zero-shot with minimal reasoning, held to two trained coders' agreement. HLE score did not reliably predict which models code most like the coders: it showed essentially no relation to agreement on why respondents moved, a straightforward question, but went with closer agreement on why they could rely on family, a more interpretive one. Relative to a second coder, every model tends to deviate from humans on categories that require subjectivity from the respondent compared to those that require something more concrete. Higher-scoring models found more of the codes the coders assigned, mostly on family support, without losing precision. Among closed-weight models price showed the same pattern, and the most expensive agreed with the coders no more than several far cheaper ones. On family support most open-weight models, as served by third-party hosts, fell short where most closed ones qualified, yet the highest-scoring model on HLE agreed with the coders no more than the best open-weight model on any question, suggesting that the tradeoff between performance and reproducibility may now be small for such coding.
